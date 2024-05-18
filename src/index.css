@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    --bg: rgba(197, 187, 164);
+    --main: rgba(149, 138, 122);
+    --primary: #403d39;
+    --secondary: #252422;
+    --odd: #eb5e28;
+  }
+}
+
+@font-face {
+  font-family: 'monogram';
+  src: local('monogram-extended'), url(./game/assets/fonts/monogram-extended.ttf) format('truetype');
+}
+
+* {
+  font-family: 'monogram', monospace;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  height: 100%;
+}
+
+h1 {
+  font-size: 6rem;
+}
