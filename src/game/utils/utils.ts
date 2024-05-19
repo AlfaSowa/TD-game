@@ -1,3 +1,5 @@
+import { Container } from 'pixi.js'
+
 //--delayToCallback--//
 export const delayToCallback = (callback: (args?: any) => any) => {
   let elapsed: number = 0
@@ -18,4 +20,8 @@ export const removeElementFromArray = <T>(array: T[], element: T) => {
   if (index > -1) {
     array.splice(index, 1)
   }
+}
+
+export const findOContainer = (context: Container, id: number) => {
+  return context.children.find((obj) => obj.uid === id)
 }

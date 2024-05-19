@@ -1,6 +1,5 @@
 import { Application, Container } from 'pixi.js'
-import { Player } from './units'
-import { Spawner } from './core'
+import { Castle, Forest } from './objects'
 
 class Scene {
   app: Application
@@ -27,36 +26,34 @@ export class Game extends Container {
   scene: Scene
   isPaused: boolean = false
 
-  private player: Player | null = null
-  private spawner: Spawner | null = null
+  private castle: Castle | null = null
+  private forest: Forest | null = null
 
   constructor() {
     super()
-
     this.scene = new Scene()
   }
 
   async play() {
-    this.player = new Player({ game: this })
-    this.scene.app.stage.addChild(this.player)
+    this.castle = new Castle({ game: this })
+    this.scene.app.stage.addChild(this.castle)
 
-    this.spawner = new Spawner({ game: this, player: this.player })
-    this.scene.app.stage.addChild(this.spawner)
+    this.forest = new Forest({ game: this, x: 100, y: 100 })
+    this.scene.app.stage.addChild(this.forest)
 
     this.scene.app.ticker.add(() => {
       this.draw()
     })
 
-    console.log(this.scene.app.stage)
+    console.log(this)
   }
 
   draw() {
-    if (this.player) {
-      this.player.update()
+    if (this.castle) {
+      this.castle.update()
     }
-
-    if (this.spawner) {
-      this.spawner.update()
+    if (this.forest) {
+      this.forest.update()
     }
   }
 }

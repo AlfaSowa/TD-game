@@ -33,6 +33,18 @@ export const isTargetsColision = (targetA: TargetType, targetB: TargetType): boo
   return getDistBetweenTargets(targetA, targetB) < targetA.radius + targetB.radius
 }
 
+//--isTargetsColision--//
+export const isContainersColision = (targetA: Container, targetB: Container, rA: number, rB: number): boolean => {
+  let delta = {
+    x: targetA.groupTransform.tx - targetB.groupTransform.tx,
+    y: targetA.groupTransform.ty - targetB.groupTransform.ty
+  }
+
+  const dist = Math.sqrt(Math.pow(delta.x, 2) + Math.pow(delta.y, 2))
+
+  return dist < rA + rB
+}
+
 //--isTargetsRectColision--//
 type TargetSizeType = { width: number; height: number }
 
@@ -83,14 +95,29 @@ export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetTy
 }
 
 //--moveElementToTarget--//
-
-type B = Container & { velocity: number }
-
 export const moveElementToTarget = (element: Container, target: Container, velocity: number = 1) => {
   if (element.x !== target.x || element.y !== target.y) {
     let delta = {
       x: target.x - element.x,
       y: target.y - element.y
+    }
+
+    let angle = Math.atan2(delta.y, delta.x)
+
+    element.x += Math.cos(angle) * velocity
+    element.y += Math.sin(angle) * velocity
+  }
+}
+
+//--moveElementToTarget--//
+export const moveElementToContainer = (element: Container, target: Container, velocity: number = 1) => {
+  if (
+    element.groupTransform.tx !== target.groupTransform.tx ||
+    element.groupTransform.ty !== target.groupTransform.ty
+  ) {
+    let delta = {
+      x: target.groupTransform.tx - element.groupTransform.tx,
+      y: target.groupTransform.ty - element.groupTransform.ty
     }
 
     let angle = Math.atan2(delta.y, delta.x)
@@ -154,6 +181,28 @@ export const getNearestTarget = <E, T>(entity: E, targets: T[]): [T, number] => 
 
   for (let i = 0; i < targets.length; i++) {
     const dist = getDistBetweenTargets(entity as TargetType, targets[i] as TargetType)
+
+    if (dist < distToNearestTarget) {
+      distToNearestTarget = dist
+      nearestTarget = targets[i]
+    }
+  }
+
+  return [nearestTarget, distToNearestTarget]
+}
+
+//--getNearestContainerTarget--//
+export const getNearestContainerTarget = (element: Container, targets: Container[]): [Container, number] => {
+  let distToNearestTarget: number = 99999
+  let nearestTarget = targets[0]
+
+  for (let i = 0; i < targets.length; i++) {
+    let delta = {
+      x: element.groupTransform.tx - targets[i].groupTransform.tx,
+      y: element.groupTransform.ty - targets[i].groupTransform.ty
+    }
+
+    const dist = Math.sqrt(Math.pow(delta.x, 2) + Math.pow(delta.y, 2))
 
     if (dist < distToNearestTarget) {
       distToNearestTarget = dist

@@ -94,7 +94,7 @@ export const App = () => {
         </div>
       )}
 
-      {game && (
+      {/* {game && (
         <div className="absolute top-0  z-40 flex gap-2 text-gray-100 text-xl">
           <button onClick={() => setIsBonuses(true)} className=" bg-slate-700 p-2">
             бонусы
@@ -104,7 +104,7 @@ export const App = () => {
             оружие
           </button>
         </div>
-      )}
+      )} */}
     </ScoreContext.Provider>
   )
 }
