@@ -1,110 +1,38 @@
-import { createContext, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Game } from '../game'
-import { AbilitiesComponent, BonusesComponent, GameComponent, WeaponsComponent } from './hud'
-
-export const ScoreContext = createContext(0)
+import { MainMenu } from './hud'
+import { Button } from './ui'
+import { events } from '../game/core'
+import { BuildingsTypes } from '../game/objects/buildings/types'
+import { BUY_NEW_BUILDING } from '../game/constants'
 
 const g = new Game()
 
 export const App = () => {
-  const gameTmp = useRef()
   const [game, setGame] = useState<Game>()
-  const [score, setScore] = useState<number>(0)
-  const [level, setLevel] = useState<number>(0)
-  const [isPaused, setIsPaused] = useState<boolean>(false)
-  const [isBonuses, setIsBonuses] = useState<boolean>(false)
-  const [isWeapons, setIsWeapons] = useState<boolean>(false)
-  const canvasRef = useRef<HTMLDivElement>(null)
 
-  const starGame = useCallback(() => {
-    // gameTmp.current = game
-    g.play()
-    setGame(g)
-  }, [])
-
-  const stopGame = useCallback(() => {
-    if (game) {
-      // game.stop()
-    }
-  }, [game])
-
-  const pauseGame = useCallback(() => {
-    if (game) {
-      // game.pause(true)
-    }
-  }, [game])
-
-  const unPauseGame = useCallback(() => {
-    if (game) {
-      // game.pause(false)
-      setIsPaused(false)
-    }
-  }, [game])
-
-  const handleAbilities = useCallback(
-    (id: string) => {
-      if (game) {
-        // game.pause(false)
-        setIsPaused(false)
-        // game.start()
-      }
-    },
-    [game]
-  )
-
-  useEffect(() => {
-    window.addEventListener('game-pause', () => {
-      setIsPaused(true)
-    })
-
-    window.addEventListener('update-score', (e: any) => {
-      setScore(e.detail.score)
-      setLevel(e.detail.level)
-    })
+  const buyNewBuilding = useCallback((type: BuildingsTypes) => {
+    events.emit(BUY_NEW_BUILDING, type)
   }, [])
 
   return (
-    <ScoreContext.Provider value={score}>
-      {!game && (
-        <GameComponent
-          starGame={starGame}
-          stopGame={stopGame}
-          pauseGame={pauseGame}
-          unPauseGame={unPauseGame}
-          bonuses={() => setIsBonuses(true)}
-          weapons={() => setIsWeapons(true)}
-        />
-      )}
+    <>
+      {!game && <MainMenu game={g} setGame={setGame} />}
 
       <div
         id="game-canvas"
-        className="h-screen w-screen flex items-center justify-center bg-[var(--bg)]"
-        ref={canvasRef}
+        className="h-dvh w-screen flex items-center justify-center bg-[var(--bg)] fixed top-0 left-0 -z-10"
       />
 
-      {isPaused && <AbilitiesComponent handleAbilities={handleAbilities} />}
+      {game && (
+        <div className="absolute bottom-0 w-full h-16 flex items-center justify-center gap-2 px-2">
+          <Button onClick={() => buyNewBuilding('Sawmill')} badge={1}>
+            Sawmill
+          </Button>
 
-      {isBonuses && <BonusesComponent onClose={() => setIsBonuses(false)} />}
-      {isWeapons && <WeaponsComponent onClose={() => setIsWeapons(false)} />}
-
-      {game && !isPaused && (
-        <div className="absolute bottom-0 w-full h-24 flex items-center justify-center gap-8">
-          <div className="text-3xl">{score}</div>
-          <div className="text-3xl">{level}</div>
+          <Button onClick={() => buyNewBuilding('CastelWall')}>CastelWall</Button>
         </div>
       )}
-
-      {/* {game && (
-        <div className="absolute top-0  z-40 flex gap-2 text-gray-100 text-xl">
-          <button onClick={() => setIsBonuses(true)} className=" bg-slate-700 p-2">
-            бонусы
-          </button>
-
-          <button onClick={() => setIsWeapons(true)} className=" bg-slate-700 p-2">
-            оружие
-          </button>
-        </div>
-      )} */}
-    </ScoreContext.Provider>
+    </>
   )
 }

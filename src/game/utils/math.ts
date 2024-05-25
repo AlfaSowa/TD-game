@@ -19,17 +19,23 @@ export const isOnCanavasField = ({ radius, position, ctx }: IsOnCanavasFieldProp
 }
 
 //--getDistBetweenTargets--//
-export const getDistBetweenTargets = (targetA: TargetType, targetB: TargetType): number => {
+export const getDistBetweenTargets = <T>(
+  targetA: T & { x: number; y: number },
+  targetB: T & { x: number; y: number }
+): number => {
   let delta = {
-    x: targetA.position.x - targetB.position.x,
-    y: targetA.position.y - targetB.position.y
+    x: targetA.x - targetB.x,
+    y: targetA.y - targetB.y
   }
 
   return Math.sqrt(Math.pow(delta.x, 2) + Math.pow(delta.y, 2))
 }
 
 //--isTargetsColision--//
-export const isTargetsColision = (targetA: TargetType, targetB: TargetType): boolean => {
+export const isTargetsColision = <T>(
+  targetA: T & { x: number; y: number } & { radius: number },
+  targetB: T & { x: number; y: number } & { radius: number }
+): boolean => {
   return getDistBetweenTargets(targetA, targetB) < targetA.radius + targetB.radius
 }
 
@@ -175,12 +181,15 @@ export const unitMovement = (build: any, bounds: number = 0) => {
 }
 
 //--getNearestTarget--//
-export const getNearestTarget = <E, T>(entity: E, targets: T[]): [T, number] => {
+export const getNearestTarget = <E, T>(
+  entity: E & { x: number; y: number },
+  targets: Array<T & { x: number; y: number }>
+): [T, number] => {
   let distToNearestTarget: number = 99999
   let nearestTarget = targets[0]
 
   for (let i = 0; i < targets.length; i++) {
-    const dist = getDistBetweenTargets(entity as TargetType, targets[i] as TargetType)
+    const dist = getDistBetweenTargets<E | T>(entity, targets[i])
 
     if (dist < distToNearestTarget) {
       distToNearestTarget = dist

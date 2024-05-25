@@ -1,12 +1,10 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Modal } from '../entities'
-import { ScoreContext } from '../App'
+
 import { WEAPONS } from '../../mock-data'
 import { Button } from '../ui'
 
 export const WeaponsComponent = ({ onClose }: { onClose: () => void }) => {
-  const score = useContext(ScoreContext)
-
   const [tabId, setTabId] = useState<number>(0)
   const [isActive, setIsActive] = useState<boolean>(WEAPONS[tabId].active)
 
@@ -35,10 +33,10 @@ export const WeaponsComponent = ({ onClose }: { onClose: () => void }) => {
 
       <div className="sticky bottom-0 flex flex-col gap-2">
         <div className="border-2 rounded border-[var(--second)] text-4xl w-full flex items-center justify-center relative py-2">
-          {score}
+          123
         </div>
 
-        <Button {...(isActive && { badge: { show: true, value: 1 } })}>{isActive ? 'улучшить' : 'активировать'}</Button>
+        <Button {...(isActive && { badge: 1 })}>{isActive ? 'улучшить' : 'активировать'}</Button>
       </div>
     </Modal>
   )

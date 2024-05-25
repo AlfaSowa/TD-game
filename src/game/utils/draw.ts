@@ -8,8 +8,8 @@ export const createTriangle = (x: number, y: number, color: string, size: number
 
   // draw triangle
   triangle.moveTo(0, -size)
-  triangle.lineTo(size, size / 2)
-  triangle.lineTo(-size, size / 2)
+  triangle.lineTo(size / 2, size / 2)
+  triangle.lineTo(-size / 2, size / 2)
   triangle.fill(color)
 
   return triangle

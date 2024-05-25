@@ -3,18 +3,14 @@ import { Game } from '../../../game'
 
 interface IBaseBuild {
   game: Game
-  radius: number
 }
 
 export class BaseBuild extends Container {
   game: Game
-  radius: number
 
-  constructor({ game, radius }: IBaseBuild) {
+  constructor({ game }: IBaseBuild) {
     super()
-
     this.game = game
-    this.radius = radius
   }
 
   update() {}

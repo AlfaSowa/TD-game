@@ -1,5 +1,6 @@
-export const DAMAGE_HERO = 'DAMAGE_HERO'
-export const DAMAGE_ENEMY = 'DAMAGE_ENEMY'
+export const BUY_NEW_BUILDING = 'BUY_NEW_BUILDING'
+
+export const TAIL_SIZE = 16
 
 export const colorTheme = {
   main: 'rgba(149, 138, 122)',

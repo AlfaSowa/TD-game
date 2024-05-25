@@ -1,4 +1,4 @@
 export { AbilitiesComponent } from './abilitie'
 export { BonusesComponent } from './bonuses'
-export { GameComponent } from './game'
+export { MainMenu } from './main-menu'
 export { WeaponsComponent } from './weapons'
