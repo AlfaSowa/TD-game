@@ -1,7 +1,8 @@
 import { Application, Container } from 'pixi.js'
-import { Castle, Forest } from './objects'
-import { Pathfinder } from './core'
 import { TAIL_SIZE } from './constants'
+import { pathfinder } from './core'
+import { Castle, Forest } from './objects'
+import { Sawmill } from './objects/buildings/sawmill'
 
 class Scene {
   app: Application
@@ -33,7 +34,7 @@ export class Game extends Container {
 
   private castle: Castle | null = null
   private forest: Forest | null = null
-  private pathfinder: Pathfinder | null = null
+  private sawmill: Sawmill | null = null
 
   constructor() {
     super()
@@ -41,11 +42,16 @@ export class Game extends Container {
   }
 
   async play() {
+    pathfinder.init(this)
+
     this.castle = new Castle({ game: this })
     this.scene.app.stage.addChild(this.castle)
 
     this.forest = new Forest()
     this.scene.app.stage.addChild(this.forest)
+
+    this.sawmill = new Sawmill({ game: this })
+    this.scene.app.stage.addChild(this.sawmill)
 
     this.scene.app.ticker.add(() => {
       this.draw()
@@ -55,6 +61,9 @@ export class Game extends Container {
   draw() {
     if (this.castle) {
       this.castle.update()
+    }
+    if (this.sawmill) {
+      this.sawmill.update()
     }
     if (this.forest) {
       this.forest.update()

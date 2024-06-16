@@ -12,3 +12,5 @@ export type TargetType = {
   width?: number
   height?: number
 }
+
+export interface IBaseGameObject {}

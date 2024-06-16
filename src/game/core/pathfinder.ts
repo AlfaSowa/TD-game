@@ -1,15 +1,10 @@
-import { Container, Graphics } from 'pixi.js'
 import { Game } from '../game'
-import { Vector2, heuristic, removeElementFromArray } from '../utils'
+import { Vector2, getDistBetweenTargets, heuristic, removeElementFromArray } from '../utils'
 import { TAIL_SIZE } from '../constants'
+import { Spot } from './pathfinder-spot'
 
-interface IPathfinder {
-  game: Game
-  allowDiagonals?: boolean
-}
-
-export class Pathfinder {
-  game: Game
+class Pathfinder {
+  game!: Game
 
   openSet: Spot[] = []
   closedSet: Spot[] = []
@@ -24,55 +19,48 @@ export class Pathfinder {
 
   lastCheckedNode!: Spot
 
-  allowDiagonals: boolean
+  allowDiagonals: boolean = false
 
-  isFineshed: boolean = false
+  isFinished: boolean = false
 
-  constructor({ game, allowDiagonals }: IPathfinder) {
+  init(game: Game) {
     this.game = game
 
-    this.allowDiagonals = allowDiagonals || false
+    this.cols = this.game.scene.app.canvas.width / TAIL_SIZE
+    this.rows = this.game.scene.app.canvas.height / TAIL_SIZE
 
-    this.cols = Math.floor(this.game.scene.app.canvas.width / TAIL_SIZE)
-    this.rows = Math.floor(this.game.scene.app.canvas.height / TAIL_SIZE)
-  }
-
-  init(walls: { [key: string]: { [key: string]: boolean } }) {
     for (let i = 0; i < this.cols; i++) {
       this.grid[i] = []
 
       for (let j = 0; j < this.rows; j++) {
-        this.grid[i][j] = new Spot(i, j, !!walls[i]?.[j])
-      }
-    }
-
-    for (let i = 0; i < this.cols; i++) {
-      for (let j = 0; j < this.rows; j++) {
-        this.grid[i][j].addNeighbors(this.grid)
+        this.grid[i][j] = new Spot(i, j, false, this.grid)
       }
     }
   }
 
-  addNewPath(start: Vector2, end: Vector2) {
+  find(start: Vector2, end: Vector2) {
+    this.openSet = []
+    this.closedSet = []
+
     this.start = this.grid[start.x][start.y]
     this.end = this.grid[end.x][end.y]
 
     this.lastCheckedNode = this.start
+    this.isFinished = false
 
     this.openSet.push(this.start)
 
-    this.isFineshed = false
-    while (!this.isFineshed) {
+    while (!this.isFinished) {
       this.step()
     }
 
-    const path = new Path({ game: this.game, path: this.calcPath(this.lastCheckedNode) })
+    console.log(this.lastCheckedNode)
 
-    return { path, pathId: path.id }
+    return this.calcPath(this.lastCheckedNode)
   }
 
   calcPath(endNode: Spot) {
-    const path = []
+    const path: Spot[] = []
     let temp = endNode
 
     path.push(temp)
@@ -87,33 +75,31 @@ export class Pathfinder {
 
   step() {
     if (this.openSet.length > 0) {
-      let pivot = 0
+      let winner = 0
 
-      for (let i = 0; i < this.openSet.length; i++) {
-        if (this.openSet[i].f < this.openSet[pivot].f) {
-          pivot = i
+      for (let i = 1; i < this.openSet.length; i++) {
+        if (this.openSet[i].f < this.openSet[winner].f) {
+          winner = i
         }
-
-        //если клетки равны по весу
-        if (this.openSet[i].f === this.openSet[pivot].f) {
-          //берем элемент ближайший к целе
-          if (this.openSet[i].g > this.openSet[pivot].g) {
-            pivot = i
+        if (this.openSet[i].f === this.openSet[winner].f) {
+          if (this.openSet[i].g > this.openSet[winner].g) {
+            winner = i
           }
 
           if (!this.allowDiagonals) {
-            if (this.openSet[i].g === this.openSet[pivot].g && this.openSet[i].vh < this.openSet[pivot].vh) {
-              pivot = i
+            if (this.openSet[i].g === this.openSet[winner].g && this.openSet[i].vh < this.openSet[winner].vh) {
+              winner = i
             }
           }
         }
       }
 
-      var current = this.openSet[pivot]
+      const current = this.openSet[winner]
+
       this.lastCheckedNode = current
 
       if (current === this.end) {
-        this.isFineshed = true
+        this.isFinished = true
         console.log('DONE!')
         return 1
       }
@@ -121,11 +107,13 @@ export class Pathfinder {
       removeElementFromArray(this.openSet, current)
       this.closedSet.push(current)
 
-      for (let i = 0; i < current.neighbors.length; i++) {
-        const neighbor = current.neighbors[i]
+      const neighbors = current.getNeighbors()
+
+      for (let i = 0; i < neighbors.length; i++) {
+        const neighbor = neighbors[i]
 
         if (!this.closedSet.includes(neighbor)) {
-          var tentativeGScore = current.g + heuristic(neighbor, current, true)
+          const tentativeGScore = current.g + heuristic<Spot>(neighbor, current, this.allowDiagonals)
 
           if (!this.openSet.includes(neighbor)) {
             this.openSet.push(neighbor)
@@ -134,8 +122,11 @@ export class Pathfinder {
           }
 
           neighbor.g = tentativeGScore
-          neighbor.f = heuristic(neighbor, this.end, true)
+          neighbor.h = heuristic(neighbor, this.end, this.allowDiagonals)
 
+          if (!this.allowDiagonals) {
+            neighbor.vh = getDistBetweenTargets(neighbor, this.end)
+          }
           neighbor.f = neighbor.g + neighbor.h
           neighbor.previous = current
         }
@@ -144,82 +135,11 @@ export class Pathfinder {
       return 0
       //--
     } else {
-      this.isFineshed = true
+      this.isFinished = true
       console.log('no solution')
       return -1
     }
   }
 }
 
-//Path------------------------------
-interface IPath {
-  game: Game
-  path: Spot[]
-}
-
-export class Path extends Container {
-  uuid: string = '12312'
-  game: Game
-  path: Spot[] = []
-
-  constructor({ game, path }: IPath) {
-    super()
-    this.game = game
-    this.path = path
-
-    this.game.scene.app.stage.addChild(this)
-
-    for (let i = 0; i < path.length; i++) {
-      this.addChild(
-        new Graphics().rect(path[i].x * TAIL_SIZE, path[i].y * TAIL_SIZE, TAIL_SIZE, TAIL_SIZE).fill('#9e9e9e21')
-      )
-    }
-  }
-
-  get id() {
-    return this.uuid
-  }
-}
-
-//Spot------------------------------
-export class Spot {
-  x: number = 0
-  y: number = 0
-
-  neighbors: Spot[] = []
-
-  g: number = 0
-  f: number = 0
-  h = 0
-  vh = 0
-
-  previous!: Spot
-
-  isWall: boolean = false
-
-  constructor(i: number, j: number, isWall: boolean) {
-    this.x = i
-    this.y = j
-
-    this.isWall = isWall
-  }
-
-  addNeighbors(grid: Spot[][]) {
-    //top
-    if (grid[this.x]?.[this.y - 1] && !grid[this.x]?.[this.y - 1]?.isWall) {
-      this.neighbors.push(grid[this.x][this.y - 1])
-    }
-    //bottom
-    if (grid[this.x]?.[this.y + 1] && !grid[this.x]?.[this.y + 1]?.isWall) {
-      this.neighbors.push(grid[this.x][this.y + 1])
-    }
-    //left
-    if (grid[this.x - 1]?.[this.y] && !grid[this.x - 1]?.[this.y]?.isWall) {
-      this.neighbors.push(grid[this.x - 1][this.y])
-    }
-    //right
-    if (grid[this.x + 1]?.[this.y] && !grid[this.x + 1]?.[this.y]?.isWall) {
-      this.neighbors.push(grid[this.x + 1][this.y])
-    }
-  }
-}
+export const pathfinder = new Pathfinder()

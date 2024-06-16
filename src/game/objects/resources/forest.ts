@@ -2,18 +2,21 @@ import { Container, Graphics } from 'pixi.js'
 import { colorTheme } from '../../constants'
 import { delayToCallback, randomNumber } from '../../utils'
 import { createTriangle } from '../../utils/draw'
+import { BaseResources } from './base'
 
 export class Forest extends Container {
+  isFull: boolean = false
   radius: number = 50
 
   matrix: any[] = [0, 1, 2, 3, 4, 5, 6]
 
   constructor() {
     super()
-    this.position.set(100, 100)
+
+    this.position.set(10 + this.radius, 10 + this.radius)
   }
 
-  addNewForestTile = delayToCallback(() => {
+  addNewForestTile = delayToCallback(100, () => {
     const matrixTmp = this.matrix.filter((i) => i !== 'true')
     const positionOnCircle = matrixTmp[randomNumber([-1, matrixTmp.length])]
 
@@ -29,8 +32,13 @@ export class Forest extends Container {
   })
 
   update() {
-    if (this.children.length <= this.matrix.length) {
-      this.addNewForestTile(100)
+    if (this.children.length < this.matrix.length && !this.isFull) {
+      this.addNewForestTile()
+      this.isFull = true
+    }
+
+    if (this.children.length >= this.matrix.length && !this.isFull) {
+      this.isFull = true
     }
   }
 }
@@ -41,9 +49,7 @@ interface IForestTile {
   radius: number
 }
 
-export class ForestTile extends Container {
-  private resources: number = 100
-
+export class ForestTile extends BaseResources {
   constructor({ x, y, radius }: IForestTile) {
     super()
 
@@ -52,12 +58,5 @@ export class ForestTile extends Container {
     this.position.set(x, y)
     this.addChild(triangle)
     this.addChild(new Graphics().rect(-1, 0, 2, radius - 4).fill(colorTheme.primary))
-  }
-
-  public takeResources(value: number) {
-    this.resources -= value
-    if (this.resources < 0) {
-      this.destroy()
-    }
   }
 }

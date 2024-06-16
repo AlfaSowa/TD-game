@@ -16,11 +16,6 @@ export class Spawner extends Container {
   //   this.player = player
   //   console.log(this.game.scene.app)
   // }
-  // private spawnEnemies = delayToCallback(() => {
-  //   for (let i = 0; i < randomNumber(state.getAmountOfEnemies); i++) {
-  //     this.addChild(new BaseEnemy({ game: this.game, spawnRadius: 400 }))
-  //   }
-  // })
   // private isCollsiionWithTarget() {
   //   for (let i = 0; i < this.children.length; i++) {
   //     moveElementToTarget(this.children[i], this.player, (this.children[i] as BaseEnemy).velocity)
