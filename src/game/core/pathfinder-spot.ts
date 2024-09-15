@@ -4,18 +4,18 @@ const LURDMoves = [
   [1, 0],
   [0, 1]
 ]
-const DiagonalMoves = [
-  [-1, -1],
-  [1, -1],
-  [1, 1],
-  [-1, 1]
-]
-const DiagonalBlockers = [
-  [0, 1],
-  [1, 2],
-  [2, 3],
-  [3, 0]
-]
+// const DiagonalMoves = [
+//   [-1, -1],
+//   [1, -1],
+//   [1, 1],
+//   [-1, 1]
+// ]
+// const DiagonalBlockers = [
+//   [0, 1],
+//   [1, 2],
+//   [2, 3],
+//   [3, 0]
+// ]
 
 export class Spot {
   grid: Spot[][] = []
@@ -72,8 +72,8 @@ export class Spot {
     this.neighbors = []
     this.neighboringWalls = []
 
-    for (var i = 0; i < 4; i++) {
-      var node = this.getNode(this.x + LURDMoves[i][0], this.y + LURDMoves[i][1])
+    for (let i = 0; i < 4; i++) {
+      const node = this.getNode(this.x + LURDMoves[i][0], this.y + LURDMoves[i][1])
       if (node != null) {
         if (!node.wall) {
           this.neighbors.push(node)

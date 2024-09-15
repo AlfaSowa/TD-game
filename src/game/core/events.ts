@@ -31,6 +31,8 @@ class Events {
       caller
     })
 
+    console.log(this.callbacks)
+
     return this.nextId
   }
 

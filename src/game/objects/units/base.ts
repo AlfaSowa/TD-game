@@ -1,7 +1,7 @@
+import { Container } from 'pixi.js'
 import { TAIL_SIZE } from '../../constants'
-import { BaseGameObject } from '../baseObject'
 
-export class BaseUnit extends BaseGameObject {
+export class BaseUnit extends Container {
   velocity: number = 3
   size: number = TAIL_SIZE
 

@@ -1,6 +1,6 @@
+import { TAIL_SIZE } from '../constants'
 import { Game } from '../game'
 import { Vector2, getDistBetweenTargets, heuristic, removeElementFromArray } from '../utils'
-import { TAIL_SIZE } from '../constants'
 import { Spot } from './pathfinder-spot'
 
 class Pathfinder {
@@ -26,8 +26,8 @@ class Pathfinder {
   init(game: Game) {
     this.game = game
 
-    this.cols = this.game.scene.app.canvas.width / TAIL_SIZE
-    this.rows = this.game.scene.app.canvas.height / TAIL_SIZE
+    this.cols = this.game.app.canvas.width / TAIL_SIZE
+    this.rows = this.game.app.canvas.height / TAIL_SIZE
 
     for (let i = 0; i < this.cols; i++) {
       this.grid[i] = []

@@ -1,0 +1,1 @@
+export { CastleService } from './castleService'

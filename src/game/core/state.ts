@@ -1,3 +1,5 @@
+import { CastleGrid } from '../objects/buildings/types'
+
 class State {
   private playerAttackRadius: number = 50
   private playerAttackSpeed: number = 300
@@ -11,6 +13,18 @@ class State {
   private amountOfEnemies: number[] = [2, 6]
   private delayToSpawnEnemies: number[] = [60, 90]
   private speedEnemies: number[] = [0, 3]
+
+  private castleGrid: CastleGrid[] = [
+    { id: 0, disable: true, price: 300 },
+    { id: 1, disable: true, price: 250 },
+    { id: 2, disable: true, price: 30 },
+    { id: 3, disable: true, price: 2040 },
+    { id: 4, disable: false, price: 130 },
+    { id: 5, disable: true, price: 560 },
+    { id: 6, disable: true, price: 40 },
+    { id: 7, disable: true, price: 2640 },
+    { id: 8, disable: true, price: 200 }
+  ]
 
   // private weapons: any = WEAPONS.filter((weapon) => weapon.active)
 
@@ -44,11 +58,19 @@ class State {
     }
   }
 
+  set updateCastleGrid(grid: CastleGrid[]) {
+    this.castleGrid = grid
+  }
+
   get getExperience() {
     return {
       total: this.totalExperience,
       current: this.currentExperience
     }
+  }
+
+  get getCastleGrid() {
+    return this.castleGrid
   }
 
   get getSpeedEnemies() {

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { Button } from '../ui'
 import { Game } from '../../game'
+import { Button } from '../ui'
 
 type MainMenuProps = {
   game: Game
@@ -9,7 +9,7 @@ type MainMenuProps = {
 
 export const MainMenu = ({ game, setGame }: MainMenuProps) => {
   const starGame = useCallback(() => {
-    game.play()
+    game.init()
     setGame(game)
   }, [game, setGame])
 

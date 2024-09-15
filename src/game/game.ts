@@ -1,15 +1,22 @@
 import { Application, Container } from 'pixi.js'
 import { TAIL_SIZE } from './constants'
-import { pathfinder } from './core'
-import { Castle, Forest } from './objects'
-import { Sawmill } from './objects/buildings/sawmill'
+import { CastleService } from './services'
+import { IGame } from './types'
 
-class Scene {
+export class Game extends Container implements IGame {
   app: Application
 
+  private castleService: CastleService
+  // private sawmillService: SawmillService
+  // private forestService: ForestService
+
   constructor() {
+    super()
     this.app = new Application()
-    this.init()
+
+    this.castleService = new CastleService(this)
+    // this.sawmillService = new SawmillService(this)
+    // this.forestService = new ForestService(this)
   }
 
   async init() {
@@ -25,48 +32,16 @@ class Scene {
     this.app.canvas.height = window.innerHeight - (window.innerHeight % TAIL_SIZE)
 
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
-  }
-}
 
-export class Game extends Container {
-  scene: Scene
-  isPaused: boolean = false
+    //services
+    this.castleService.init()
+    // this.sawmillService.init()
+    // this.forestService.init()
 
-  private castle: Castle | null = null
-  private forest: Forest | null = null
-  private sawmill: Sawmill | null = null
-
-  constructor() {
-    super()
-    this.scene = new Scene()
-  }
-
-  async play() {
-    pathfinder.init(this)
-
-    this.castle = new Castle({ game: this })
-    this.scene.app.stage.addChild(this.castle)
-
-    this.forest = new Forest()
-    this.scene.app.stage.addChild(this.forest)
-
-    this.sawmill = new Sawmill({ game: this })
-    this.scene.app.stage.addChild(this.sawmill)
-
-    this.scene.app.ticker.add(() => {
-      this.draw()
+    this.app.ticker.add(() => {
+      this.castleService.update()
+      // this.sawmillService.update()
+      // this.forestService.update()
     })
-  }
-
-  draw() {
-    if (this.castle) {
-      this.castle.update()
-    }
-    if (this.sawmill) {
-      this.sawmill.update()
-    }
-    if (this.forest) {
-      this.forest.update()
-    }
   }
 }

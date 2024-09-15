@@ -2,7 +2,6 @@ import { Graphics } from 'pixi.js'
 import { Game } from '../../../game'
 import { TAIL_SIZE, colorTheme } from '../../constants'
 import { BaseGameObject } from '../baseObject'
-import { Forest } from '../resources'
 import { Lumberman } from '../units'
 import { BaseBuild } from './base'
 import { Castle } from './castle'
@@ -19,12 +18,12 @@ export class Sawmill extends BaseBuild {
 
     this.game = game
 
-    for (const container of this.game.scene.app.stage.children) {
-      if (container instanceof Forest) {
-        this.target = container
-      }
+    for (const container of this.game.app.stage.children) {
+      // if (container instanceof Forest) {
+      //   this.target = container
+      // }
       if (container instanceof Castle) {
-        this.position.set(container.x + container.width / 2 + TAIL_SIZE, container.y + container.height / 2 + TAIL_SIZE)
+        this.position.set(container.x + container.width, container.y + container.height)
       }
     }
 

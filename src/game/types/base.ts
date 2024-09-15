@@ -1,3 +1,4 @@
+import { Game } from '../game'
 import { Vector2 } from '../utils'
 
 export type MouseType = {
@@ -13,4 +14,6 @@ export type TargetType = {
   height?: number
 }
 
-export interface IBaseGameObject {}
+export interface IBaseGameObject {
+  game: Game
+}

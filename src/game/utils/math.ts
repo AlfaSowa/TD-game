@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js'
-import { Vector2 } from './helpers'
 import { MouseType, TargetType } from '../types'
+import { Vector2 } from './helpers'
 
 //---isOnCanavasField ---//
 type IsOnCanavasFieldProps = {
@@ -23,7 +23,7 @@ export const getDistBetweenTargets = <T>(
   targetA: T & { x: number; y: number },
   targetB: T & { x: number; y: number }
 ): number => {
-  let delta = {
+  const delta = {
     x: targetA.x - targetB.x,
     y: targetA.y - targetB.y
   }
@@ -41,7 +41,7 @@ export const isTargetsColision = <T>(
 
 //--isTargetsColision--//
 export const isContainersColision = (targetA: Container, targetB: Container, rA: number, rB: number): boolean => {
-  let delta = {
+  const delta = {
     x: targetA.groupTransform.tx - targetB.groupTransform.tx,
     y: targetA.groupTransform.ty - targetB.groupTransform.ty
   }
@@ -103,12 +103,12 @@ export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetTy
 //--moveElementToTarget--//
 export const moveElementToTarget = (element: Container, target: Container, velocity: number = 1) => {
   if (element.x !== target.x || element.y !== target.y) {
-    let delta = {
+    const delta = {
       x: target.x - element.x,
       y: target.y - element.y
     }
 
-    let angle = Math.atan2(delta.y, delta.x)
+    const angle = Math.atan2(delta.y, delta.x)
 
     element.x += Math.cos(angle) * velocity
     element.y += Math.sin(angle) * velocity
@@ -121,12 +121,12 @@ export const moveElementToContainer = (element: Container, target: Container, ve
     element.groupTransform.tx !== target.groupTransform.tx ||
     element.groupTransform.ty !== target.groupTransform.ty
   ) {
-    let delta = {
+    const delta = {
       x: target.groupTransform.tx - element.groupTransform.tx,
       y: target.groupTransform.ty - element.groupTransform.ty
     }
 
-    let angle = Math.atan2(delta.y, delta.x)
+    const angle = Math.atan2(delta.y, delta.x)
 
     element.x += Math.cos(angle) * velocity
     element.y += Math.sin(angle) * velocity
@@ -206,7 +206,7 @@ export const getNearestContainerTarget = (element: Container, targets: Container
   let nearestTarget = targets[0]
 
   for (let i = 0; i < targets.length; i++) {
-    let delta = {
+    const delta = {
       x: element.groupTransform.tx - targets[i].groupTransform.tx,
       y: element.groupTransform.ty - targets[i].groupTransform.ty
     }
