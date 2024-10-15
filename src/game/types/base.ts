@@ -1,5 +1,5 @@
+import { Vector2 } from '../../utils'
 import { Game } from '../game'
-import { Vector2 } from '../utils'
 
 export type MouseType = {
   x: number

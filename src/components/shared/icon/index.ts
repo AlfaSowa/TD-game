@@ -1,0 +1,1 @@
+export { IconBonus } from './IconBonus'

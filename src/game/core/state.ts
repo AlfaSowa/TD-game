@@ -15,15 +15,15 @@ class State {
   private speedEnemies: number[] = [0, 3]
 
   private castleGrid: CastleGrid[] = [
-    { id: 0, disable: true, price: 300 },
-    { id: 1, disable: true, price: 250 },
-    { id: 2, disable: true, price: 30 },
-    { id: 3, disable: true, price: 2040 },
-    { id: 4, disable: false, price: 130 },
-    { id: 5, disable: true, price: 560 },
-    { id: 6, disable: true, price: 40 },
-    { id: 7, disable: true, price: 2640 },
-    { id: 8, disable: true, price: 200 }
+    { id: 0, purchased: true, price: 300, available: false },
+    { id: 1, purchased: false, price: 250, available: true },
+    { id: 2, purchased: true, price: 30, available: true },
+    { id: 3, purchased: true, price: 2040, available: false },
+    { id: 4, purchased: true, price: 130, available: true },
+    { id: 5, purchased: true, price: 560, available: false },
+    { id: 6, purchased: true, price: 40, available: false },
+    { id: 7, purchased: true, price: 2640, available: false },
+    { id: 8, purchased: true, price: 200, available: false }
   ]
 
   // private weapons: any = WEAPONS.filter((weapon) => weapon.active)

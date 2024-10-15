@@ -1,8 +1,9 @@
 import { Graphics } from 'pixi.js'
 import { colorTheme } from '../../constants'
 import { Game } from '../../game'
-import { delayToCallback, randomNumber } from '../../utils'
-import { createTriangle } from '../../utils/draw'
+
+import { delayToCallback, randomNumber } from '../../../utils'
+import { createTriangle } from '../../../utils/draw'
 import { BaseResources } from './base'
 
 interface IForest {

@@ -1,22 +1,19 @@
 import { Application, Container } from 'pixi.js'
 import { TAIL_SIZE } from './constants'
-import { CastleService } from './services'
+import { SystemRunner } from './system-runner'
+import { CastleSystem } from './systems'
 import { IGame } from './types'
 
 export class Game extends Container implements IGame {
   app: Application
 
-  private castleService: CastleService
-  // private sawmillService: SawmillService
-  // private forestService: ForestService
+  systems: SystemRunner
 
   constructor() {
     super()
     this.app = new Application()
 
-    this.castleService = new CastleService(this)
-    // this.sawmillService = new SawmillService(this)
-    // this.forestService = new ForestService(this)
+    this.systems = new SystemRunner(this)
   }
 
   async init() {
@@ -33,15 +30,13 @@ export class Game extends Container implements IGame {
 
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
 
-    //services
-    this.castleService.init()
-    // this.sawmillService.init()
-    // this.forestService.init()
+    //systems
+    this.systems.add(CastleSystem)
+
+    this.systems.init()
 
     this.app.ticker.add(() => {
-      this.castleService.update()
-      // this.sawmillService.update()
-      // this.forestService.update()
+      this.systems.update()
     })
   }
 }

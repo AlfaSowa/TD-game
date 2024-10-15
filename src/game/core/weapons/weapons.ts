@@ -1,7 +1,7 @@
 import { Container } from 'pixi.js'
 
-import { MultyGun } from './multy-gun'
 import { Game } from '../..'
+import { MultyGun } from './multy-gun'
 
 interface IWeapons {
   game: Game

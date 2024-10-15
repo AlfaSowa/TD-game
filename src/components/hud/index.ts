@@ -1,5 +1,4 @@
-export { AbilitiesComponent } from './abilitie'
-export { BonusesComponent } from './bonuses'
 export { CastleGrid } from './castle-grid'
 export { MainMenu } from './main-menu'
-export { WeaponsComponent } from './weapons'
+export { Resurces } from './resurces'
+export { Village } from './village'

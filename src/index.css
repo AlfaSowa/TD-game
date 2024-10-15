@@ -10,11 +10,17 @@
     --secondary: #252422;
     --odd: #eb5e28;
   }
+
+  svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @font-face {
   font-family: 'monogram';
-  src: local('monogram-extended'), url(./game/assets/fonts/monogram-extended.ttf) format('truetype');
+  src: local('monogram-extended'), url(./assets/fonts/monogram-extended.ttf) format('truetype');
 }
 
 * {

@@ -2,6 +2,7 @@ export type BuildingsTypes = 'Sawmill' | 'CastelWall'
 
 export type CastleGrid = {
   id: number
-  disable: boolean
-  price: number
+  available: boolean
+  purchased: boolean
+  price?: number
 }

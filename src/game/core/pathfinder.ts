@@ -1,6 +1,6 @@
+import { getDistBetweenTargets, heuristic, removeElementFromArray, Vector2 } from '../../utils'
 import { TAIL_SIZE } from '../constants'
 import { Game } from '../game'
-import { Vector2, getDistBetweenTargets, heuristic, removeElementFromArray } from '../utils'
 import { Spot } from './pathfinder-spot'
 
 class Pathfinder {

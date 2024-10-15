@@ -1,5 +1,5 @@
 import { Container } from 'pixi.js'
-import { MouseType, TargetType } from '../types'
+import { MouseType, TargetType } from '../game/types'
 import { Vector2 } from './helpers'
 
 //---isOnCanavasField ---//
