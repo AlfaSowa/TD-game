@@ -6,10 +6,14 @@ import { MainMenu, Resurces, Village } from './hud'
 
 const g = new Game()
 
+const tg = (window as any).Telegram.WebApp
+
 export const App = () => {
   const [game, setGame] = useState<Game>()
   const [isShowVillage, setIsShowVillage] = useState<boolean>(false)
   // const [isShowCastleGrid, setIsShowCastleGrid] = useState<boolean>(false)
+
+  console.log(tg)
 
   useEffect(() => {
     const eventID = events.on(OPEN_VILLAGE_MENU, this, (isShow: boolean) => {
