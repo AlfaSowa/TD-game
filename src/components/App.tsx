@@ -1,55 +1,37 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Game } from '../game'
-import { OPEN_VILLAGE_MENU } from '../game/constants'
-import { events } from '../game/core'
-import { MainMenu, Resurces, Village } from './hud'
-
-const g = new Game()
+import { Layout } from './entities'
 
 const tg = (window as any).Telegram.WebApp
 
 export const App = () => {
-  const [game, setGame] = useState<Game>()
-  const [isShowVillage, setIsShowVillage] = useState<boolean>(false)
-  // const [isShowCastleGrid, setIsShowCastleGrid] = useState<boolean>(false)
-
-  console.log(tg)
+  const [tgUser, setTgUsesr] = useState()
 
   useEffect(() => {
-    const eventID = events.on(OPEN_VILLAGE_MENU, this, (isShow: boolean) => {
-      console.log('OPEN_VILLAGE_MENU')
+    if (!tgUser && tg.initData) {
+      console.log(123)
 
-      setTimeout(() => {
-        setIsShowVillage(isShow)
-      }, 100)
-    })
+      axios({
+        method: 'post',
+        url: 'http://localhost:5000/auth/register',
+        data: {
+          initData: tg.initData
+        }
+      })
+        .then((response) => {
+          console.log(response.data)
 
-    return () => {
-      events.remove(eventID)
+          setTgUsesr(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }, [])
 
-  return (
-    <>
-      {!game && <MainMenu game={g} setGame={setGame} />}
+  if (!tg) {
+    return <div>123123</div>
+  }
 
-      <div
-        id="game-canvas"
-        className="h-dvh w-screen flex items-center justify-center bg-[var(--bg)] fixed top-0 left-0 -z-10"
-      />
-
-      {game && (
-        <img
-          src="https://i.pinimg.com/originals/62/b3/c9/62b3c9a0a6038ae920c04a200b499a23.jpg"
-          className="object-cover opacity-30 absolute top-0 left-0 pointer-events-none"
-        />
-      )}
-
-      {/* {isShowCastleGrid && <CastleGrid onClose={setIsShowCastleGrid} />} */}
-
-      {isShowVillage && <Village onClose={() => setIsShowVillage(false)} />}
-
-      {game && <Resurces />}
-    </>
-  )
+  return <Layout />
 }
