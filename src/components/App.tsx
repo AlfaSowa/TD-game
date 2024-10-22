@@ -13,7 +13,7 @@ export const App = () => {
 
       axios({
         method: 'post',
-        url: 'http://localhost:5000/auth/register',
+        url: 'https://js-game-pack-backend-production.up.railway.app/auth/register',
         data: {
           initData: tg.initData
         }
