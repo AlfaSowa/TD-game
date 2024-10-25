@@ -12,6 +12,8 @@ export const App = () => {
 
   console.log(tg)
 
+  console.log('process.env.REACT_APP_API_URL', process.env.REACT_APP_API_URL)
+
   useEffect(() => {
     if (!tgUser && initDevelopData) {
       axios({
