@@ -1,7 +1,7 @@
 import { Application, Container } from 'pixi.js'
 import { TAIL_SIZE } from './constants'
 import { SystemRunner } from './system-runner'
-import { CastleSystem } from './systems'
+import { FarmSystem } from './systems'
 import { IGame } from './types'
 
 export class Game extends Container implements IGame {
@@ -33,7 +33,8 @@ export class Game extends Container implements IGame {
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
 
     //systems
-    this.systems.add(CastleSystem)
+    // this.systems.add(CastleSystem)
+    this.systems.add(FarmSystem)
 
     this.systems.init()
 
