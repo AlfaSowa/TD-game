@@ -22,6 +22,7 @@ export class CastleSystem implements System {
   init() {
     this.castle = new Castle({ game: this.game })
     this.castle.init()
+    console.log(this.castle)
   }
 
   update() {

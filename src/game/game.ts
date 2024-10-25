@@ -25,6 +25,8 @@ export class Game extends Container implements IGame {
       preference: 'webgl'
     })
 
+    console.log('app', this.app)
+
     this.app.canvas.width = window.innerWidth - (window.innerWidth % TAIL_SIZE)
     this.app.canvas.height = window.innerHeight - (window.innerHeight % TAIL_SIZE)
 
