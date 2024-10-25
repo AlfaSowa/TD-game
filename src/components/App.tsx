@@ -12,15 +12,15 @@ export const App = () => {
 
   console.log(tg)
 
-  console.log('process.env.REACT_APP_API_URL', process.env.REACT_APP_API_URL)
-
   useEffect(() => {
-    if (!tgUser && initDevelopData) {
+    const data = process.env.NODE_ENV === 'development' ? initDevelopData : tg.initData
+
+    if (!tgUser && data) {
       axios({
         method: 'post',
         url: `${process.env.REACT_APP_API_URL}/auth/register`,
         data: {
-          initData: initDevelopData
+          initData: data
         }
       })
         .then((response) => {
