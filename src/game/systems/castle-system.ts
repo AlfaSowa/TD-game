@@ -1,5 +1,6 @@
+import { events } from '../../core'
 import { OPEN_CASTLE_MENU } from '../constants'
-import { events } from '../core'
+
 import { Game } from '../game'
 import { Castle } from '../objects'
 import { System } from './types'

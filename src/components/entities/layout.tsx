@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Game } from '../../game'
 import { OPEN_VILLAGE_MENU } from '../../game/constants'
-import { events } from '../../game/core'
+
+import { events } from '../../core'
 import { MainMenu, Village } from '../hud'
 
 const g = new Game()

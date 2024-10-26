@@ -1,1 +1,0 @@
-export const FARM_TILE_PLANTED = 'FARM_TILE_PLANTED'

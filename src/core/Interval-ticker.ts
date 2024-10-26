@@ -1,5 +1,5 @@
 import { Container, Text, TextStyle } from 'pixi.js'
-import { delayToCallback } from '../../utils'
+import { delayToCallback } from '../utils'
 
 interface IIntervalTicker {
   value: number

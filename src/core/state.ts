@@ -1,4 +1,4 @@
-import { CastleGrid } from '../objects/buildings/types'
+import { CastleGrid } from '../game/objects/buildings/types'
 
 class State {
   private playerAttackRadius: number = 50

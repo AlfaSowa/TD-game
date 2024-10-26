@@ -1,6 +1,7 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { CHECK_CASTLE_CELL, CHECK_CELL_TO_BUY, UPDATE_CASTLE_GRID } from '../../game/constants'
-import { events, state } from '../../game/core'
+
+import { events, state } from '../../core'
 import { CastleGrid as CastleGridType } from '../../game/objects/buildings/types'
 
 interface CastleGridProps {

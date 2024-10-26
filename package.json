@@ -19,6 +19,7 @@
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
     "tailwind-merge": "^2.3.0",
+    "typed-signals": "^3.0.0",
     "typescript": "^5.4.5",
     "web-vitals": "^2.1.4"
   },
