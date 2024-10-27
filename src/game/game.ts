@@ -1,4 +1,5 @@
 import { Application, Container } from 'pixi.js'
+import { Mediator, state } from '../core'
 import { TAIL_SIZE } from './constants'
 import { SystemRunner } from './system-runner'
 import { FarmSystem } from './systems'
@@ -9,11 +10,15 @@ export class Game extends Container implements IGame {
 
   systems: SystemRunner
 
+  mediator!: Mediator
+
   constructor() {
     super()
     this.app = new Application()
 
     this.systems = new SystemRunner(this)
+
+    new Mediator(this)
   }
 
   async init() {
@@ -34,6 +39,7 @@ export class Game extends Container implements IGame {
 
     //systems
     // this.systems.add(CastleSystem)
+    state.init(this)
     this.systems.add(FarmSystem)
 
     this.systems.init()
@@ -41,5 +47,9 @@ export class Game extends Container implements IGame {
     this.app.ticker.add(() => {
       this.systems.update()
     })
+  }
+
+  public setMediator(mediator: Mediator): void {
+    this.mediator = mediator
   }
 }

@@ -1,4 +1,5 @@
 export { events } from './events'
+export { Mediator } from './mediator'
 export { Spot, pathfinder } from './pathfinder'
 export { Spawner } from './spawner'
 export { state } from './state'

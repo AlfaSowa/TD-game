@@ -25,6 +25,7 @@ export class FarmTile extends BaseBuild {
     super({ game })
 
     this.id = data.id
+    this.isPlanted = data.isPlanted
 
     this.size = (this.game.app.canvas.width - 40) / 6
 
@@ -32,7 +33,9 @@ export class FarmTile extends BaseBuild {
   }
 
   init() {
-    this.graphics = new Graphics().rect(0, 0, this.size, this.size).fill({ color: colorTheme.main })
+    this.graphics = new Graphics()
+      .rect(0, 0, this.size, this.size)
+      .fill({ color: this.isPlanted ? colorTheme.odd : colorTheme.main })
 
     this.graphics.eventMode = 'static'
     this.graphics.cursor = 'pointer'

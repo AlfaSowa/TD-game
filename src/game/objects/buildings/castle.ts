@@ -1,14 +1,7 @@
 import { Graphics } from 'pixi.js'
-import { events, state } from '../../../core'
+import { events } from '../../../core'
 import { Game } from '../../../game'
-import {
-  CHECK_CASTLE_CELL,
-  CHECK_CELL_TO_BUY,
-  OPEN_VILLAGE_MENU,
-  TAIL_SIZE,
-  UPDATE_CASTLE_GRID,
-  colorTheme
-} from '../../constants'
+import { OPEN_VILLAGE_MENU, TAIL_SIZE, colorTheme } from '../../constants'
 import { BaseBuild } from './base'
 
 interface ICastle {
@@ -36,33 +29,33 @@ export class Castle extends BaseBuild {
 
     this.addChild(graphics)
 
-    events.on(CHECK_CASTLE_CELL, this, (id: number) => {
-      const cell = state.getCastleGrid.find((cell) => cell.id === id)
-      if (cell) {
-        console.log('CHECK_CASTLE_CELL', cell)
-      }
-    })
+    // events.on(CHECK_CASTLE_CELL, this, (id: number) => {
+    //   const cell = state.getCastleGrid.find((cell) => cell.id === id)
+    //   if (cell) {
+    //     console.log('CHECK_CASTLE_CELL', cell)
+    //   }
+    // })
 
-    events.on(CHECK_CELL_TO_BUY, this, (id: number) => {
-      const cell = state.getCastleGrid.find((cell) => cell.id === id)
+    // events.on(CHECK_CELL_TO_BUY, this, (id: number) => {
+    //   const cell = state.getCastleGrid.find((cell) => cell.id === id)
 
-      if (cell) {
-        console.log('CHECK_CELL_TO_BUY', cell)
+    //   if (cell) {
+    //     console.log('CHECK_CELL_TO_BUY', cell)
 
-        if (!cell.purchased && cell.price && cell.price >= 200) {
-          const grid = state.getCastleGrid.map((item) => {
-            if (item.id === id) {
-              return { ...item, disable: false }
-            }
-            return item
-          })
+    //     if (!cell.purchased && cell.price && cell.price >= 200) {
+    //       const grid = state.getCastleGrid.map((item) => {
+    //         if (item.id === id) {
+    //           return { ...item, disable: false }
+    //         }
+    //         return item
+    //       })
 
-          state.updateCastleGrid = grid
-        }
-      }
+    //       state.updateCastleGrid = grid
+    //     }
+    //   }
 
-      events.emit(UPDATE_CASTLE_GRID, state.getCastleGrid)
-    })
+    //   events.emit(UPDATE_CASTLE_GRID, state.getCastleGrid)
+    // })
   }
 
   private handleClick() {

@@ -11,6 +11,8 @@ export class SystemRunner {
   }
 
   public add<S extends System>(Class: SystemClass<Game, S>): S {
+    console.log(123, this._game)
+
     const name = Class.SYSTEM_ID
 
     if (!name) throw new Error('[SystemManager]: cannot add System without name')

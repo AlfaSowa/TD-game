@@ -1,7 +1,7 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { CHECK_CASTLE_CELL, CHECK_CELL_TO_BUY, UPDATE_CASTLE_GRID } from '../../game/constants'
 
-import { events, state } from '../../core'
+import { events } from '../../core'
 import { CastleGrid as CastleGridType } from '../../game/objects/buildings/types'
 
 interface CastleGridProps {
@@ -9,7 +9,7 @@ interface CastleGridProps {
 }
 
 export const CastleGrid = ({ onClose }: CastleGridProps) => {
-  const [grid, setGrid] = useState<CastleGridType[]>(state.getCastleGrid)
+  // const [grid, setGrid] = useState<CastleGridType[]>(state.getCastleGrid)
   const [options, setOptions] = useState<boolean>(false)
 
   const handleClick = (e: MouseEvent<HTMLDivElement>, item: CastleGridType) => {
@@ -25,7 +25,6 @@ export const CastleGrid = ({ onClose }: CastleGridProps) => {
   useEffect(() => {
     const eventID = events.on(UPDATE_CASTLE_GRID, this, (grid: CastleGridType[]) => {
       console.log('UPDATE_CASTLE_GRID')
-      setGrid(grid)
     })
 
     return () => {
@@ -47,7 +46,7 @@ export const CastleGrid = ({ onClose }: CastleGridProps) => {
       </div>
 
       <div className="bg-slate-100 grid grid-cols-3">
-        {grid.map((item) => (
+        {/* {grid.map((item) => (
           <>
             {item.available && (
               <>
@@ -73,7 +72,7 @@ export const CastleGrid = ({ onClose }: CastleGridProps) => {
 
             {!item.available && <div className="relative pb-[100%] bg-green-300">недоступно</div>}
           </>
-        ))}
+        ))} */}
       </div>
 
       {options && (

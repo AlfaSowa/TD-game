@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { authUser } from '../api'
+import { state } from '../core'
 import { Layout } from './entities'
 
 const tg = (window as any).Telegram.WebApp
@@ -18,6 +19,7 @@ export const App = () => {
     if (!tgUser && data) {
       authUser(data).then((user) => {
         console.log('user', user)
+        state.updateInnerUserData = data
         setTgUsesr(user)
       })
     }
