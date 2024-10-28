@@ -17,7 +17,7 @@ export class FarmTile extends BaseBuild {
   id: string
   size: number = 0
 
-  private graphics!: Graphics
+  graphics!: Graphics
   private isPlanted: boolean = false
   private plantedAt: number | undefined
 
@@ -39,9 +39,13 @@ export class FarmTile extends BaseBuild {
 
     this.graphics.eventMode = 'static'
     this.graphics.cursor = 'pointer'
+
     this.graphics.on('pointerdown', () => {
-      this.planted()
-      this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
+      if (!this.isPlanted) {
+        this.planted()
+
+        this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
+      }
     })
 
     this.addChild(this.graphics)

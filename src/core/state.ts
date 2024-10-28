@@ -16,9 +16,21 @@ class State {
     this.game = game
   }
 
-  set updateFarmData(data: any) {
+  set updateFarm(data: any) {
     this.farm = data
-    this.game.systems.get(FarmSystem).signals.onUpdateDateFarm.emit()
+    this.game.systems.get(FarmSystem).signals.onCreateDateFarm.emit()
+  }
+
+  set updateTilesInFarm(data: any[]) {
+    this.farm.data = this.farm.data.map((tile) => {
+      const updatedTile = data.find((e: any) => e.id === tile.id)
+      if (updatedTile) {
+        return updatedTile
+      }
+      return tile
+    })
+
+    this.game.systems.get(FarmSystem).signals.onUpdateDateFarm.emit(data)
   }
 
   get getFarmData() {

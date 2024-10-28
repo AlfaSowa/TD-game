@@ -1,6 +1,7 @@
 import { Signal } from 'typed-signals'
 import { state } from '../../core'
 import { Vector2 } from '../../utils'
+import { colorTheme } from '../constants'
 import { Game } from '../game'
 import { Farm } from '../objects'
 import { FarmTile } from '../objects/buildings/farm/farm-tile'
@@ -15,7 +16,8 @@ export class FarmSystem implements System {
 
   public signals = {
     onFarmTileClick: new Signal<(id: string) => void>(),
-    onUpdateDateFarm: new Signal<() => void>()
+    onUpdateDateFarm: new Signal<(data: any[]) => void>(),
+    onCreateDateFarm: new Signal<() => void>()
   }
 
   constructor() {
@@ -23,13 +25,17 @@ export class FarmSystem implements System {
       this.checkTileById(id)
     })
 
-    this.signals.onUpdateDateFarm.connect(() => {
+    this.signals.onCreateDateFarm.connect(() => {
       this.createFarmGrid()
+    })
+
+    this.signals.onUpdateDateFarm.connect((data) => {
+      this.updateFarmGrid(data)
     })
   }
 
   private checkTileById(id: string) {
-    console.log('onFarmTileClick:id', id)
+    this.game.mediator.updateFarmTilesFx(id)
   }
 
   init() {
@@ -43,8 +49,20 @@ export class FarmSystem implements System {
     this.farm.init()
   }
 
+  updateFarmGrid(updatedData: any[]) {
+    for (const container of this.farm.children) {
+      if (container instanceof FarmTile) {
+        const child = updatedData.find((elem: any) => elem.id === container.id)
+
+        if (child?.isPlanted) {
+          container.graphics.clear()
+          container.graphics.rect(0, 0, container.size, container.size).fill({ color: colorTheme.odd })
+        }
+      }
+    }
+  }
+
   createFarmGrid() {
-    console.log(2)
     const data = state.getFarmData.data
 
     console.log('state.getFarmData', data)
@@ -70,10 +88,6 @@ export class FarmSystem implements System {
       this.game.app.canvas.width / 2 - this.farm.width / 2,
       this.game.app.canvas.height / 2 - this.farm.height / 2
     )
-  }
-
-  updateFarmGrid() {
-    console.log('this.farm.children', this.farm.children)
   }
 
   update() {

@@ -1,4 +1,4 @@
-import { getFarmByUser } from '../api'
+import { getFarmByUser, updateFarmTiles } from '../api'
 import { Game } from '../game'
 import { state } from './state'
 
@@ -19,7 +19,15 @@ export class Mediator implements IMediator {
     return await getFarmByUser().then((data) => {
       console.log('getFarmByUser', data)
 
-      state.updateFarmData = data
+      state.updateFarm = data
+    })
+  }
+
+  async updateFarmTilesFx(id: string) {
+    return await updateFarmTiles(id).then((data) => {
+      if (data) {
+        state.updateTilesInFarm = data
+      }
     })
   }
 
