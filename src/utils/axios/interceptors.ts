@@ -5,7 +5,8 @@ export const requestInterceptor = (config: InternalAxiosRequestConfig): Internal
   const conf: InternalAxiosRequestConfig = config
 
   if (typeof window !== 'undefined') {
-    const innerData = getCookie('innerData') || sessionStorage.getItem('tgWebAppData')
+    const innerData =
+      getCookie('innerData') || JSON.parse(sessionStorage.getItem('__telegram__initParams') as string).tgWebAppData
 
     console.log('innerData', innerData)
     console.log('InternalAxiosRequestConfig', config)
