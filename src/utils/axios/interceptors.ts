@@ -5,7 +5,8 @@ export const requestInterceptor = (config: InternalAxiosRequestConfig): Internal
   const conf: InternalAxiosRequestConfig = config
 
   if (typeof window !== 'undefined') {
-    const innerData = getCookie('innerData')
+    const innerData = getCookie('innerData') || sessionStorage.getItem('tgWebAppData')
+
     console.log('innerData', innerData)
     console.log('InternalAxiosRequestConfig', config)
 
