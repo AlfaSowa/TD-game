@@ -16,7 +16,7 @@ export class Mediator implements IMediator {
   }
 
   async getFarmByUserFx(): Promise<any> {
-    return await getFarmByUser(state.getInnerUserData).then((data) => {
+    return await getFarmByUser().then((data) => {
       console.log('getFarmByUser', data)
 
       state.updateFarmData = data

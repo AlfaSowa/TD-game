@@ -1,10 +1,8 @@
 import { axiosApi } from '../utils'
 
-export const authUser = async (initData: string): Promise<any> => {
+export const authUser = async (): Promise<any> => {
   try {
-    const { data } = await axiosApi.post('/auth/register', {
-      initData
-    })
+    const { data } = await axiosApi.post('/auth/register')
 
     return data
   } catch (error) {

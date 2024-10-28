@@ -1,10 +1,8 @@
 import { axiosApi } from '../utils'
 
-export const getFarmByUser = async (initData: string): Promise<any> => {
+export const getFarmByUser = async (): Promise<any> => {
   try {
-    const { data } = await axiosApi.post('/farm', {
-      initData
-    })
+    const { data } = await axiosApi.post('/farm')
 
     return data
   } catch (error) {
