@@ -39,8 +39,6 @@ export class FarmSystem implements System {
   }
 
   init() {
-    console.log(1)
-
     this.game.mediator.getFarmByUserFx()
 
     this.farm = new Farm({ game: this.game })
