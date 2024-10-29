@@ -9,7 +9,9 @@ type FarmDataType = {
 class State {
   private game!: Game
   private innerUserData: string = ''
-  private user: any = {}
+  private user: any = {
+    coins: 0
+  }
   private farm!: FarmDataType
 
   init(game: Game) {
@@ -43,6 +45,14 @@ class State {
 
   get getInnerUserData() {
     return this.innerUserData
+  }
+
+  set updateUserCoins(value: number) {
+    this.user.coins = value
+  }
+
+  get getUserCoins() {
+    return this.user.coins
   }
 }
 

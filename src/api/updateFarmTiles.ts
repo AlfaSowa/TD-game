@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios'
 import { axiosApi } from '../utils'
 
-export const updateFarmTiles = async (id: string) => {
+export const updateFarmTiles = async (id: string): Promise<{ coins: number; data: any[] } | undefined> => {
   try {
-    const { data }: AxiosResponse<any[]> = await axiosApi.post('/farm/farmtile', { id })
+    const { data }: AxiosResponse<{ coins: number; data: any[] }> = await axiosApi.post('/farm/farmtile', { id })
 
     return data
   } catch (error) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Game } from '../../game'
 import { OPEN_VILLAGE_MENU } from '../../game/constants'
 
-import { events } from '../../core'
+import { events, state } from '../../core'
 import { MainMenu, Village } from '../hud'
 
 const g = new Game()
@@ -29,6 +29,12 @@ export const Layout = () => {
   return (
     <>
       {!game && <MainMenu game={g} setGame={setGame} />}
+
+      {game && (
+        <div className="absolute top-0 left-0 w-full bg-slate-400 p-2">
+          <div className="text-3xl">{state.getUserCoins} coins</div>
+        </div>
+      )}
 
       <div
         id="game-canvas"

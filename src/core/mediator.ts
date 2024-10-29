@@ -26,7 +26,8 @@ export class Mediator implements IMediator {
   async updateFarmTilesFx(id: string) {
     return await updateFarmTiles(id).then((data) => {
       if (data) {
-        state.updateTilesInFarm = data
+        state.updateTilesInFarm = data.data
+        state.updateUserCoins = data.coins
       }
     })
   }

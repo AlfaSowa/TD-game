@@ -20,6 +20,7 @@ export const App = () => {
       authUser().then((user) => {
         console.log('user', user)
         state.updateInnerUserData = data
+        state.updateUserCoins = user.coins
         setTgUsesr(user)
       })
     }

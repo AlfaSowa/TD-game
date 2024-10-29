@@ -54,9 +54,10 @@ export class FarmSystem implements System {
       if (container instanceof FarmTile) {
         const child = updatedData.find((elem: any) => elem.id === container.id)
 
-        if (child?.isPlanted) {
+        if (child) {
+          const color = child.isPlanted ? (child.isReady ? 'blue' : colorTheme.odd) : colorTheme.main
           container.graphics.clear()
-          container.graphics.rect(0, 0, container.size, container.size).fill({ color: colorTheme.odd })
+          container.graphics.rect(0, 0, container.size, container.size).fill({ color: color })
         }
       }
     }
