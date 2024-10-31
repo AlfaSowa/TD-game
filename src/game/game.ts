@@ -1,4 +1,5 @@
 import { Application, Container } from 'pixi.js'
+import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
 import { TAIL_SIZE } from './constants'
 import { SystemRunner } from './system-runner'
@@ -11,6 +12,10 @@ export class Game extends Container implements IGame {
   systems: SystemRunner
 
   mediator!: Mediator
+
+  public signals = {
+    onCoinsUpdate: new Signal<(value: number) => void>()
+  }
 
   constructor() {
     super()

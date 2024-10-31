@@ -46,7 +46,7 @@ export class FarmTile extends BaseBuild {
         this.graphics.clear()
         this.graphics.rect(0, 0, this.size, this.size).fill({ color: colorTheme.primary })
 
-        this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
+        this.game.systems.get(FarmSystem).signals.onTileClick.emit(this.id)
       }
     })
 

@@ -12,24 +12,24 @@ class State {
   private user: any = {
     coins: 0
   }
-  private farm!: FarmDataType
+  private farmData!: FarmDataType
 
   init(game: Game) {
     this.game = game
   }
 
-  set updateFarm(data: any) {
-    this.farm = data
-    this.game.systems.get(FarmSystem).signals.onCreateDateFarm.emit()
+  set initFarm(data: any) {
+    this.farmData = data
+    this.game.systems.get(FarmSystem).signals.onInitFarm.emit()
   }
 
-  set updateTilesInFarm(data: any[]) {
-    this.farm.data = data
-    this.game.systems.get(FarmSystem).signals.onUpdateDateFarm.emit()
+  set updateFarm(data: any[]) {
+    this.farmData.data = data
+    this.game.systems.get(FarmSystem).signals.onUpdateFarm.emit()
   }
 
-  get getFarmData() {
-    return this.farm
+  get farm() {
+    return this.farmData
   }
 
   set updateInnerUserData(data: string) {

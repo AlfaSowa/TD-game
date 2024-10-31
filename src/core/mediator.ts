@@ -1,10 +1,8 @@
-import { getFarmByUser, updateFarmTiles } from '../api'
+import { getFarm, updateFarmTiles } from '../api'
 import { Game } from '../game'
 import { state } from './state'
 
-interface IMediator {
-  notify(sender: object, event: string): void
-}
+interface IMediator {}
 
 export class Mediator implements IMediator {
   private game: Game
@@ -15,22 +13,20 @@ export class Mediator implements IMediator {
     this.game.setMediator(this)
   }
 
-  async getFarmByUserFx(): Promise<any> {
-    return await getFarmByUser().then((data) => {
-      state.updateFarm = data
+  async initFarmFx(): Promise<any> {
+    return await getFarm().then((data) => {
+      state.initFarm = data
     })
   }
 
-  async updateFarmTilesFx(ids: string[]) {
+  async updateFarmFx(ids: string[]) {
     return await updateFarmTiles(ids).then((data) => {
       if (data) {
-        state.updateTilesInFarm = data.data
+        state.updateFarm = data.data
         state.updateUserCoins = data.coins
+
+        this.game.signals.onCoinsUpdate.emit(data.coins)
       }
     })
-  }
-
-  notify(sender: object, event: string): void {
-    throw new Error('Method not implemented.')
   }
 }

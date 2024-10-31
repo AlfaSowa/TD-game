@@ -1,30 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Game } from '../../game'
-import { OPEN_VILLAGE_MENU } from '../../game/constants'
 
-import { events, state } from '../../core'
-import { MainMenu, Village } from '../hud'
+import { state } from '../../core'
+import { MainMenu } from '../hud'
 
 const g = new Game()
 
 export const Layout = () => {
   const [game, setGame] = useState<Game>()
-  const [isShowVillage, setIsShowVillage] = useState<boolean>(false)
-  // const [isShowCastleGrid, setIsShowCastleGrid] = useState<boolean>(false)
+  const [coins, setCoins] = useState<number>(0)
 
   useEffect(() => {
-    const eventID = events.on(OPEN_VILLAGE_MENU, this, (isShow: boolean) => {
-      console.log('OPEN_VILLAGE_MENU')
-
-      setTimeout(() => {
-        setIsShowVillage(isShow)
-      }, 100)
-    })
-
-    return () => {
-      events.remove(eventID)
+    if (game) {
+      game.signals.onCoinsUpdate.connect((value) => {
+        setCoins(value)
+      })
     }
-  }, [])
+  }, [game])
 
   return (
     <>
@@ -32,7 +24,7 @@ export const Layout = () => {
 
       {game && (
         <div className="absolute top-0 left-0 w-full bg-slate-400 p-2">
-          <div className="text-3xl">{state.getUserCoins} coins</div>
+          <div className="text-3xl">{coins || state.getUserCoins} coins</div>
         </div>
       )}
 
@@ -50,7 +42,7 @@ export const Layout = () => {
 
       {/* {isShowCastleGrid && <CastleGrid onClose={setIsShowCastleGrid} />} */}
 
-      {isShowVillage && <Village onClose={() => setIsShowVillage(false)} />}
+      {/* {isShowVillage && <Village onClose={() => setIsShowVillage(false)} />} */}
 
       {/* {game && <Resurces />} */}
     </>

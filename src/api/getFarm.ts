@@ -1,6 +1,6 @@
 import { axiosApi } from '../utils'
 
-export const getFarmByUser = async (): Promise<any> => {
+export const getFarm = async (): Promise<any> => {
   try {
     const { data } = await axiosApi.post('/farm')
 

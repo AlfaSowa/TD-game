@@ -17,44 +17,43 @@ export class FarmSystem implements System {
   tilesIds: string[] = []
 
   public signals = {
-    onFarmTileClick: new Signal<(id: string) => void>(),
-    onUpdateDateFarm: new Signal<() => void>(),
-    onCreateDateFarm: new Signal<() => void>()
+    onTileClick: new Signal<(id: string) => void>(),
+    onUpdateFarm: new Signal<() => void>(),
+    onInitFarm: new Signal<() => void>()
   }
 
   constructor() {
-    this.signals.onFarmTileClick.connect((id) => {
+    this.signals.onTileClick.connect((id) => {
       if (!this.tilesIds.includes(id)) {
         this.tilesIds.push(id)
       }
 
-      this.checkTileById(this.tilesIds)
+      this.handleTileClick(this.tilesIds)
     })
 
-    this.signals.onCreateDateFarm.connect(() => {
-      this.createFarmGrid()
+    this.signals.onInitFarm.connect(() => {
+      this.initFarm()
     })
 
-    this.signals.onUpdateDateFarm.connect(() => {
-      this.updateFarmGrid()
+    this.signals.onUpdateFarm.connect(() => {
+      this.updateFarm()
     })
   }
 
-  checkTileById = debounce((ids) => {
-    this.tilesIds = []
-    this.game.mediator.updateFarmTilesFx(ids)
-  }, 1000)
-
   init() {
-    this.game.mediator.getFarmByUserFx()
+    this.game.mediator.initFarmFx()
 
     this.farm = new Farm({ game: this.game })
-
     this.farm.init()
   }
 
-  updateFarmGrid() {
-    const data = state.getFarmData.data
+  handleTileClick = debounce((ids) => {
+    this.tilesIds = []
+    this.game.mediator.updateFarmFx(ids)
+  }, 1000)
+
+  updateFarm() {
+    const data = state.farm.data
 
     for (const container of this.farm.children) {
       if (container instanceof FarmTile) {
@@ -72,8 +71,8 @@ export class FarmSystem implements System {
     }
   }
 
-  createFarmGrid() {
-    const data = state.getFarmData.data
+  initFarm() {
+    const data = state.farm.data
 
     for (let i = 0; i < data.length; i++) {
       const fatmTile = new FarmTile({
