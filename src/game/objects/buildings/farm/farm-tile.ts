@@ -18,8 +18,8 @@ export class FarmTile extends BaseBuild {
   size: number = 0
 
   graphics!: Graphics
-  private isPlanted: boolean = false
-  private isReady: boolean = false
+  isPlanted: boolean = false
+  isReady: boolean = false
   private plantedAt: number | undefined
 
   constructor({ game, position: { x, y }, gap, data }: IFarmTile) {
@@ -42,27 +42,14 @@ export class FarmTile extends BaseBuild {
     this.graphics.cursor = 'pointer'
 
     this.graphics.on('pointerdown', () => {
-      if (!this.isPlanted) {
-        this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
-      }
+      this.graphics.clear()
+      this.graphics.rect(0, 0, this.size, this.size).fill({ color: colorTheme.primary })
 
-      if (this.isPlanted && this.isReady) {
-        this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
-      }
+      this.game.systems.get(FarmSystem).signals.onFarmTileClick.emit(this.id)
     })
 
     this.addChild(this.graphics)
   }
-
-  // private planted() {
-  //   if (!this.isPlanted) {
-  //     this.isPlanted = true
-  //     this.plantedAt = Date.now()
-
-  //     this.graphics.clear()
-  //     this.graphics.rect(0, 0, this.size, this.size).fill({ color: colorTheme.primary })
-  //   }
-  // }
 
   update() {}
 }

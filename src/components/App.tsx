@@ -18,7 +18,6 @@ export const App = () => {
   useEffect(() => {
     if (!tgUser && data) {
       authUser().then((user) => {
-        console.log('user', user)
         state.updateInnerUserData = data
         state.updateUserCoins = user.coins
         setTgUsesr(user)

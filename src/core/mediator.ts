@@ -17,14 +17,12 @@ export class Mediator implements IMediator {
 
   async getFarmByUserFx(): Promise<any> {
     return await getFarmByUser().then((data) => {
-      console.log('getFarmByUser', data)
-
       state.updateFarm = data
     })
   }
 
-  async updateFarmTilesFx(id: string) {
-    return await updateFarmTiles(id).then((data) => {
+  async updateFarmTilesFx(ids: string[]) {
+    return await updateFarmTiles(ids).then((data) => {
       if (data) {
         state.updateTilesInFarm = data.data
         state.updateUserCoins = data.coins

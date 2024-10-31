@@ -25,7 +25,7 @@ class State {
 
   set updateTilesInFarm(data: any[]) {
     this.farm.data = data
-    this.game.systems.get(FarmSystem).signals.onUpdateDateFarm.emit(data)
+    this.game.systems.get(FarmSystem).signals.onUpdateDateFarm.emit()
   }
 
   get getFarmData() {

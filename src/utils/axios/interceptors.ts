@@ -8,9 +8,6 @@ export const requestInterceptor = (config: InternalAxiosRequestConfig): Internal
     const innerData =
       getCookie('innerData') || JSON.parse(sessionStorage.getItem('__telegram__initParams') as string).tgWebAppData
 
-    console.log('innerData', innerData)
-    console.log('InternalAxiosRequestConfig', config)
-
     if (innerData && conf.headers) {
       // conf.headers?.Authorization = innerData || ''
       conf.headers['x-innerData'] = innerData
