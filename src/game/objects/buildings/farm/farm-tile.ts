@@ -29,7 +29,7 @@ export class FarmTile extends BaseBuild {
     this.isPlanted = data.isPlanted
     this.isReady = data.isReady
 
-    this.size = (this.game.app.canvas.width - 40) / 6
+    this.size = 50
 
     this.position.set(x * this.size + gap * x, Math.floor(y) * this.size + gap * Math.floor(y))
   }

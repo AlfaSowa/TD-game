@@ -10,7 +10,19 @@ export class BaseGameObject extends Container implements IBaseGameObject {
     this.game = game
   }
 
-  init() {
-    this.game.app.stage.addChild(this)
+  add(parent: Container) {
+    if (!this.parent) {
+      console.log('add')
+      parent.addChild(this)
+    }
   }
+
+  remove() {
+    if (this.parent) {
+      console.log('remove')
+      this.removeFromParent()
+    }
+  }
+
+  init() {}
 }

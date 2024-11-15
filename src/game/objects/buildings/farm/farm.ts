@@ -8,11 +8,13 @@ interface IFarm {
 export class Farm extends BaseBuild {
   gap: number = 2
 
-  constructor({ game }: IFarm) {
-    super({ game })
+  updateFarmPosition() {
+    console.log('updateFarmPositions')
 
-    this.position.set(game.app.canvas.width / 2 - this.width / 2, game.app.canvas.height / 2 - this.height / 2)
+    this.position.set(this.parent.width / 2 - this.width / 2, this.parent.height / 2 - this.height / 2)
   }
+
+  init() {}
 
   update() {}
 }

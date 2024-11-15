@@ -1,3 +1,4 @@
+import { Graphics } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { state } from '../../core'
 import { debounce, Vector2 } from '../../utils'
@@ -5,6 +6,7 @@ import { colorTheme } from '../constants'
 import { Game } from '../game'
 import { Farm } from '../objects'
 import { FarmTile } from '../objects/buildings/farm/farm-tile'
+import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
 export class FarmSystem implements System {
@@ -19,7 +21,8 @@ export class FarmSystem implements System {
   public signals = {
     onTileClick: new Signal<(id: string) => void>(),
     onUpdateFarm: new Signal<() => void>(),
-    onInitFarm: new Signal<() => void>()
+    onInitFarm: new Signal<() => void>(),
+    onToggleFarm: new Signal<(value: boolean) => void>()
   }
 
   constructor() {
@@ -38,19 +41,44 @@ export class FarmSystem implements System {
     this.signals.onUpdateFarm.connect(() => {
       this.updateFarm()
     })
+
+    this.signals.onToggleFarm.connect((value) => {
+      if (value) {
+        this.openFarm()
+      } else {
+        this.closeFarm()
+      }
+    })
+  }
+
+  openFarm() {
+    console.log('openFarm')
+
+    this.farm.addChild(new Graphics().rect(-Math.random() * 100, -Math.random() * 100, 200, 200).fill({ color: 'red' }))
+    // this.farm.add(this.game.app.stage)
+    console.log(this.farm.children)
+  }
+
+  closeFarm() {
+    console.log('closeFarm')
+    // this.farm.remove()
   }
 
   init() {
     this.game.mediator.initFarmFx()
 
     this.farm = new Farm({ game: this.game })
+    // this.farm.add(this.game.app.stage)
+    this.game.systems.get(ScreensSystem).addContainer(this.farm, 'possession')
+
     this.farm.init()
+    this.farm.updateFarmPosition()
   }
 
   handleTileClick = debounce((ids) => {
     this.tilesIds = []
     this.game.mediator.updateFarmFx(ids)
-  }, 1000)
+  }, 3000)
 
   updateFarm() {
     const data = state.farm.data
@@ -65,10 +93,12 @@ export class FarmSystem implements System {
 
           const color = child.isPlanted ? (child.isReady ? 'blue' : colorTheme.odd) : colorTheme.main
           container.graphics.clear()
-          container.graphics.rect(0, 0, container.size, container.size).fill({ color: color })
+          container.graphics.rect(child.x, child.y, container.size, container.size).fill({ color: color })
         }
       }
     }
+
+    this.farm.updateFarmPosition()
   }
 
   initFarm() {
@@ -85,10 +115,9 @@ export class FarmSystem implements System {
       fatmTile.init()
     }
 
-    this.farm.position.set(
-      this.game.app.canvas.width / 2 - this.farm.width / 2,
-      this.game.app.canvas.height / 2 - this.farm.height / 2
-    )
+    this.farm.updateFarmPosition()
+
+    console.log(this.farm)
   }
 
   update() {

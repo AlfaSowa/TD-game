@@ -1,9 +1,8 @@
 import { Application, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
-import { TAIL_SIZE } from './constants'
 import { SystemRunner } from './system-runner'
-import { FarmSystem } from './systems'
+import { FarmSystem, ScreensSystem } from './systems'
 import { IGame } from './types'
 
 export class Game extends Container implements IGame {
@@ -13,8 +12,11 @@ export class Game extends Container implements IGame {
 
   mediator!: Mediator
 
+  isStarted: boolean = false
+
   public signals = {
-    onCoinsUpdate: new Signal<(value: number) => void>()
+    onCoinsUpdate: new Signal<(value: number) => void>(),
+    onGameStarted: new Signal<(isStarted: boolean) => void>()
   }
 
   constructor() {
@@ -37,21 +39,26 @@ export class Game extends Container implements IGame {
 
     console.log('app', this.app)
 
-    this.app.canvas.width = window.innerWidth - (window.innerWidth % TAIL_SIZE)
-    this.app.canvas.height = window.innerHeight - (window.innerHeight % TAIL_SIZE)
-
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
 
-    //systems
-    // this.systems.add(CastleSystem)
     state.init(this)
+
+    //systems
+    this.systems.add(ScreensSystem)
     this.systems.add(FarmSystem)
 
     this.systems.init()
 
+    this.isStarted = true
+    this.signals.onGameStarted.emit(true)
+
     this.app.ticker.add(() => {
-      this.systems.update()
+      if (this.isStarted) {
+        this.systems.update()
+      }
     })
+
+    return this
   }
 
   public setMediator(mediator: Mediator): void {
