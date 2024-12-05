@@ -1,0 +1,20 @@
+//map
+export const WORLD_MAP_ACTIVE_W = 1000
+export const WORLD_MAP_ACTIVE_H = 1000
+
+export const WORLD_MAP_W = WORLD_MAP_ACTIVE_W + 200
+export const WORLD_MAP_H = WORLD_MAP_ACTIVE_H + 150
+
+//possession
+export const WORLD_POSSESSION_ACTIVE_W = 1000
+export const WORLD_POSSESSION_ACTIVE_H = 1000
+
+export const WORLD_POSSESSION_W = WORLD_POSSESSION_ACTIVE_W + 200
+export const WORLD_POSSESSION_H = WORLD_POSSESSION_ACTIVE_H + 150
+
+//td
+export const WORLD_TD_ACTIVE_W = 1000
+export const WORLD_TD_ACTIVE_H = 1000
+
+export const WORLD_TD_W = WORLD_TD_ACTIVE_W + 200
+export const WORLD_TD_H = WORLD_TD_ACTIVE_H + 150

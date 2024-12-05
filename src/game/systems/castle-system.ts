@@ -1,8 +1,6 @@
-import { events } from '../../core'
-import { OPEN_CASTLE_MENU } from '../constants'
-
 import { Game } from '../game'
 import { Castle } from '../objects'
+import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
 export class CastleSystem implements System {
@@ -12,16 +10,11 @@ export class CastleSystem implements System {
 
   castle!: Castle
 
-  isShowCastleMenu: boolean = false
-
-  constructor() {
-    events.on(OPEN_CASTLE_MENU, this, (isShow: boolean) => {
-      this.isShowCastleMenu = isShow
-    })
-  }
-
   init() {
     this.castle = new Castle({ game: this.game })
+
+    this.game.systems.get(ScreensSystem).addContainer(this.castle, 'possession')
+
     this.castle.init()
   }
 

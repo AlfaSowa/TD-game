@@ -41,7 +41,7 @@ export class FarmTile extends BaseBuild {
     this.graphics.eventMode = 'static'
     this.graphics.cursor = 'pointer'
 
-    this.graphics.on('pointerdown', () => {
+    this.graphics.on('pointerup', () => {
       if (!this.isPlanted || this.isReady) {
         this.graphics.clear()
         this.graphics.rect(0, 0, this.size, this.size).fill({ color: colorTheme.primary })

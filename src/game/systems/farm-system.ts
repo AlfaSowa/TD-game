@@ -1,4 +1,3 @@
-import { Graphics } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { state } from '../../core'
 import { debounce, Vector2 } from '../../utils'
@@ -21,8 +20,7 @@ export class FarmSystem implements System {
   public signals = {
     onTileClick: new Signal<(id: string) => void>(),
     onUpdateFarm: new Signal<() => void>(),
-    onInitFarm: new Signal<() => void>(),
-    onToggleFarm: new Signal<(value: boolean) => void>()
+    onInitFarm: new Signal<() => void>()
   }
 
   constructor() {
@@ -41,38 +39,16 @@ export class FarmSystem implements System {
     this.signals.onUpdateFarm.connect(() => {
       this.updateFarm()
     })
-
-    this.signals.onToggleFarm.connect((value) => {
-      if (value) {
-        this.openFarm()
-      } else {
-        this.closeFarm()
-      }
-    })
-  }
-
-  openFarm() {
-    console.log('openFarm')
-
-    this.farm.addChild(new Graphics().rect(-Math.random() * 100, -Math.random() * 100, 200, 200).fill({ color: 'red' }))
-    // this.farm.add(this.game.app.stage)
-    console.log(this.farm.children)
-  }
-
-  closeFarm() {
-    console.log('closeFarm')
-    // this.farm.remove()
   }
 
   init() {
     this.game.mediator.initFarmFx()
 
     this.farm = new Farm({ game: this.game })
-    // this.farm.add(this.game.app.stage)
+
     this.game.systems.get(ScreensSystem).addContainer(this.farm, 'possession')
 
     this.farm.init()
-    this.farm.updateFarmPosition()
   }
 
   handleTileClick = debounce((ids) => {
@@ -97,8 +73,6 @@ export class FarmSystem implements System {
         }
       }
     }
-
-    this.farm.updateFarmPosition()
   }
 
   initFarm() {
@@ -114,10 +88,6 @@ export class FarmSystem implements System {
       this.farm.addChild(fatmTile)
       fatmTile.init()
     }
-
-    this.farm.updateFarmPosition()
-
-    console.log(this.farm)
   }
 
   update() {

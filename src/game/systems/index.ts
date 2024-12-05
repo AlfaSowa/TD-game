@@ -1,4 +1,6 @@
 export { CastleSystem } from './castle-system'
+export { CitySystem } from './city-system'
 export { FarmSystem } from './farm-system'
+export { SawmillSystem } from './sawmill-system'
 export { ScreensSystem } from './screens-system'
 export type { System, SystemClass } from './types'

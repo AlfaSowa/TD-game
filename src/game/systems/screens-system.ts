@@ -26,31 +26,25 @@ export class ScreensSystem implements System {
     this.map = new MapScreen()
     this.possession = new PossessionScreen()
     this.td = new TDScreen()
-    this.currentScreen = this.possession
+    this.currentScreen = this.map
 
     this.signals.onToggleScreen.connect((type) => {
       this.currentScreen.removeFromParent()
       this.currentScreen = this[type]
       this.game.app.stage.addChild(this.currentScreen)
-
-      console.log(this.game.app.stage.children)
     })
   }
 
   addContainer(container: Container, containerType: 'map' | 'possession' | 'td') {
-    console.log('addContainer ScreensSystem')
-
     this[containerType].addContainer(container)
   }
 
   init() {
-    this.map.init()
+    this.map.init(this.game.app)
     this.possession.init(this.game.app)
     this.td.init()
 
     this.game.app.stage.addChild(this.currentScreen)
-
-    console.log(this.game.app.stage.children)
   }
 
   update() {

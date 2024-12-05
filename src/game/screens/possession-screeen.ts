@@ -1,31 +1,62 @@
 import { Viewport } from 'pixi-viewport'
 import { Application, Container, Graphics } from 'pixi.js'
+import {
+  WORLD_POSSESSION_ACTIVE_H,
+  WORLD_POSSESSION_ACTIVE_W,
+  WORLD_POSSESSION_H,
+  WORLD_POSSESSION_W
+} from './constans'
 
 export class PossessionScreen extends Container {
   viewport!: Viewport
+
+  activeContainer: Container = new Container()
 
   init(app: Application) {
     this.viewport = new Viewport({
       screenWidth: window.innerWidth,
       screenHeight: window.innerHeight,
-      worldWidth: 1000,
-      worldHeight: 1000,
+      worldWidth: WORLD_POSSESSION_W,
+      worldHeight: WORLD_POSSESSION_H,
       events: app.renderer.events
     })
 
+    this.viewport.on('drag-start', () => {
+      this.viewport.interactiveChildren = false
+    })
+    this.viewport.on('drag-end', () => {
+      this.viewport.interactiveChildren = true
+    })
+
     this.viewport.moveCenter(this.viewport.worldWidth / 2, this.viewport.worldHeight / 2)
-
     this.viewport.drag().clamp({ direction: 'all' })
+    this.viewport.addChild(
+      new Graphics().rect(0, 0, WORLD_POSSESSION_W, WORLD_POSSESSION_H).fill({ color: 'rgba(149, 138, 122)' })
+    )
 
-    console.log(this.viewport, 12312)
+    this.activeContainer.addChild(
+      new Graphics()
+        .rect(0, 0, WORLD_POSSESSION_ACTIVE_W, WORLD_POSSESSION_ACTIVE_H)
+        .fill({ color: 'rgba(197, 187, 164)' })
+    )
+
+    this.updateActiveContainerPositio()
+
+    this.viewport.addChild(this.activeContainer)
 
     this.addChild(this.viewport)
+  }
 
-    this.viewport.addChild(new Graphics().rect(0, 0, 1000, 1000).stroke({ color: '#487f5c' }))
+  updateActiveContainerPositio() {
+    this.activeContainer.position.set(
+      this.viewport.width / 2 - this.activeContainer.width / 2,
+      this.viewport.height / 2 - this.activeContainer.height / 2
+    )
   }
 
   addContainer(container: Container) {
-    this.viewport.addChild(container)
+    this.activeContainer.addChild(container)
+    this.updateActiveContainerPositio()
   }
 
   update() {}

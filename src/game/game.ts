@@ -1,9 +1,11 @@
-import { Application, Container } from 'pixi.js'
+import { Application, Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
 import { SystemRunner } from './system-runner'
-import { FarmSystem, ScreensSystem } from './systems'
+import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem } from './systems'
 import { IGame } from './types'
+
+import bg from '../assets/images/tileset.png'
 
 export class Game extends Container implements IGame {
   app: Application
@@ -28,9 +30,28 @@ export class Game extends Container implements IGame {
     new Mediator(this)
   }
 
+  async initAssets() {
+    console.log(bg)
+
+    // const texture = await Assets.load(bg)
+
+    // const bgSprite = new TilingSprite({
+    //   texture,
+    //   width: this.app.screen.width,
+    //   height: this.app.screen.height
+    // })
+
+    // this.app.stage.addChild(bgSprite)
+
+    await Assets.init({ manifest: '/game-manifest.json', basePath: 'assets' })
+    const backgroundAssets = await Assets.loadBundle('backgrounds')
+    const sprite = Sprite.from(backgroundAssets.map)
+    // this.app.stage.addChild(sprite)
+  }
+
   async init() {
     await this.app.init({
-      background: 'rgba(197, 187, 164)',
+      background: '#403d39',
       resizeTo: window,
       roundPixels: false,
       resolution: 1,
@@ -41,11 +62,16 @@ export class Game extends Container implements IGame {
 
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
 
+    await this.initAssets()
+
     state.init(this)
 
     //systems
     this.systems.add(ScreensSystem)
+    this.systems.add(CitySystem)
     this.systems.add(FarmSystem)
+    this.systems.add(CastleSystem)
+    this.systems.add(SawmillSystem)
 
     this.systems.init()
 
