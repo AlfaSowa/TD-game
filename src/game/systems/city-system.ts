@@ -14,6 +14,8 @@ export class CitySystem implements System {
   init() {
     this.city = new City({ game: this.game })
 
+    console.log('this.city', this.city)
+
     this.game.systems.get(ScreensSystem).addContainer(this.city, 'map')
 
     this.city.init()
