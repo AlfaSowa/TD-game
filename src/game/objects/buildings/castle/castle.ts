@@ -1,9 +1,13 @@
-import { Graphics } from 'pixi.js'
+import { Assets, Sprite } from 'pixi.js'
+import CastleImage from '../../../../assets/images/Castle_Construction.png'
 import { BaseBuild } from '../base'
 
 export class Castle extends BaseBuild {
-  init() {
-    this.addChild(new Graphics().rect(0, 0, 300, 300).fill({ color: 'rgba(149, 138, 122)' }))
+  async init() {
+    const texture = await Assets.load(CastleImage)
+    const sprite = new Sprite(texture)
+
+    this.addChild(sprite)
 
     if (this.parent) {
       this.position.set(this.parent.width / 2 - this.width / 2, this.parent.height / 2 - this.height / 2)
