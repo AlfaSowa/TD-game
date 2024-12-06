@@ -1,72 +1,66 @@
-import { useEffect, useState } from 'react'
-import { Game } from '../../game'
-
+import { useContext, useEffect, useState } from 'react'
 import { state } from '../../core'
 import { ScreensSystem } from '../../game/systems'
-
-const g = new Game()
+import { GameContext } from '../App'
 
 export const Layout = () => {
+  const game = useContext(GameContext)
   const [coins, setCoins] = useState<number>(0)
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
 
   const openMap = () => {
-    g.systems.get(ScreensSystem).signals.onToggleScreen.emit('map')
+    game.systems.get(ScreensSystem).signals.onToggleScreen.emit('map')
   }
   const openPossession = () => {
-    g.systems.get(ScreensSystem).signals.onToggleScreen.emit('possession')
+    game.systems.get(ScreensSystem).signals.onToggleScreen.emit('possession')
   }
 
   const openTD = () => {
-    g.systems.get(ScreensSystem).signals.onToggleScreen.emit('td')
+    game.systems.get(ScreensSystem).signals.onToggleScreen.emit('td')
   }
 
   useEffect(() => {
-    if (!g.isStarted) {
-      g.init()
-    }
-
-    g.signals.onCoinsUpdate.connect((value) => {
+    game.signals.onCoinsUpdate.connect((value) => {
       setCoins(value)
-    })
-    g.signals.onGameStarted.connect((isStarted) => {
-      setIsGameStarted(isStarted)
     })
   }, [])
 
   return (
     <>
-      {/* {!game && <MainMenu game={g} setGame={setGame} />} */}
+      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2">
+        <div className="text-3xl">{coins || state.getUserCoins} coins</div>
+      </div>
 
-      {!isGameStarted && (
-        <div className="w-svw h-svh flex items-center justify-center flex-col">
-          <div className="text-5xl">ПОЧТИ ГЕРОЙ</div>
-          <div>Загрузка...</div>
-        </div>
-      )}
+      <div className="absolute bottom-0 left-0 w-full bg-slate-400 p-2 flex justify-between">
+        <button onClick={openMap} className="text-2xl size-16">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="sketch" fill="currentColor" aria-hidden="true">
+            <path d="M925.6 405.1l-203-253.7a6.5 6.5 0 00-5-2.4H306.4c-1.9 0-3.8.9-5 2.4l-203 253.7a6.5 6.5 0 00.2 8.3l408.6 459.5c1.2 1.4 3 2.1 4.8 2.1 1.8 0 3.5-.8 4.8-2.1l408.6-459.5a6.5 6.5 0 00.2-8.3zM645.2 206.4l34.4 133.9-132.5-133.9h98.1zm8.2 178.5H370.6L512 242l141.4 142.9zM378.8 206.4h98.1L344.3 340.3l34.5-133.9zm-53.4 7l-44.1 171.5h-93.1l137.2-171.5zM194.6 434.9H289l125.8 247.7-220.2-247.7zM512 763.4L345.1 434.9h333.7L512 763.4zm97.1-80.8L735 434.9h94.4L609.1 682.6zm133.6-297.7l-44.1-171.5 137.2 171.5h-93.1z"></path>
+          </svg>
+        </button>
 
-      {isGameStarted && (
-        <div className="absolute top-0 left-0 w-full bg-slate-400 p-2">
-          <div className="text-3xl">{coins || state.getUserCoins} coins</div>
-        </div>
-      )}
+        <button onClick={openPossession} className="text-2xl size-16">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="sketch" fill="currentColor" aria-hidden="true">
+            <path d="M925.6 405.1l-203-253.7a6.5 6.5 0 00-5-2.4H306.4c-1.9 0-3.8.9-5 2.4l-203 253.7a6.5 6.5 0 00.2 8.3l408.6 459.5c1.2 1.4 3 2.1 4.8 2.1 1.8 0 3.5-.8 4.8-2.1l408.6-459.5a6.5 6.5 0 00.2-8.3zM645.2 206.4l34.4 133.9-132.5-133.9h98.1zm8.2 178.5H370.6L512 242l141.4 142.9zM378.8 206.4h98.1L344.3 340.3l34.5-133.9zm-53.4 7l-44.1 171.5h-93.1l137.2-171.5zM194.6 434.9H289l125.8 247.7-220.2-247.7zM512 763.4L345.1 434.9h333.7L512 763.4zm97.1-80.8L735 434.9h94.4L609.1 682.6zm133.6-297.7l-44.1-171.5 137.2 171.5h-93.1z"></path>
+          </svg>
+        </button>
 
-      <div id="game-canvas" className="h-dvh w-screen flex items-center justify-center fixed top-0 left-0 -z-10" />
+        <button onClick={openTD} className="text-2xl size-16">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="sketch" fill="currentColor" aria-hidden="true">
+            <path d="M925.6 405.1l-203-253.7a6.5 6.5 0 00-5-2.4H306.4c-1.9 0-3.8.9-5 2.4l-203 253.7a6.5 6.5 0 00.2 8.3l408.6 459.5c1.2 1.4 3 2.1 4.8 2.1 1.8 0 3.5-.8 4.8-2.1l408.6-459.5a6.5 6.5 0 00.2-8.3zM645.2 206.4l34.4 133.9-132.5-133.9h98.1zm8.2 178.5H370.6L512 242l141.4 142.9zM378.8 206.4h98.1L344.3 340.3l34.5-133.9zm-53.4 7l-44.1 171.5h-93.1l137.2-171.5zM194.6 434.9H289l125.8 247.7-220.2-247.7zM512 763.4L345.1 434.9h333.7L512 763.4zm97.1-80.8L735 434.9h94.4L609.1 682.6zm133.6-297.7l-44.1-171.5 137.2 171.5h-93.1z"></path>
+          </svg>
+        </button>
 
-      {isGameStarted && (
-        <div className="absolute bottom-0 left-0 w-full bg-slate-400 p-2 flex justify-between">
-          <button onClick={openMap}>показать карту</button>
-          <button onClick={openPossession}>показать замок</button>
-          <button onClick={openTD}>показать темные земли</button>
-        </div>
-      )}
+        <button onClick={() => console.log(1)} className="text-2xl size-16">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="sketch" fill="currentColor" aria-hidden="true">
+            <path d="M925.6 405.1l-203-253.7a6.5 6.5 0 00-5-2.4H306.4c-1.9 0-3.8.9-5 2.4l-203 253.7a6.5 6.5 0 00.2 8.3l408.6 459.5c1.2 1.4 3 2.1 4.8 2.1 1.8 0 3.5-.8 4.8-2.1l408.6-459.5a6.5 6.5 0 00.2-8.3zM645.2 206.4l34.4 133.9-132.5-133.9h98.1zm8.2 178.5H370.6L512 242l141.4 142.9zM378.8 206.4h98.1L344.3 340.3l34.5-133.9zm-53.4 7l-44.1 171.5h-93.1l137.2-171.5zM194.6 434.9H289l125.8 247.7-220.2-247.7zM512 763.4L345.1 434.9h333.7L512 763.4zm97.1-80.8L735 434.9h94.4L609.1 682.6zm133.6-297.7l-44.1-171.5 137.2 171.5h-93.1z"></path>
+          </svg>
+        </button>
 
-      {/* {game && (
-        <img
-          src="https://i.pinimg.com/originals/62/b3/c9/62b3c9a0a6038ae920c04a200b499a23.jpg"
-          className="object-cover opacity-30 absolute top-0 left-0 pointer-events-none"
-        />
-      )} */}
+        <button onClick={() => console.log(1)} className="text-2xl size-16">
+          <svg viewBox="64 64 896 896" focusable="false" data-icon="sketch" fill="currentColor" aria-hidden="true">
+            <path d="M925.6 405.1l-203-253.7a6.5 6.5 0 00-5-2.4H306.4c-1.9 0-3.8.9-5 2.4l-203 253.7a6.5 6.5 0 00.2 8.3l408.6 459.5c1.2 1.4 3 2.1 4.8 2.1 1.8 0 3.5-.8 4.8-2.1l408.6-459.5a6.5 6.5 0 00.2-8.3zM645.2 206.4l34.4 133.9-132.5-133.9h98.1zm8.2 178.5H370.6L512 242l141.4 142.9zM378.8 206.4h98.1L344.3 340.3l34.5-133.9zm-53.4 7l-44.1 171.5h-93.1l137.2-171.5zM194.6 434.9H289l125.8 247.7-220.2-247.7zM512 763.4L345.1 434.9h333.7L512 763.4zm97.1-80.8L735 434.9h94.4L609.1 682.6zm133.6-297.7l-44.1-171.5 137.2 171.5h-93.1z"></path>
+          </svg>
+        </button>
+      </div>
 
       {/* {isShowCastleGrid && <CastleGrid onClose={setIsShowCastleGrid} />} */}
 

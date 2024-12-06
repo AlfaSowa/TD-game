@@ -1,4 +1,4 @@
-import { axiosApi } from '../utils'
+import { axiosApi } from '../../../../utils'
 
 export const authUser = async (): Promise<any> => {
   try {

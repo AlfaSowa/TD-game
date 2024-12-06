@@ -29,6 +29,7 @@
 
 body {
   margin: 0;
+  scrollbar-gutter: stable both-edges;
 }
 
 img {
@@ -45,4 +46,46 @@ h2 {
 
 h3 {
   font-size: 2rem;
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    cursor: pointer;
+    background: red;
+    border-radius: 4px;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-track-piece:hover {
+    background: red;
+    border-radius: 4px;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: green;
+    border-radius: 4px;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: green;
+    background-clip: padding-box;
+  }
 }
