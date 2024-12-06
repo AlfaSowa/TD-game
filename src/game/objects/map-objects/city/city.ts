@@ -1,6 +1,6 @@
 import { Assets, Sprite } from 'pixi.js'
 import { Game } from '../../..'
-import CastleImage from '../../../../assets/images/Castle_Blue.png'
+import CastleImage from '../../../../assets/images/House_Red.png'
 import { ScreensSystem } from '../../../systems'
 import { BaseMapObject } from '../base'
 
