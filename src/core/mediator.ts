@@ -23,9 +23,9 @@ export class Mediator implements IMediator {
     return await updateFarmTiles(ids).then((data) => {
       if (data) {
         state.updateFarm = data.data
-        state.updateUserCoins = data.coins
+        state.updateUserGold = data.gold
 
-        this.game.signals.onCoinsUpdate.emit(data.coins)
+        this.game.signals.onGoldUpdate.emit(data.gold)
       }
     })
   }

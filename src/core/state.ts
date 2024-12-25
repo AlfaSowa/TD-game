@@ -10,7 +10,7 @@ class State {
   private game!: Game
   private innerUserData: string = ''
   private user: any = {
-    coins: 0
+    gold: 0
   }
   private farmData!: FarmDataType
 
@@ -40,12 +40,12 @@ class State {
     return this.innerUserData
   }
 
-  set updateUserCoins(value: number) {
-    this.user.coins = value
+  set updateUserGold(value: number) {
+    this.user.gold = value
   }
 
-  get getUserCoins() {
-    return this.user.coins
+  get getUserGold() {
+    return this.user.gold
   }
 }
 

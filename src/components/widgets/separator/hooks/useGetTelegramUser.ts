@@ -22,7 +22,7 @@ export const useGetTelegramUser = (tg: any) => {
       authUser().then((user) => {
         if (user) {
           state.updateInnerUserData = data
-          state.updateUserCoins = user?.coins
+          state.updateUserGold = user?.gold
           setTgUsesr(user)
         }
       })

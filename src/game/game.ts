@@ -2,7 +2,7 @@ import { Application, Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
 import { SystemRunner } from './system-runner'
-import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem } from './systems'
+import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem, TimersSystem } from './systems'
 import { IGame } from './types'
 
 import bg from '../assets/images/tileset.png'
@@ -17,7 +17,7 @@ export class Game extends Container implements IGame {
   isStarted: boolean = false
 
   public signals = {
-    onCoinsUpdate: new Signal<(value: number) => void>(),
+    onGoldUpdate: new Signal<(value: number) => void>(),
     onGameStarted: new Signal<(isStarted: boolean) => void>()
   }
 
@@ -68,6 +68,8 @@ export class Game extends Container implements IGame {
 
     //systems
     this.systems.add(ScreensSystem)
+    this.systems.add(TimersSystem)
+
     this.systems.add(CitySystem)
     this.systems.add(FarmSystem)
     this.systems.add(CastleSystem)

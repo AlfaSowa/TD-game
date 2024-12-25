@@ -19,8 +19,8 @@ export const MainMenu = ({ game, setGame }: MainMenuProps) => {
         <div className="flex-1 flex items-center justify-center">
           <div>
             <h3 className="text-[var(--primary)] text-center">
-              воу воу воу МЫ НАЧИНАЕМ!!! Заходи в игру крась квадратики и собирай с покрашеных квадратов coins каждые 30
-              минут! Если не [сообщение удалено] конечно
+              воу воу воу МЫ НАЧИНАЕМ!!! Заходи в игру крась квадратики и собирай с покрашеных квадратов золото каждые
+              30 минут! Если не [сообщение удалено] конечно
             </h3>
 
             <h4 className="text-[var(--primary)] text-center">
