@@ -13,7 +13,7 @@ export class Mediator implements IMediator {
     this.game.setMediator(this)
   }
 
-  async initFarmFx(): Promise<any> {
+  async initFarmFx() {
     return await getFarm().then((data) => {
       state.initFarm = data
     })

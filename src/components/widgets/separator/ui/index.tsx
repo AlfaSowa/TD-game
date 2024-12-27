@@ -4,12 +4,15 @@ import { Layout } from '../../../entities'
 import { LoadingScreen } from '../../../entities/loading-screen'
 import { useGameInit, useGetTelegramUser } from '../hooks'
 
-const tg = (window as any).Telegram.WebApp
+const tg = (window as any)?.Telegram?.WebApp
 
 export const Separator = () => {
   const game = useContext(GameContext)
   const { tgUser } = useGetTelegramUser(tg)
-  const { isGameStarted } = useGameInit(game)
+  const { isGameStarted } = useGameInit(game, tgUser)
+
+  console.log('tgUser', tgUser)
+  console.log('isGameStarted', isGameStarted)
 
   return (
     <div>

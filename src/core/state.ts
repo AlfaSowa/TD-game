@@ -20,6 +20,7 @@ class State {
 
   set initFarm(data: any) {
     this.farmData = data
+
     this.game.systems.get(FarmSystem).signals.onInitFarm.emit()
   }
 

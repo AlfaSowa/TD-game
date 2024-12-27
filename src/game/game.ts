@@ -3,9 +3,8 @@ import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
 import { SystemRunner } from './system-runner'
 import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem, TimersSystem } from './systems'
+import { ResourcesSystem } from './systems/resources-system'
 import { IGame } from './types'
-
-import bg from '../assets/images/tileset.png'
 
 export class Game extends Container implements IGame {
   app: Application
@@ -31,8 +30,6 @@ export class Game extends Container implements IGame {
   }
 
   async initAssets() {
-    console.log(bg)
-
     // const texture = await Assets.load(bg)
 
     // const bgSprite = new TilingSprite({
@@ -67,13 +64,18 @@ export class Game extends Container implements IGame {
     state.init(this)
 
     //systems
+    //core
     this.systems.add(ScreensSystem)
     this.systems.add(TimersSystem)
 
+    //objects
     this.systems.add(CitySystem)
     this.systems.add(FarmSystem)
     this.systems.add(CastleSystem)
     this.systems.add(SawmillSystem)
+
+    //helpers
+    this.systems.add(ResourcesSystem)
 
     this.systems.init()
 
