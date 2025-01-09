@@ -1,1 +1,1 @@
-export { Forest } from './forest'
+export { Wood } from './wood'

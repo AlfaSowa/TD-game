@@ -2,8 +2,7 @@ import { Application, Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import { Mediator, state } from '../core'
 import { SystemRunner } from './system-runner'
-import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem, TimersSystem } from './systems'
-import { ResourcesSystem } from './systems/resources-system'
+import { CastleSystem, CitySystem, ScreensSystem, SpawnersSystem } from './systems'
 import { IGame } from './types'
 
 export class Game extends Container implements IGame {
@@ -66,16 +65,17 @@ export class Game extends Container implements IGame {
     //systems
     //core
     this.systems.add(ScreensSystem)
-    this.systems.add(TimersSystem)
+    this.systems.add(SpawnersSystem)
+    // this.systems.add(TimersSystem)
 
     //objects
     this.systems.add(CitySystem)
-    this.systems.add(FarmSystem)
+    // this.systems.add(FarmSystem)
     this.systems.add(CastleSystem)
-    this.systems.add(SawmillSystem)
+    // this.systems.add(SawmillSystem)
 
     //helpers
-    this.systems.add(ResourcesSystem)
+    // this.systems.add(ResourcesSystem)
 
     this.systems.init()
 

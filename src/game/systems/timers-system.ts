@@ -32,12 +32,12 @@ export class TimersSystem implements System {
   }
 
   update() {
-    this.timers.forEach((t) => {
+    for (const t of this.timers) {
       t.timer.update(this.game.app.ticker.deltaMS)
 
       if (!t.timer.isRunning) {
         removeElementFromArray(this.timers, t)
       }
-    })
+    }
   }
 }

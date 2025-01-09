@@ -455,6 +455,112 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
+        "E:/js-game-pack/game-frontend/src/assets/images/afd9733a42a1a51af319ee3150267a64.jpg": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "3j5HUQ"
+        },
+        ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-gk9Oyg.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64.webp",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/afd9733a42a1a51af319ee3150267a64-gk9Oyg.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-gk9Oyg.webp",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-WR1QPQ.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/afd9733a42a1a51af319ee3150267a64-WR1QPQ.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-WR1QPQ.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-4Gr9fw@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64@0.5x.webp",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/afd9733a42a1a51af319ee3150267a64-4Gr9fw@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-4Gr9fw@0.5x.webp",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/afd9733a42a1a51af319ee3150267a64@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-l-3vSQ@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/afd9733a42a1a51af319ee3150267a64@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/afd9733a42a1a51af319ee3150267a64-l-3vSQ@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/afd9733a42a1a51af319ee3150267a64-l-3vSQ@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
         "E:/js-game-pack/game-frontend/src/assets/images/Archer_Blue.png": {
             "isFolder": false,
             "parent": "E:/js-game-pack/game-frontend/src/assets/images",

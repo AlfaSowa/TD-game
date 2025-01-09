@@ -22,7 +22,7 @@ export class Forest extends BaseResources {
     this.position.set(10 + this.radius, 10 + this.radius)
   }
 
-  addNewForestTile = delayToCallback(100, () => {
+  addNewForestTile = delayToCallback(this.game.app.ticker.deltaMS, 100, () => {
     const matrixTmp = this.matrix.filter((i) => i !== 'true')
     const positionOnCircle = matrixTmp[randomNumber([-1, matrixTmp.length])]
 

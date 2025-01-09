@@ -109,6 +109,21 @@
         },
         {
           "alias": [
+            "images/afd9733a42a1a51af319ee3150267a64.jpg",
+            "afd9733a42a1a51af319ee3150267a64.jpg"
+          ],
+          "src": [
+            "images/afd9733a42a1a51af319ee3150267a64-WR1QPQ.jpg",
+            "images/afd9733a42a1a51af319ee3150267a64-l-3vSQ@0.5x.jpg",
+            "images/afd9733a42a1a51af319ee3150267a64-gk9Oyg.webp",
+            "images/afd9733a42a1a51af319ee3150267a64-4Gr9fw@0.5x.webp"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
             "images/Archer_Blue.png",
             "Archer_Blue.png"
           ],

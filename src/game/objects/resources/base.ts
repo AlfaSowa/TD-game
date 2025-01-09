@@ -1,26 +1,9 @@
-import { Container } from 'pixi.js'
-import { Game } from '../../game'
-import { IBaseGameObject } from '../../types'
+import { BaseGameObject } from '../baseObject'
 
-export class BaseResources extends Container implements IBaseGameObject {
-  game: Game
-  private resources: number = 100
+export class BaseResource extends BaseGameObject {
+  private value: number = 0
 
-  constructor({ game }: IBaseGameObject) {
-    super()
-    this.game = game
+  setValue(value: number) {
+    this.value = value
   }
-
-  init() {
-    this.game.app.stage.addChild(this)
-  }
-
-  public takeResources(value: number) {
-    this.resources -= value
-    if (this.resources < 0) {
-      this.destroy()
-    }
-  }
-
-  update() {}
 }

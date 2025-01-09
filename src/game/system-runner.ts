@@ -34,10 +34,14 @@ export class SystemRunner {
   }
 
   public init() {
-    this.allSystems.forEach((system) => system.init?.())
+    for (const [key, system] of this.allSystems) {
+      system.init?.()
+    }
   }
 
   public update() {
-    this.allSystems.forEach((system) => system.update?.())
+    for (const [key, system] of this.allSystems) {
+      system.update?.()
+    }
   }
 }

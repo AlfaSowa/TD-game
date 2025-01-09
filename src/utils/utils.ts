@@ -2,15 +2,15 @@ import { Container } from 'pixi.js'
 import { getDistBetweenTargets } from './math'
 
 //--delayToCallback--//
-export const delayToCallback = (hold: number, callback: (args?: any) => any) => {
+export const delayToCallback = (delta: number, hold: number, callback: (args?: any) => any) => {
   let elapsed: number = hold
 
   return (args?: any) => {
-    if (elapsed % hold === 0) {
+    if (elapsed >= hold) {
       elapsed = 0
       callback(args)
     }
-    elapsed++
+    elapsed += delta
   }
 }
 

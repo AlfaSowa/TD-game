@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { state } from '../../core'
 import { ScreensSystem } from '../../game/systems'
-import { HomeIcon, MapIcon, PublicOffIcon } from '../../shared/ui'
+import { HomeIcon, MapIcon } from '../../shared/ui'
 import { GameContext } from '../App'
 
 export const Layout = () => {
@@ -40,9 +40,9 @@ export const Layout = () => {
           <HomeIcon />
         </button>
 
-        <button onClick={openTD} className="text-2xl size-14">
+        {/* <button onClick={openTD} className="text-2xl size-14">
           <PublicOffIcon />
-        </button>
+        </button> */}
       </div>
 
       {/* {isShowCastleGrid && <CastleGrid onClose={setIsShowCastleGrid} />} */}
