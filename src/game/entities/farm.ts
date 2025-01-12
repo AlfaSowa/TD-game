@@ -1,10 +1,30 @@
-import { Graphics } from 'pixi.js'
-import { Vector2 } from '../../../../utils'
-import { colorTheme } from '../../../constants'
-import { Game } from '../../../game'
-import { FarmSystem } from '../../../systems'
-import { BaseBuild } from '../base'
-import { FarmTileType } from './types'
+import { Assets, Graphics, Sprite } from 'pixi.js'
+import FarmImage from '../../assets/images/House_Blue.png'
+import { Vector2 } from '../../utils'
+import { colorTheme } from '../constants'
+import { Game } from '../game'
+import { FarmSystem } from '../systems'
+import { BaseEntity } from './base'
+
+export class Farm extends BaseEntity {
+  gap: number = 2
+
+  async init() {
+    const texture = await Assets.load(FarmImage)
+    const sprite = new Sprite(texture)
+
+    sprite.position.x = 150
+
+    this.addChild(sprite)
+    this.position.set(20, 20)
+  }
+}
+
+type FarmTileType = {
+  id: string
+  isPlanted: boolean
+  isReady: boolean
+}
 
 interface IFarmTile {
   game: Game
@@ -13,7 +33,7 @@ interface IFarmTile {
   data: FarmTileType
 }
 
-export class FarmTile extends BaseBuild {
+export class FarmTile extends BaseEntity {
   id: string
   size: number = 0
 

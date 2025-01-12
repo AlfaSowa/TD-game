@@ -1,5 +1,4 @@
 import { Container } from 'pixi.js'
-import { MouseType, TargetType } from '../game/types'
 import { Vector2 } from './helpers'
 
 //---isOnCanavasField ---//
@@ -52,53 +51,53 @@ export const isContainersColision = (targetA: Container, targetB: Container, rA:
 }
 
 //--isTargetsRectColision--//
-type TargetSizeType = { width: number; height: number }
+// type TargetSizeType = { width: number; height: number }
 
-export const IsTargetsRectColision = (
-  targetA: TargetType & TargetSizeType,
-  targetB: TargetType & TargetSizeType
-): boolean => {
-  if (
-    targetA.position.x + targetA.width >= targetB.position.x &&
-    targetA.position.x <= targetB.position.x + targetB.width &&
-    targetA.position.y + targetA.height >= targetB.position.y &&
-    targetA.position.y <= targetB.position.y + targetB.height
-  ) {
-    return true
-  }
+// export const IsTargetsRectColision = (
+//   targetA: TargetType & TargetSizeType,
+//   targetB: TargetType & TargetSizeType
+// ): boolean => {
+//   if (
+//     targetA.position.x + targetA.width >= targetB.position.x &&
+//     targetA.position.x <= targetB.position.x + targetB.width &&
+//     targetA.position.y + targetA.height >= targetB.position.y &&
+//     targetA.position.y <= targetB.position.y + targetB.height
+//   ) {
+//     return true
+//   }
 
-  return false
-}
+//   return false
+// }
 
 //--isMouseOnRectTarget--//
-type IsMouseOnRectTargetType = {
-  mouse: MouseType
-  target: any
-}
+// type IsMouseOnRectTargetType = {
+//   mouse: MouseType
+//   target: any
+// }
 
-export const isMouseOnRectTarget = ({ mouse, target }: IsMouseOnRectTargetType): boolean => {
-  return (
-    mouse.x > target.position.x &&
-    mouse.x < target.position.x + target.width &&
-    mouse.y > target.position.y &&
-    mouse.y < target.position.y + target.height
-  )
-}
+// export const isMouseOnRectTarget = ({ mouse, target }: IsMouseOnRectTargetType): boolean => {
+//   return (
+//     mouse.x > target.position.x &&
+//     mouse.x < target.position.x + target.width &&
+//     mouse.y > target.position.y &&
+//     mouse.y < target.position.y + target.height
+//   )
+// }
 
 //--isMouseOnCircleTarget--//
-type IsMouseOnCircleTargetType = {
-  mouse: MouseType
-  target: any
-}
+// type IsMouseOnCircleTargetType = {
+//   mouse: MouseType
+//   target: any
+// }
 
-export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetType): boolean => {
-  return (
-    mouse.x > target.position.x - target.radius &&
-    mouse.x < target.position.x + target.radius &&
-    mouse.y > target.position.y - target.radius &&
-    mouse.y < target.position.y + target.radius
-  )
-}
+// export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetType): boolean => {
+//   return (
+//     mouse.x > target.position.x - target.radius &&
+//     mouse.x < target.position.x + target.radius &&
+//     mouse.y > target.position.y - target.radius &&
+//     mouse.y < target.position.y + target.radius
+//   )
+// }
 
 //--moveElementToTarget--//
 export const moveElementToTarget = (element: Container, target: Container, velocity: number = 1) => {

@@ -1,11 +1,20 @@
 import { Container } from 'pixi.js'
 import { Game } from '../game'
-import { IBaseGameObject } from '../types'
 
-export class BaseGameObject extends Container implements IBaseGameObject {
+interface IBaseEntity {
   game: Game
 
-  constructor({ game }: IBaseGameObject) {
+  add: (parent: Container) => void
+  remove: () => void
+
+  init?: () => void
+  update?: () => void
+}
+
+export class BaseEntity extends Container implements IBaseEntity {
+  game: Game
+
+  constructor({ game }: { game: Game }) {
     super()
     this.game = game
   }
@@ -23,6 +32,4 @@ export class BaseGameObject extends Container implements IBaseGameObject {
       this.removeFromParent()
     }
   }
-
-  init() {}
 }

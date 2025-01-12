@@ -1,10 +1,10 @@
 import { Signal } from 'typed-signals'
-import { state } from '../../core'
 import { debounce, Vector2 } from '../../utils'
 import { colorTheme } from '../constants'
 import { Game } from '../game'
-import { Farm } from '../objects'
-import { FarmTile } from '../objects/buildings/farm/farm-tile'
+import { state } from '../helpers'
+
+import { Farm, FarmTile } from '../entities'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
@@ -92,7 +92,7 @@ export class FarmSystem implements System {
     }
   }
 
-  update() {
-    this.farm.update()
-  }
+  // update() {
+  //   this.farm.update()
+  // }
 }

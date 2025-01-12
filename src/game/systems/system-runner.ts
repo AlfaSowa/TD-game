@@ -1,5 +1,5 @@
-import { Game } from './game'
-import { System, SystemClass } from './systems'
+import { Game } from '../game'
+import { System, SystemClass } from './types'
 
 export class SystemRunner {
   private readonly _game: Game

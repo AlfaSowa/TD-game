@@ -1,7 +1,7 @@
 import { Graphics } from 'pixi.js'
-import { BaseResource } from './base'
+import { BaseEntity } from './base'
 
-export class Wood extends BaseResource {
+export class Resource extends BaseEntity {
   init() {
     const graphics = new Graphics().circle(0, 0, 35).fill({ color: 'brown' })
 

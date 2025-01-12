@@ -1,11 +1,9 @@
 import { Application, Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Mediator, state } from '../core'
-import { SystemRunner } from './system-runner'
-import { CastleSystem, CitySystem, ScreensSystem, SpawnersSystem } from './systems'
-import { IGame } from './types'
+import { Mediator, state } from './helpers'
+import { CastleSystem, CitySystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
 
-export class Game extends Container implements IGame {
+export class Game extends Container {
   app: Application
 
   systems: SystemRunner
@@ -68,7 +66,7 @@ export class Game extends Container implements IGame {
     this.systems.add(SpawnersSystem)
     // this.systems.add(TimersSystem)
 
-    //objects
+    //entities
     this.systems.add(CitySystem)
     // this.systems.add(FarmSystem)
     this.systems.add(CastleSystem)

@@ -1,5 +1,5 @@
 import { Game } from '../game'
-import { FarmSystem } from '../game/systems'
+import { FarmSystem } from '../systems'
 
 type FarmDataType = {
   id: string

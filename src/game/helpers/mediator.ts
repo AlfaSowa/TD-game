@@ -1,4 +1,4 @@
-import { getFarm, updateFarmTiles } from '../api'
+import { getFarm, updateFarmTiles } from '../../api'
 import { Game } from '../game'
 import { state } from './state'
 

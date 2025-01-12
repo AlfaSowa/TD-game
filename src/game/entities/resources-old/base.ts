@@ -1,6 +1,9 @@
 import { Container } from 'pixi.js'
 import { Game } from '../../game'
-import { IBaseGameObject } from '../../types'
+
+export interface IBaseGameObject {
+  game: Game
+}
 
 export class BaseResources extends Container implements IBaseGameObject {
   game: Game

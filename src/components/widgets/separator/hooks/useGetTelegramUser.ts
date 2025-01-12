@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { state } from '../../../../core'
+
+import { state } from '../../../../game/helpers'
 import { setCookie } from '../../../../utils'
 import { authUser } from '../api'
 

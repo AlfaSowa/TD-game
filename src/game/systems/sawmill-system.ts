@@ -1,5 +1,5 @@
+import { Sawmill } from '../entities'
 import { Game } from '../game'
-import { Sawmill } from '../objects'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 

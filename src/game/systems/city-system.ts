@@ -1,5 +1,5 @@
+import { City } from '../entities'
 import { Game } from '../game'
-import { City } from '../objects'
 
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
@@ -18,7 +18,7 @@ export class CitySystem implements System {
     this.city.init()
   }
 
-  update() {
-    this.city.update()
-  }
+  // update() {
+  //   this.city.update()
+  // }
 }

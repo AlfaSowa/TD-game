@@ -1,7 +1,7 @@
 import { randomNumber } from '../../utils'
+import { Castle, Resource } from '../entities'
 import { Game } from '../game'
 import { Spawner } from '../helpers'
-import { Castle, Wood } from '../objects'
 import { ScreensSystem } from './screens-system'
 import { SpawnersSystem } from './spawners-system'
 import { System } from './types'
@@ -14,7 +14,7 @@ export class CastleSystem implements System {
   game!: Game
 
   castle!: Castle
-  spawner!: Spawner<Wood>
+  spawner!: Spawner<Resource>
 
   init() {
     this.castle = new Castle({ game: this.game })
@@ -26,7 +26,7 @@ export class CastleSystem implements System {
       render: () => {
         const r = Math.random()
 
-        const woodResource = new Wood({ game: this.game })
+        const woodResource = new Resource({ game: this.game })
         woodResource.init()
         woodResource.x = 500 + randomNumber([150, 400]) * Math.sin(360 / r)
         woodResource.y = 500 + randomNumber([150, 400]) * Math.cos(360 / r)
@@ -40,7 +40,7 @@ export class CastleSystem implements System {
     this.game.systems.get(ScreensSystem).addContainer(this.spawner, 'possession')
   }
 
-  update() {
-    this.castle.update()
-  }
+  // update() {
+  //   this.castle.update()
+  // }
 }

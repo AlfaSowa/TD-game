@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { state } from '../../core'
+import { state } from '../../game/helpers'
 import { ScreensSystem } from '../../game/systems'
 import { HomeIcon, MapIcon } from '../../shared/ui'
 import { GameContext } from '../App'
