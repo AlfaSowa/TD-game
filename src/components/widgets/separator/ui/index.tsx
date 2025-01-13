@@ -12,7 +12,6 @@ export const Separator = () => {
   const { isGameStarted } = useGameInit(game, tgUser)
 
   console.log('tgUser', tgUser)
-  console.log('isGameStarted', isGameStarted)
 
   return (
     <div>

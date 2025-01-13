@@ -1,5 +1,6 @@
-import { Application, Assets, Container, Sprite } from 'pixi.js'
+import { Application, Assets, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
+import manifest from '../../public/manifest.json'
 import { Mediator, state } from './helpers'
 import { CastleSystem, CitySystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
 
@@ -37,10 +38,7 @@ export class Game extends Container {
 
     // this.app.stage.addChild(bgSprite)
 
-    await Assets.init({ manifest: '/game-manifest.json', basePath: 'assets' })
-    const backgroundAssets = await Assets.loadBundle('backgrounds')
-    const sprite = Sprite.from(backgroundAssets.map)
-    // this.app.stage.addChild(sprite)
+    await Assets.init({ manifest })
   }
 
   async init() {
@@ -52,11 +50,9 @@ export class Game extends Container {
       preference: 'webgl'
     })
 
-    console.log('app', this.app)
+    await this.initAssets()
 
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
-
-    await this.initAssets()
 
     state.init(this)
 

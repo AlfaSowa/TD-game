@@ -12,7 +12,6 @@ export class SawmillSystem implements System {
 
   init() {
     this.sawmill = new Sawmill({ game: this.game })
-    console.log(this.sawmill)
 
     this.game.systems.get(ScreensSystem).addContainer(this.sawmill, 'possession')
 

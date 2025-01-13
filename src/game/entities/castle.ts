@@ -1,12 +1,10 @@
 import { Assets, Sprite } from 'pixi.js'
-import CastleReadyImage from '../../assets/images/Castle_Blue.png'
 import { BaseEntity } from './base'
 
 export class Castle extends BaseEntity {
   async init() {
-    // const castle = await Assets.load(CastleImage)
-    const castleReady = await Assets.load(CastleReadyImage)
-    const sprite = new Sprite({ texture: castleReady })
+    const texture = await Assets.loadBundle(['default'])
+    const sprite = new Sprite(texture.default['Castle_Blue.png'])
 
     this.addChild(sprite)
 

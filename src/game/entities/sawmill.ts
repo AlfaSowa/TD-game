@@ -1,11 +1,10 @@
 import { Assets, Sprite } from 'pixi.js'
-import TowerImage from '../../assets/images/Tower_Blue.png'
 import { BaseEntity } from './base'
 
 export class Sawmill extends BaseEntity {
   async init() {
-    const texture = await Assets.load(TowerImage)
-    const sprite = new Sprite(texture)
+    const texture = await Assets.loadBundle(['default'])
+    const sprite = new Sprite(texture.default['Tower_Blue.png'])
 
     this.addChild(sprite)
 

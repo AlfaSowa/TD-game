@@ -1,4 +1,4 @@
-import { randomNumber } from '../../utils'
+import { isContainersColision, moveElementToContainer, randomNumber } from '../../utils'
 import { Castle, Resource } from '../entities'
 import { Game } from '../game'
 import { Spawner } from '../helpers'
@@ -21,12 +21,24 @@ export class CastleSystem implements System {
     this.game.systems.get(ScreensSystem).addContainer(this.castle, 'possession')
     this.castle.init()
 
-    this.spawner = this.game.systems.get(SpawnersSystem).createSpawner({
+    this.spawner = this.game.systems.get(SpawnersSystem).createSpawner<Resource>({
       maxElements: MAX_SPAW_ELEMENTS,
       render: () => {
         const r = Math.random()
 
-        const woodResource = new Resource({ game: this.game })
+        const woodResource = new Resource({
+          game: this.game,
+          onUpdate: () => {
+            if (woodResource.isAnimated) {
+              if (!isContainersColision(woodResource, this.castle, 10, 10)) {
+                moveElementToContainer(woodResource, this.castle, 5)
+              } else {
+                woodResource.remove()
+              }
+            }
+          }
+        })
+
         woodResource.init()
         woodResource.x = 500 + randomNumber([150, 400]) * Math.sin(360 / r)
         woodResource.y = 500 + randomNumber([150, 400]) * Math.cos(360 / r)

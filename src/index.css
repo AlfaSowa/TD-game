@@ -20,7 +20,9 @@
 
 @font-face {
   font-family: 'monogram';
-  src: local('monogram-extended'), url(./assets/fonts/monogram-extended.ttf) format('truetype');
+  src:
+    local('monogram-extended'),
+    url(./assets/fonts/monogram-extended.ttf) format('truetype');
 }
 
 * {

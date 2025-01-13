@@ -55,8 +55,6 @@ class Pathfinder {
       this.step()
     }
 
-    console.log(this.lastCheckedNode)
-
     return this.calcPath(this.lastCheckedNode)
   }
 

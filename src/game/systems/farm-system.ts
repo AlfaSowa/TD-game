@@ -78,8 +78,6 @@ export class FarmSystem implements System {
   initFarm() {
     const data = state.farm.data
 
-    console.log('state.farm.data', data)
-
     for (let i = 0; i < data.length; i++) {
       const fatmTile = new FarmTile({
         game: this.game,

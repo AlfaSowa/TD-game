@@ -1,11 +1,12 @@
 import { pixiPipes } from '@assetpack/core/pixi'
 
 export default {
-  entry: './src/assets',
-  output: './public/assets',
+  entry: './src/assets/',
+  output: './public/',
   pipes: [
     ...pixiPipes({
-      // PixiJS configuration options
+      compression: { jpg: true, png: true, webp: false },
+      cacheBust: false
     })
   ]
 }

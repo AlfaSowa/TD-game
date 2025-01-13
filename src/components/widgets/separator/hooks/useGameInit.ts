@@ -6,8 +6,6 @@ export const useGameInit = (game: Game, user: any) => {
 
   useEffect(() => {
     if (!game.isStarted && user) {
-      console.log('gameinit')
-
       game.init()
     }
 

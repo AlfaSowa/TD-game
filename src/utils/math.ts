@@ -41,8 +41,8 @@ export const isTargetsColision = <T>(
 //--isTargetsColision--//
 export const isContainersColision = (targetA: Container, targetB: Container, rA: number, rB: number): boolean => {
   const delta = {
-    x: targetA.groupTransform.tx - targetB.groupTransform.tx,
-    y: targetA.groupTransform.ty - targetB.groupTransform.ty
+    x: targetA.groupTransform.tx + targetA.width / 2 - (targetB.groupTransform.tx + targetB.width / 2),
+    y: targetA.groupTransform.ty + targetA.height / 2 - (targetB.groupTransform.ty + targetB.height / 2)
   }
 
   const dist = Math.sqrt(Math.pow(delta.x, 2) + Math.pow(delta.y, 2))
@@ -121,8 +121,8 @@ export const moveElementToContainer = (element: Container, target: Container, ve
     element.groupTransform.ty !== target.groupTransform.ty
   ) {
     const delta = {
-      x: target.groupTransform.tx - element.groupTransform.tx,
-      y: target.groupTransform.ty - element.groupTransform.ty
+      x: target.groupTransform.tx + target.width / 2 - (element.groupTransform.tx + element.width / 2),
+      y: target.groupTransform.ty + target.height / 2 - (element.groupTransform.ty + element.height / 2)
     }
 
     const angle = Math.atan2(delta.y, delta.x)

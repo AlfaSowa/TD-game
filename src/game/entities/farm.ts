@@ -1,5 +1,4 @@
 import { Assets, Graphics, Sprite } from 'pixi.js'
-import FarmImage from '../../assets/images/House_Blue.png'
 import { Vector2 } from '../../utils'
 import { colorTheme } from '../constants'
 import { Game } from '../game'
@@ -10,8 +9,8 @@ export class Farm extends BaseEntity {
   gap: number = 2
 
   async init() {
-    const texture = await Assets.load(FarmImage)
-    const sprite = new Sprite(texture)
+    const texture = await Assets.loadBundle(['default'])
+    const sprite = new Sprite(texture.default['House_Blue.png'])
 
     sprite.position.x = 150
 

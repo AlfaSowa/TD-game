@@ -17,8 +17,6 @@ export const useGetTelegramUser = (tg: any) => {
   }, [])
 
   useEffect(() => {
-    console.log(!tgUser, data)
-
     if (!tgUser && data) {
       authUser().then((user) => {
         if (user) {

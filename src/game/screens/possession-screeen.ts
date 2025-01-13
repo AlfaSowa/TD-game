@@ -57,7 +57,6 @@ export class PossessionScreen extends Container {
   addContainer(container: Container) {
     this.activeContainer.addChild(container)
     this.updateActiveContainerPositio()
-    console.log('this.activeContainer', this.activeContainer)
   }
 
   update() {}
