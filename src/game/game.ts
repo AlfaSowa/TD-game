@@ -1,13 +1,10 @@
-import { Application, Assets, Container, Sprite } from 'pixi.js'
+import { Application, Assets, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Mediator, state } from '../core'
-import { SystemRunner } from './system-runner'
-import { CastleSystem, CitySystem, FarmSystem, SawmillSystem, ScreensSystem, TimersSystem } from './systems'
-import { IGame } from './types'
+import manifest from '../../public/manifest.json'
+import { Mediator, state } from './helpers'
+import { CastleSystem, CitySystem, LevelingSystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
 
-import bg from '../assets/images/tileset.png'
-
-export class Game extends Container implements IGame {
+export class Game extends Container {
   app: Application
 
   systems: SystemRunner
@@ -31,8 +28,6 @@ export class Game extends Container implements IGame {
   }
 
   async initAssets() {
-    console.log(bg)
-
     // const texture = await Assets.load(bg)
 
     // const bgSprite = new TilingSprite({
@@ -43,10 +38,7 @@ export class Game extends Container implements IGame {
 
     // this.app.stage.addChild(bgSprite)
 
-    await Assets.init({ manifest: '/game-manifest.json', basePath: 'assets' })
-    const backgroundAssets = await Assets.loadBundle('backgrounds')
-    const sprite = Sprite.from(backgroundAssets.map)
-    // this.app.stage.addChild(sprite)
+    await Assets.init({ manifest })
   }
 
   async init() {
@@ -58,22 +50,27 @@ export class Game extends Container implements IGame {
       preference: 'webgl'
     })
 
-    console.log('app', this.app)
+    await this.initAssets()
 
     document.getElementById('game-canvas')?.appendChild(this.app.canvas)
-
-    await this.initAssets()
 
     state.init(this)
 
     //systems
+    //core
     this.systems.add(ScreensSystem)
-    this.systems.add(TimersSystem)
+    this.systems.add(SpawnersSystem)
+    this.systems.add(LevelingSystem)
+    // this.systems.add(TimersSystem)
 
+    //entities
     this.systems.add(CitySystem)
-    this.systems.add(FarmSystem)
+    // this.systems.add(FarmSystem)
     this.systems.add(CastleSystem)
-    this.systems.add(SawmillSystem)
+    // this.systems.add(SawmillSystem)
+
+    //helpers
+    // this.systems.add(ResourcesSystem)
 
     this.systems.init()
 

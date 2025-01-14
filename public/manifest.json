@@ -1,25 +1,160 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "bundles": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "name": "default",
+      "assets": [
+        {
+          "alias": [
+            "deploy-images/layout.jpg",
+            "layout.jpg"
+          ],
+          "src": [
+            "deploy-images/layout@0.5x.jpg",
+            "deploy-images/layout.jpg"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "deploy-images/logo.afdesign",
+            "logo.afdesign"
+          ],
+          "src": [
+            "deploy-images/logo.afdesign"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "deploy-images/logo.jpg",
+            "logo.jpg"
+          ],
+          "src": [
+            "deploy-images/logo@0.5x.jpg",
+            "deploy-images/logo.jpg"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "deploy-images/logo.svg",
+            "logo.svg"
+          ],
+          "src": [
+            "deploy-images/logo.svg"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "deploy-images/screenshot-1.jpg",
+            "screenshot-1.jpg"
+          ],
+          "src": [
+            "deploy-images/screenshot-1@0.5x.jpg",
+            "deploy-images/screenshot-1.jpg"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "fonts/monogram-extended-italic.ttf",
+            "monogram-extended-italic.ttf"
+          ],
+          "src": [
+            "fonts/monogram-extended-italic.ttf"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "fonts/monogram-extended.ttf",
+            "monogram-extended.ttf"
+          ],
+          "src": [
+            "fonts/monogram-extended.ttf"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "fonts/monogram.ttf",
+            "monogram.ttf"
+          ],
+          "src": [
+            "fonts/monogram.ttf"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/Castle_Blue.png",
+            "Castle_Blue.png"
+          ],
+          "src": [
+            "images/Castle_Blue@0.5x.png",
+            "images/Castle_Blue.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/House_Blue.png",
+            "House_Blue.png"
+          ],
+          "src": [
+            "images/House_Blue@0.5x.png",
+            "images/House_Blue.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/House_Red.png",
+            "House_Red.png"
+          ],
+          "src": [
+            "images/House_Red@0.5x.png",
+            "images/House_Red.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/Tower_Blue.png",
+            "Tower_Blue.png"
+          ],
+          "src": [
+            "images/Tower_Blue@0.5x.png",
+            "images/Tower_Blue.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        }
+      ]
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

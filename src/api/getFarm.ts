@@ -1,11 +1,8 @@
-import { axiosApi } from '../utils'
+import { Farm } from '../shared/api/Farm'
+import { useApiWrapper } from '../shared/hooks'
 
-export const getFarm = async (): Promise<any> => {
-  try {
-    const { data } = await axiosApi.post('/farm')
+export const getFarm = async () => {
+  const { data } = await useApiWrapper<Farm>(Farm).farmControllerGetFarmByUser()
 
-    return data
-  } catch (error) {
-    console.log(error)
-  }
+  return data
 }

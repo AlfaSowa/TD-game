@@ -1,0 +1,456 @@
+{
+    "assets": {
+        "E:/js-game-pack/game-frontend/src/assets": {
+            "isFolder": true,
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images": {
+            "isFolder": true,
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "nuND7Q"
+        },
+        ".assetpack/mipmap/deploy-images/layout.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/layout.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/layout.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/layout.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/layout.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/deploy-images/layout@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/layout@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/layout@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/layout@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/layout@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.afdesign": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "-HSD7g"
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/logo.afdesign": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.afdesign",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "zmGdbg"
+        },
+        ".assetpack/mipmap/deploy-images/logo.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/logo.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/logo.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/logo.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/logo.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/deploy-images/logo@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/logo@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/logo@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/logo@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/logo@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.svg": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "UttxEQ"
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/logo.svg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.svg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "_hYA-w"
+        },
+        ".assetpack/mipmap/deploy-images/screenshot-1.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/screenshot-1.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/screenshot-1.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/screenshot-1.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/screenshot-1.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/deploy-images/screenshot-1@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/deploy-images/screenshot-1@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/deploy-images/screenshot-1@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/deploy-images/screenshot-1@0.5x.jpg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/deploy-images/screenshot-1@0.5x.jpg",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/fonts": {
+            "isFolder": true,
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended-italic.ttf": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "NFlvhQ"
+        },
+        "E:/js-game-pack/game-frontend/public/assets/fonts/monogram-extended-italic.ttf": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended-italic.ttf",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended.ttf": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "lh5mNA"
+        },
+        "E:/js-game-pack/game-frontend/public/assets/fonts/monogram-extended.ttf": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended.ttf",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram.ttf": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "vtb12g"
+        },
+        "E:/js-game-pack/game-frontend/public/assets/fonts/monogram.ttf": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram.ttf",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images": {
+            "isFolder": true,
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "tzN98A"
+        },
+        ".assetpack/mipmap/images/Castle_Blue.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Castle_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Castle_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/Castle_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Castle_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/Castle_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Castle_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Castle_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/Castle_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Castle_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "YNbCmg"
+        },
+        ".assetpack/mipmap/images/House_Blue.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/House_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/House_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/House_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/House_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/House_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/House_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/House_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/House_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/House_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "zcntEA"
+        },
+        ".assetpack/mipmap/images/House_Red.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/House_Red.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/House_Red.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/House_Red.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/House_Red.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/House_Red@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/House_Red@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/House_Red@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/House_Red@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/House_Red@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "FmyY-A"
+        },
+        ".assetpack/mipmap/images/Tower_Blue.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tower_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tower_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/Tower_Blue.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tower_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/Tower_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tower_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tower_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/assets/images/Tower_Blue@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tower_Blue@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        }
+    }
+}

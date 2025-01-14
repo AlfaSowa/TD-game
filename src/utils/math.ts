@@ -1,5 +1,4 @@
 import { Container } from 'pixi.js'
-import { MouseType, TargetType } from '../game/types'
 import { Vector2 } from './helpers'
 
 //---isOnCanavasField ---//
@@ -42,8 +41,8 @@ export const isTargetsColision = <T>(
 //--isTargetsColision--//
 export const isContainersColision = (targetA: Container, targetB: Container, rA: number, rB: number): boolean => {
   const delta = {
-    x: targetA.groupTransform.tx - targetB.groupTransform.tx,
-    y: targetA.groupTransform.ty - targetB.groupTransform.ty
+    x: targetA.groupTransform.tx + targetA.width / 2 - (targetB.groupTransform.tx + targetB.width / 2),
+    y: targetA.groupTransform.ty + targetA.height / 2 - (targetB.groupTransform.ty + targetB.height / 2)
   }
 
   const dist = Math.sqrt(Math.pow(delta.x, 2) + Math.pow(delta.y, 2))
@@ -52,53 +51,53 @@ export const isContainersColision = (targetA: Container, targetB: Container, rA:
 }
 
 //--isTargetsRectColision--//
-type TargetSizeType = { width: number; height: number }
+// type TargetSizeType = { width: number; height: number }
 
-export const IsTargetsRectColision = (
-  targetA: TargetType & TargetSizeType,
-  targetB: TargetType & TargetSizeType
-): boolean => {
-  if (
-    targetA.position.x + targetA.width >= targetB.position.x &&
-    targetA.position.x <= targetB.position.x + targetB.width &&
-    targetA.position.y + targetA.height >= targetB.position.y &&
-    targetA.position.y <= targetB.position.y + targetB.height
-  ) {
-    return true
-  }
+// export const IsTargetsRectColision = (
+//   targetA: TargetType & TargetSizeType,
+//   targetB: TargetType & TargetSizeType
+// ): boolean => {
+//   if (
+//     targetA.position.x + targetA.width >= targetB.position.x &&
+//     targetA.position.x <= targetB.position.x + targetB.width &&
+//     targetA.position.y + targetA.height >= targetB.position.y &&
+//     targetA.position.y <= targetB.position.y + targetB.height
+//   ) {
+//     return true
+//   }
 
-  return false
-}
+//   return false
+// }
 
 //--isMouseOnRectTarget--//
-type IsMouseOnRectTargetType = {
-  mouse: MouseType
-  target: any
-}
+// type IsMouseOnRectTargetType = {
+//   mouse: MouseType
+//   target: any
+// }
 
-export const isMouseOnRectTarget = ({ mouse, target }: IsMouseOnRectTargetType): boolean => {
-  return (
-    mouse.x > target.position.x &&
-    mouse.x < target.position.x + target.width &&
-    mouse.y > target.position.y &&
-    mouse.y < target.position.y + target.height
-  )
-}
+// export const isMouseOnRectTarget = ({ mouse, target }: IsMouseOnRectTargetType): boolean => {
+//   return (
+//     mouse.x > target.position.x &&
+//     mouse.x < target.position.x + target.width &&
+//     mouse.y > target.position.y &&
+//     mouse.y < target.position.y + target.height
+//   )
+// }
 
 //--isMouseOnCircleTarget--//
-type IsMouseOnCircleTargetType = {
-  mouse: MouseType
-  target: any
-}
+// type IsMouseOnCircleTargetType = {
+//   mouse: MouseType
+//   target: any
+// }
 
-export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetType): boolean => {
-  return (
-    mouse.x > target.position.x - target.radius &&
-    mouse.x < target.position.x + target.radius &&
-    mouse.y > target.position.y - target.radius &&
-    mouse.y < target.position.y + target.radius
-  )
-}
+// export const isMouseOnCircleTarget = ({ mouse, target }: IsMouseOnCircleTargetType): boolean => {
+//   return (
+//     mouse.x > target.position.x - target.radius &&
+//     mouse.x < target.position.x + target.radius &&
+//     mouse.y > target.position.y - target.radius &&
+//     mouse.y < target.position.y + target.radius
+//   )
+// }
 
 //--moveElementToTarget--//
 export const moveElementToTarget = (element: Container, target: Container, velocity: number = 1) => {
@@ -122,8 +121,8 @@ export const moveElementToContainer = (element: Container, target: Container, ve
     element.groupTransform.ty !== target.groupTransform.ty
   ) {
     const delta = {
-      x: target.groupTransform.tx - element.groupTransform.tx,
-      y: target.groupTransform.ty - element.groupTransform.ty
+      x: target.groupTransform.tx + target.width / 2 - (element.groupTransform.tx + element.width / 2),
+      y: target.groupTransform.ty + target.height / 2 - (element.groupTransform.ty + element.height / 2)
     }
 
     const angle = Math.atan2(delta.y, delta.x)

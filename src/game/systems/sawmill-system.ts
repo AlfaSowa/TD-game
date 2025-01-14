@@ -1,5 +1,5 @@
+import { Sawmill } from '../entities'
 import { Game } from '../game'
-import { Sawmill } from '../objects'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
@@ -12,7 +12,6 @@ export class SawmillSystem implements System {
 
   init() {
     this.sawmill = new Sawmill({ game: this.game })
-    console.log(this.sawmill)
 
     this.game.systems.get(ScreensSystem).addContainer(this.sawmill, 'possession')
 
