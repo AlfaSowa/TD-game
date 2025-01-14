@@ -2,7 +2,7 @@ import { Application, Assets, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import manifest from '../../public/manifest.json'
 import { Mediator, state } from './helpers'
-import { CastleSystem, CitySystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
+import { CastleSystem, CitySystem, LevelingSystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
 
 export class Game extends Container {
   app: Application
@@ -60,6 +60,7 @@ export class Game extends Container {
     //core
     this.systems.add(ScreensSystem)
     this.systems.add(SpawnersSystem)
+    this.systems.add(LevelingSystem)
     // this.systems.add(TimersSystem)
 
     //entities

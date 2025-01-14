@@ -1,8 +1,10 @@
 import { Container } from 'pixi.js'
 import { Game } from '../game'
 
+type ConfigEntityType = any
 interface IBaseEntity {
   game: Game
+  config: ConfigEntityType
 
   add: (parent: Container) => void
   remove: () => void
@@ -13,10 +15,12 @@ interface IBaseEntity {
 
 export class BaseEntity extends Container implements IBaseEntity {
   game: Game
+  private _config: ConfigEntityType
 
-  constructor({ game }: { game: Game }) {
+  constructor({ game, config }: { game: Game; config?: any }) {
     super()
     this.game = game
+    this.config = config
   }
 
   add(parent: Container) {
@@ -31,5 +35,13 @@ export class BaseEntity extends Container implements IBaseEntity {
       console.log('remove')
       this.removeFromParent()
     }
+  }
+
+  get config(): ConfigEntityType {
+    return this._config
+  }
+
+  set config(value: ConfigEntityType) {
+    this._config = value
   }
 }
