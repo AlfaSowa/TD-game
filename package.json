@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
+    "build": "vite build --output dist",
     "api-gen": "npx swagger-typescript-api -p http://localhost:5000/api/v1/json -o ./src/shared/api --modular --responses --axios"
   },
   "browserslist": {
