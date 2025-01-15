@@ -1,18 +1,6 @@
 import { Game } from '../game'
 import { System } from './types'
 
-type ConfigType = {
-  name: string
-  levels: {
-    [key: number]: {
-      level: number
-      resources_required: { wood: number; stone: number }
-      abilities: string[]
-      image: string
-    }
-  }
-}
-
 export class LevelingSystem implements System {
   public static SYSTEM_ID = 'leveling'
   game!: Game

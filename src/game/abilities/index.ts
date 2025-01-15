@@ -1,0 +1,1 @@
+export { BaseAbility } from './base'

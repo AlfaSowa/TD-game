@@ -1,10 +1,17 @@
 import { Assets, Sprite } from 'pixi.js'
+import { AbilitiesSystem } from '../systems'
 import { BaseEntity } from './base'
 
 export class Castle extends BaseEntity {
   async init() {
     const texture = await Assets.loadBundle(['default'])
     const sprite = new Sprite(texture.default[this.config.image])
+
+    this.abilities = this.game.systems.get(AbilitiesSystem).createAbilitiesContainer(['BaseAbility'])
+
+    console.log(this.abilities)
+
+    this.addChild(this.abilities)
 
     this.addChild(sprite)
 

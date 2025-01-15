@@ -56,7 +56,7 @@ export class CastleSystem implements System {
     this.game.systems.get(ScreensSystem).addContainer(this.spawner, 'possession')
   }
 
-  // update() {
-  //   this.castle.update()
-  // }
+  update() {
+    this.castle.update()
+  }
 }
