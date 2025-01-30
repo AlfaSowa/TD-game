@@ -1,5 +1,5 @@
 import { Container } from 'pixi.js'
-import { getDistBetweenTargets } from './math'
+import { getDistBetweenTargets } from './math2'
 
 //--delayToCallback--//
 export const delayToCallback = (delta: number, hold: number, callback: (args?: any) => any) => {

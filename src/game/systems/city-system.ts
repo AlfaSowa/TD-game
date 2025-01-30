@@ -15,9 +15,9 @@ export class CitySystem implements System {
     const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'City')
 
     this.city = new City({ game: this.game, config })
-    this.city.init()
 
     this.game.systems.get(ScreensSystem).addContainer(this.city, 'map')
+    this.city.init()
   }
 
   // update() {

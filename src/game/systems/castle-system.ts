@@ -1,4 +1,4 @@
-import { isContainersColision, moveElementToContainer, randomNumber } from '../../utils'
+import { isContainersCollision, moveContainerToContainer, randomNumber } from '../../utils'
 import { Castle, Resource } from '../entities'
 import { Game } from '../game'
 import { Spawner } from '../helpers'
@@ -21,9 +21,8 @@ export class CastleSystem implements System {
     const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
 
     this.castle = new Castle({ game: this.game, config })
-    this.castle.init()
-
     this.game.systems.get(ScreensSystem).addContainer(this.castle, 'possession')
+    this.castle.init()
 
     this.spawner = this.game.systems.get(SpawnersSystem).createSpawner<Resource>({
       maxElements: MAX_SPAW_ELEMENTS,
@@ -32,20 +31,24 @@ export class CastleSystem implements System {
 
         const woodResource = new Resource({
           game: this.game,
-          onUpdate: () => {
-            if (woodResource.isAnimated) {
-              if (!isContainersColision(woodResource, this.castle, 10, 10)) {
-                moveElementToContainer(woodResource, this.castle, 5)
+          onUpdate: (resource) => {
+            if (resource.isAnimated) {
+              if (!isContainersCollision(resource, this.castle, 40)) {
+                moveContainerToContainer(resource, this.castle, 3)
               } else {
-                woodResource.remove()
+                resource.remove()
               }
             }
+          },
+          onRemove: () => {
+            this.castle.updateResources()
           }
         })
 
+        woodResource.x = 500 + randomNumber([150, 300]) * Math.sin(360 / r)
+        woodResource.y = 500 + randomNumber([150, 300]) * Math.cos(360 / r)
+
         woodResource.init()
-        woodResource.x = 500 + randomNumber([150, 400]) * Math.sin(360 / r)
-        woodResource.y = 500 + randomNumber([150, 400]) * Math.cos(360 / r)
 
         return woodResource
       },
