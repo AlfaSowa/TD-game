@@ -8,11 +8,13 @@ export const useGameInit = (game: Game, user: any) => {
     if (!game.isStarted && user) {
       game.init()
     }
+  }, [user])
 
+  useEffect(() => {
     game.signals.onGameStarted.connect((isStarted) => {
       setIsGameStarted(isStarted)
     })
-  }, [user])
+  }, [])
 
   return { isGameStarted }
 }

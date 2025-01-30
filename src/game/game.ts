@@ -2,7 +2,15 @@ import { Application, Assets, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import manifest from '../../public/manifest.json'
 import { Mediator, state } from './helpers'
-import { CastleSystem, CitySystem, LevelingSystem, ScreensSystem, SpawnersSystem, SystemRunner } from './systems'
+import {
+  AbilitiesSystem,
+  CastleSystem,
+  CitySystem,
+  LevelingSystem,
+  ScreensSystem,
+  SpawnersSystem,
+  SystemRunner
+} from './systems'
 
 export class Game extends Container {
   app: Application
@@ -59,8 +67,12 @@ export class Game extends Container {
     //systems
     //core
     this.systems.add(ScreensSystem)
+
+    //subcore
+    // this.systems.add(HudSystem)
     this.systems.add(SpawnersSystem)
     this.systems.add(LevelingSystem)
+    this.systems.add(AbilitiesSystem)
     // this.systems.add(TimersSystem)
 
     //entities
@@ -75,6 +87,9 @@ export class Game extends Container {
     this.systems.init()
 
     this.isStarted = true
+
+    console.log(this.app.stage)
+
     this.signals.onGameStarted.emit(true)
 
     this.app.ticker.add(() => {

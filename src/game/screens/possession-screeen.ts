@@ -1,4 +1,4 @@
-import { Viewport } from 'pixi-viewport'
+import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
 import {
   WORLD_POSSESSION_ACTIVE_H,
@@ -11,6 +11,8 @@ export class PossessionScreen extends Container {
   viewport!: Viewport
 
   activeContainer: Container = new Container()
+
+  public signals = {}
 
   init(app: Application) {
     this.viewport = new Viewport({

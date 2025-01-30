@@ -1,11 +1,12 @@
-import { Assets, Sprite } from 'pixi.js'
+import { Graphics } from 'pixi.js'
 import { ScreensSystem } from '../systems'
 import { BaseEntity } from './base'
 
 export class City extends BaseEntity {
   async init() {
-    const texture = await Assets.loadBundle(['default'])
-    const sprite = new Sprite(texture.default[this.config.image])
+    // const texture = await Assets.loadBundle(['default'])
+    // const sprite = new Sprite(texture.default[this.config.image])
+    const sprite = new Graphics().rect(0, 0, 150, 150).fill({ color: 'green' })
 
     sprite.eventMode = 'static'
     sprite.cursor = 'pointer'
