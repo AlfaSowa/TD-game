@@ -1,9 +1,9 @@
 import { Container } from 'pixi.js'
 import { Game } from '..'
 import { MapScreen, PossessionScreen, TDScreen } from '../screens'
-import { SystemRunner } from '../system-runner'
 
 import { Signal } from 'typed-signals'
+import { SystemRunner } from './system-runner'
 import { System } from './types'
 
 export class ScreensSystem implements System {
@@ -19,7 +19,10 @@ export class ScreensSystem implements System {
   systems!: SystemRunner
 
   public signals = {
-    onToggleScreen: new Signal<(type: 'map' | 'possession' | 'td') => void>()
+    onToggleScreen: new Signal<(type: 'map' | 'possession' | 'td') => void>(),
+    onViewportPauseDrag: new Signal<() => void>(),
+    onViewportResumeDrag: new Signal<() => void>(),
+    onFollowViewportToTarget: new Signal<() => void>()
   }
 
   constructor() {
@@ -33,10 +36,29 @@ export class ScreensSystem implements System {
       this.currentScreen = this[type]
       this.game.app.stage.addChild(this.currentScreen)
     })
+
+    this.signals.onViewportPauseDrag.connect(() => {
+      this.currentScreen.viewport.plugins.pause('drag')
+    })
+
+    this.signals.onViewportResumeDrag.connect(() => {
+      this.currentScreen.viewport.plugins.resume('drag')
+    })
+
+    this.signals.onFollowViewportToTarget.connect(() => {
+      this.currentScreen.viewport.moveCenter(
+        this.currentScreen.viewport.width / 2,
+        this.currentScreen.viewport.height / 2
+      )
+    })
   }
 
-  addContainer(container: Container, containerType: 'map' | 'possession' | 'td') {
-    this[containerType].addContainer(container)
+  addContainer(container: Container, containerType: 'map' | 'possession' | 'td', index?: number) {
+    this[containerType].addContainer(container, index)
+  }
+
+  getActiveContainer() {
+    return this.currentScreen.activeContainer
   }
 
   init() {

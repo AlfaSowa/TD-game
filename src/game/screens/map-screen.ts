@@ -1,4 +1,4 @@
-import { Viewport } from 'pixi-viewport'
+import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
 import { WORLD_MAP_ACTIVE_H, WORLD_MAP_ACTIVE_W, WORLD_MAP_H, WORLD_MAP_W } from './constans'
 
@@ -45,9 +45,14 @@ export class MapScreen extends Container {
     )
   }
 
-  addContainer(container: Container) {
-    this.activeContainer.addChild(container)
-    this.updateActiveContainerPositio()
+  addContainer(container: Container, index?: number) {
+    if (typeof index === 'number') {
+      this.activeContainer.addChildAt(container, index)
+    } else {
+      this.activeContainer.addChild(container)
+    }
+
+    // this.updateActiveContainerPositio()
   }
 
   update() {}

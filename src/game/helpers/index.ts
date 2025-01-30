@@ -1,4 +1,5 @@
 export * from './mediator'
+export * from './modal'
 export * from './spawner'
 export * from './state'
 export * from './timer'

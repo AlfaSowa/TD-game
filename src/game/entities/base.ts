@@ -14,6 +14,8 @@ interface IBaseEntity {
   update?: () => void
 }
 
+interface IBaseEntityCustom extends IBaseEntity {}
+
 export class BaseEntity extends Container implements IBaseEntity {
   game: Game
   private _config: ConfigEntityType

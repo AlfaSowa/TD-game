@@ -67,6 +67,9 @@ export class Game extends Container {
     //systems
     //core
     this.systems.add(ScreensSystem)
+
+    //subcore
+    // this.systems.add(HudSystem)
     this.systems.add(SpawnersSystem)
     this.systems.add(LevelingSystem)
     this.systems.add(AbilitiesSystem)
@@ -84,6 +87,9 @@ export class Game extends Container {
     this.systems.init()
 
     this.isStarted = true
+
+    console.log(this.app.stage)
+
     this.signals.onGameStarted.emit(true)
 
     this.app.ticker.add(() => {
