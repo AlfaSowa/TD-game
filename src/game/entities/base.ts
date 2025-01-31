@@ -46,6 +46,7 @@ export class BaseEntity extends Container implements IBaseEntity {
     if (this.parent) {
       console.log('remove')
       this.removeFromParent()
+      this.destroy()
     }
   }
 

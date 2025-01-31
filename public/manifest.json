@@ -153,6 +153,32 @@
           "data": {
             "tags": {}
           }
+        },
+        {
+          "alias": [
+            "images/Tree1.png",
+            "Tree1.png"
+          ],
+          "src": [
+            "images/Tree1@0.5x.png",
+            "images/Tree1.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/Tree2.png",
+            "Tree2.png"
+          ],
+          "src": [
+            "images/Tree2@0.5x.png",
+            "images/Tree2.png"
+          ],
+          "data": {
+            "tags": {}
+          }
         }
       ]
     }

@@ -451,6 +451,106 @@
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "8eKsWQ"
+        },
+        ".assetpack/mipmap/images/Tree1.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tree1.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tree1.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/Tree1.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tree1.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/Tree1@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tree1@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tree1@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/Tree1@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tree1@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "Hjxgaw"
+        },
+        ".assetpack/mipmap/images/Tree2.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tree2.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tree2.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/Tree2.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tree2.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/Tree2@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/Tree2@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/Tree2@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/Tree2@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/Tree2@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
         }
     }
 }

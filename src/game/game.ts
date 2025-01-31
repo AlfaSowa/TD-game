@@ -4,9 +4,9 @@ import manifest from '../../public/manifest.json'
 import { Mediator, state } from './helpers'
 import {
   AbilitiesSystem,
-  CastleSystem,
   CitySystem,
   LevelingSystem,
+  PossessionScreenSystem,
   ScreensSystem,
   SpawnersSystem,
   SystemRunner
@@ -75,10 +75,12 @@ export class Game extends Container {
     this.systems.add(AbilitiesSystem)
     // this.systems.add(TimersSystem)
 
+    //screens
+    this.systems.add(PossessionScreenSystem)
+
     //entities
     this.systems.add(CitySystem)
     // this.systems.add(FarmSystem)
-    this.systems.add(CastleSystem)
     // this.systems.add(SawmillSystem)
 
     //helpers
