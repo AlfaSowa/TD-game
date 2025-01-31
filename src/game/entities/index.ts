@@ -1,5 +1,6 @@
 export * from './castle'
 export * from './city'
 export * from './farm'
-export * from './resource'
+export * from './forest'
+export * from './resources'
 export * from './sawmill'

@@ -1,35 +1,37 @@
-import { Graphics } from 'pixi.js'
-import { Game } from '../game'
-import { BaseEntity } from './base'
+import { Game } from '../../game'
+import { BaseEntity } from '../base'
 
 type ResourceConstructorType = {
   onUpdate?: (e: Resource) => void
   onRemove?: (e: Resource) => void
+  onClick?: (e: Resource) => void
   game: Game
 }
 export class Resource extends BaseEntity {
   isAnimated: boolean = false
   onUpdate?: (e: Resource) => void
   onRemove?: (e: Resource) => void
+  onClick?: (e: Resource) => void
 
-  constructor({ game, onUpdate, onRemove }: ResourceConstructorType) {
+  constructor({ game, onUpdate, onRemove, onClick }: ResourceConstructorType) {
     super({ game })
 
     this.onUpdate = onUpdate
     this.onRemove = onRemove
+    this.onClick = onClick
   }
 
-  init() {
-    const graphics = new Graphics().circle(0, 0, 25).fill({ color: 'brown' })
+  clicked() {
+    this.eventMode = 'static'
+    this.cursor = 'pointer'
 
-    graphics.eventMode = 'static'
-    graphics.cursor = 'pointer'
-
-    graphics.on('pointerup', () => {
-      this.isAnimated = true
+    this.on('pointerup', () => {
+      if (this.onClick) {
+        this.onClick.call(this, this)
+      }
     })
 
-    this.addChild(graphics)
+    return this
   }
 
   update() {
@@ -39,10 +41,10 @@ export class Resource extends BaseEntity {
   }
 
   remove() {
-    super.remove()
-
     if (this.onRemove) {
       this.onRemove.call(this, this)
     }
+
+    super.remove()
   }
 }
