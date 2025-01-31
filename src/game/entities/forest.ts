@@ -26,8 +26,9 @@ export class Forest extends BaseEntity {
     })
 
     woodResource.clicked()
-    woodResource.x = 500 + randomNumber([150, 300]) * Math.sin(360 / r)
-    woodResource.y = 500 + randomNumber([150, 300]) * Math.cos(360 / r)
+    woodResource.x = Math.floor(500 + randomNumber([150, 300]) * Math.sin(360 / r))
+    woodResource.y = Math.floor(500 + randomNumber([150, 300]) * Math.cos(360 / r))
+
     woodResource.init()
 
     return woodResource
