@@ -37,9 +37,7 @@ export class PossessionScreen extends Container {
     )
 
     this.activeContainer.addChild(
-      new Graphics()
-        .rect(0, 0, WORLD_POSSESSION_ACTIVE_W, WORLD_POSSESSION_ACTIVE_H)
-        .fill({ color: 'rgba(197, 187, 164)' })
+      new Graphics().rect(0, 0, WORLD_POSSESSION_ACTIVE_W, WORLD_POSSESSION_ACTIVE_H).fill({ color: '#a8ae51' })
     )
 
     this.updateActiveContainerPositio()

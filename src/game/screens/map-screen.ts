@@ -28,7 +28,7 @@ export class MapScreen extends Container {
     this.viewport.addChild(new Graphics().rect(0, 0, WORLD_MAP_W, WORLD_MAP_H).fill({ color: 'rgba(149, 138, 122)' }))
 
     this.activeContainer.addChild(
-      new Graphics().rect(0, 0, WORLD_MAP_ACTIVE_W, WORLD_MAP_ACTIVE_H).fill({ color: 'rgba(197, 187, 164)' })
+      new Graphics().rect(0, 0, WORLD_MAP_ACTIVE_W, WORLD_MAP_ACTIVE_H).fill({ color: '#a8ae51' })
     )
 
     this.updateActiveContainerPositio()

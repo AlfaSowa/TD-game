@@ -44,8 +44,10 @@ export class Forest extends BaseEntity {
       }
     })
 
+    console.log(tmp)
+
     stumpResource.init().then((e) => {
-      e.position.set(tmp.x + tmp.width / 2 - e.width / 2 + 0.5, tmp.y + tmp.height - e.height)
+      e.position.set(tmp.x, Math.floor(tmp.y + 38 - e.height / 2))
     })
 
     this.view.addChild(stumpResource)
