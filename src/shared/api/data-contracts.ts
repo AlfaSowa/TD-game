@@ -11,14 +11,6 @@
 
 export type UpdateCategoryDto = object
 
-export type User = object
-
-export interface Farm {
-  id: string
-  user: User
-  data: string[]
-}
-
 export interface CreateResourcesDTO {
   /**
    * Название ресурса
@@ -32,3 +24,20 @@ export interface CreateResourcesDTO {
   type: string
   options: object
 }
+
+export interface CreateBuildDTO {
+  /**
+   * Название постройки
+   * @example "Замок"
+   */
+  name: string
+}
+
+export interface Build {
+  id: string
+  name: string
+}
+
+export type CreateLevelDto = object
+
+export type UpdateLevelDto = object

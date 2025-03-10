@@ -7,8 +7,10 @@ import {
   CitySystem,
   LevelingSystem,
   PossessionScreenSystem,
+  ResourcesSystem,
   ScreensSystem,
   SpawnersSystem,
+  StoreSystem,
   SystemRunner
 } from './systems'
 
@@ -22,7 +24,6 @@ export class Game extends Container {
   isStarted: boolean = false
 
   public signals = {
-    onGoldUpdate: new Signal<(value: number) => void>(),
     onGameStarted: new Signal<(isStarted: boolean) => void>()
   }
 
@@ -67,6 +68,7 @@ export class Game extends Container {
     //systems
     //core
     this.systems.add(ScreensSystem)
+    this.systems.add(StoreSystem)
 
     //subcore
     // this.systems.add(HudSystem)
@@ -84,7 +86,7 @@ export class Game extends Container {
     // this.systems.add(SawmillSystem)
 
     //helpers
-    // this.systems.add(ResourcesSystem)
+    this.systems.add(ResourcesSystem)
 
     this.systems.init()
 

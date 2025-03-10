@@ -3,40 +3,37 @@ import { Container } from 'pixi.js'
 export type SpawnerConfigType<T> = {
   interval?: number
   isInfinity?: boolean
-  maxElements?: number
+  maxElementsOnView?: number
+  isFilling?: boolean
   render: () => T
+  container: Container
 }
 
-interface ContainerWithUpdate extends Container {
-  update?: () => void
-}
-
-export class Spawner<T extends ContainerWithUpdate> extends Container {
-  private maxElements: number = 0
+export class Spawner<T extends Container> extends Container {
+  private maxElementsOnView: number = 0
   private isInfinity: boolean = true
   private render!: () => T
   private interval: number = 1000
 
   private elapsed: number = 0
 
-  children: ContainerWithUpdate[] = []
+  private isFilling: boolean = true
 
-  constructor({ render, interval, isInfinity, maxElements }: SpawnerConfigType<T>) {
+  private childrenCounter: number = 0
+
+  private container!: Container
+
+  constructor({ render, interval, isInfinity, isFilling, maxElementsOnView, container }: SpawnerConfigType<T>) {
     super()
 
     this.render = render
     this.isInfinity = isInfinity ?? this.isInfinity
     this.interval = interval || this.interval
     this.elapsed = this.interval
-    this.maxElements = maxElements || this.maxElements
-  }
+    this.isFilling = isFilling ?? this.isFilling
+    this.maxElementsOnView = maxElementsOnView || this.maxElementsOnView
 
-  updateChildren() {
-    for (const element of this.children) {
-      if (element.update) {
-        element.update()
-      }
-    }
+    this.container = container
   }
 
   private infinitySpawn(delta: number) {
@@ -44,28 +41,34 @@ export class Spawner<T extends ContainerWithUpdate> extends Container {
     if (this.elapsed >= this.interval) {
       this.elapsed = 0
       const element = this.render()
-      this.addChild<ContainerWithUpdate[]>(element)
+      this.container.addChild(element)
     }
   }
 
   private spawn(delta: number) {
-    this.elapsed += delta
-    if (this.elapsed >= this.interval) {
-      this.elapsed = 0
-      const element = this.render()
-      this.addChild<ContainerWithUpdate[]>(element)
+    if (this.childrenCounter < this.maxElementsOnView) {
+      this.elapsed += delta
+
+      if (this.elapsed >= this.interval) {
+        this.elapsed = 0
+        const element = this.render()
+        this.container.addChild(element)
+        this.childrenCounter += 1
+      }
+    }
+  }
+
+  onRemoveItem() {
+    if (this.isFilling) {
+      this.childrenCounter -= 1
     }
   }
 
   update(delta: number) {
-    this.updateChildren()
-
     if (this.isInfinity) {
       this.infinitySpawn(delta)
     } else {
-      if (this.children.length < this.maxElements) {
-        this.spawn(delta)
-      }
+      this.spawn(delta)
     }
   }
 }

@@ -1,22 +1,34 @@
 import { useContext, useEffect, useState } from 'react'
-import { state } from '../../game/helpers'
+import { CoreResource } from '../../api'
+import { ResourcesSystem } from '../../game/systems'
 import { GameContext } from '../App'
 import { BottomMenu } from '../widgets'
 
 export const Layout = () => {
   const game = useContext(GameContext)
-  const [gold, setGold] = useState<number>(0)
+  const [resources, setResources] = useState<CoreResource[]>([])
 
   useEffect(() => {
-    game.signals.onGoldUpdate.connect((value) => {
-      setGold(value)
+    setResources(game.systems.get(ResourcesSystem).resources)
+
+    game.systems.get(ResourcesSystem).signals.onGetResources.connect((resource) => {
+      setResources((prev) =>
+        prev.map((e) => {
+          if (e.alias === resource.alias) {
+            return { ...e, value: e.value + resource.value }
+          }
+          return e
+        })
+      )
     })
   }, [])
 
   return (
     <>
-      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2">
-        <div className="text-3xl">{gold || state.getUserGold} золото</div>
+      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2 flex gap-2">
+        {resources.map((e) => (
+          <div className="text-3xl" key={e.id}>{`${e.value} ${e.name}`}</div>
+        ))}
       </div>
 
       <BottomMenu />

@@ -1,8 +1,9 @@
-type CoreResource = {
-  quantityPerSecond: number
+export type CoreResource = {
+  quantityPerSecond?: number
   id: string
   name: string
   alias: string
+  value: number
 }
 
 export const getAllCoreResources = (): Promise<CoreResource[]> => {
@@ -11,7 +12,14 @@ export const getAllCoreResources = (): Promise<CoreResource[]> => {
       id: '1',
       name: 'Золото',
       alias: 'gold',
-      quantityPerSecond: 100
+      quantityPerSecond: 100,
+      value: 100
+    },
+    {
+      id: '2',
+      name: 'Дерево',
+      alias: 'wood',
+      value: 0
     }
   ])
 }

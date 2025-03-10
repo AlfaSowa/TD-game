@@ -24,8 +24,6 @@ export class Mediator implements IMediator {
       if (data) {
         state.updateFarm = data.data
         state.updateUserGold = data.gold
-
-        this.game.signals.onGoldUpdate.emit(data.gold)
       }
     })
   }

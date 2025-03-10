@@ -16,10 +16,16 @@ interface IBaseEntity {
 
 interface IBaseEntityCustom extends IBaseEntity {}
 
+interface ContainerWithUpdate extends Container {
+  update?: () => void
+}
+
 export class BaseEntity extends Container implements IBaseEntity {
   game: Game
   private _config: ConfigEntityType
   abilities!: Container
+
+  children: ContainerWithUpdate[] = []
 
   constructor({ game, config }: { game: Game; config?: any }) {
     super()

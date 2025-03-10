@@ -35,6 +35,7 @@ export class ScreensSystem implements System {
       this.currentScreen.removeFromParent()
       this.currentScreen = this[type]
       this.game.app.stage.addChild(this.currentScreen)
+      console.log(this.currentScreen.viewport)
     })
 
     this.signals.onViewportPauseDrag.connect(() => {

@@ -8,10 +8,12 @@ type FarmDataType = {
 
 class State {
   private game!: Game
+
   private innerUserData: string = ''
   private user: any = {
     gold: 0
   }
+
   private farmData!: FarmDataType
 
   init(game: Game) {

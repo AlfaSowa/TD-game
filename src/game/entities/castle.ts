@@ -39,6 +39,9 @@ export class Castle extends BaseEntity {
     anim.animationSpeed = 0.1
 
     anim.play()
+
+    console.log('anim', anim)
+
     this.addChild(anim)
 
     this.abilities = this.game.systems.get(AbilitiesSystem).createAbilitiesContainer(['BaseAbility'])

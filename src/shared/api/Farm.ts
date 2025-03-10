@@ -9,7 +9,6 @@
  * ---------------------------------------------------------------
  */
 
-import { Farm } from './data-contracts'
 import { HttpClient, RequestParams } from './http-client'
 
 export class Farm<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -19,13 +18,12 @@ export class Farm<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @tags Farm
    * @name FarmControllerGetFarmByUser
    * @request POST:/farm
-   * @response `200` `Farm` Получили фермы игрока
+   * @response `201` `void`
    */
   farmControllerGetFarmByUser = (params: RequestParams = {}) =>
-    this.request<Farm, any>({
+    this.request<void, any>({
       path: `/farm`,
       method: 'POST',
-      format: 'json',
       ...params
     })
   /**
