@@ -1,18 +1,9 @@
 import { Application, Assets, Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 import manifest from '../../public/manifest.json'
+import { coreSystems } from './core-sysytems'
 import { Mediator, state } from './helpers'
-import {
-  AbilitiesSystem,
-  CitySystem,
-  LevelingSystem,
-  PossessionScreenSystem,
-  ResourcesSystem,
-  ScreensSystem,
-  SpawnersSystem,
-  StoreSystem,
-  SystemRunner
-} from './systems'
+import { SystemRunner } from './systems'
 
 export class Game extends Container {
   app: Application
@@ -56,7 +47,7 @@ export class Game extends Container {
       resizeTo: window,
       roundPixels: false,
       resolution: 1,
-      preference: 'webgl'
+      preference: 'webgpu'
     })
 
     await this.initAssets()
@@ -65,34 +56,10 @@ export class Game extends Container {
 
     state.init(this)
 
-    //systems
-    //core
-    this.systems.add(ScreensSystem)
-    this.systems.add(StoreSystem)
-
-    //subcore
-    // this.systems.add(HudSystem)
-    this.systems.add(SpawnersSystem)
-    this.systems.add(LevelingSystem)
-    this.systems.add(AbilitiesSystem)
-    // this.systems.add(TimersSystem)
-
-    //screens
-    this.systems.add(PossessionScreenSystem)
-
-    //entities
-    this.systems.add(CitySystem)
-    // this.systems.add(FarmSystem)
-    // this.systems.add(SawmillSystem)
-
-    //helpers
-    this.systems.add(ResourcesSystem)
-
-    this.systems.init()
+    //init systems
+    coreSystems(this.systems)
 
     this.isStarted = true
-
-    console.log(this.app.stage)
 
     this.signals.onGameStarted.emit(true)
 

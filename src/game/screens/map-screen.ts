@@ -3,6 +3,7 @@ import { Application, Container, Graphics } from 'pixi.js'
 import { WORLD_MAP_ACTIVE_H, WORLD_MAP_ACTIVE_W, WORLD_MAP_H, WORLD_MAP_W } from './constans'
 
 export class MapScreen extends Container {
+  SCREEN_NAME = 'map'
   viewport!: Viewport
 
   activeContainer: Container = new Container()

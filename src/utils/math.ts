@@ -5,12 +5,20 @@ export const getDistBetweenContainers = <A extends Container, B extends Containe
   return Math.hypot(tA.x + tA.width / 2 - (tB.x + tB.width / 2), tA.y + tA.height / 2 - (tB.y + tB.height / 2))
 }
 
-export const isContainersCollision = <A extends Container, B extends Container>(
-  tA: A,
-  tB: B,
-  distToCollision: number
-): boolean => {
-  return getDistBetweenContainers(tA, tB) <= distToCollision
+const testForAABB = <A extends Container, B extends Container>(tA: A, tB: B) => {
+  const bounds1 = tA.getBounds()
+  const bounds2 = tB.getBounds()
+
+  return (
+    bounds1.x < bounds2.x + bounds2.width &&
+    bounds1.x + bounds1.width > bounds2.x &&
+    bounds1.y < bounds2.y + bounds2.height &&
+    bounds1.y + bounds1.height > bounds2.y
+  )
+}
+
+export const isContainersCollision = <A extends Container, B extends Container>(tA: A, tB: B): boolean => {
+  return testForAABB(tA, tB)
 }
 
 export const moveContainerToContainer = <A extends Container, B extends Container>(

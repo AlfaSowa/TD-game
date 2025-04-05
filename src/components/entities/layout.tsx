@@ -9,25 +9,22 @@ export const Layout = () => {
   const [resources, setResources] = useState<CoreResource[]>([])
 
   useEffect(() => {
-    setResources(game.systems.get(ResourcesSystem).resources)
-
-    game.systems.get(ResourcesSystem).signals.onGetResources.connect((resource) => {
-      setResources((prev) =>
-        prev.map((e) => {
-          if (e.alias === resource.alias) {
-            return { ...e, value: e.value + resource.value }
-          }
-          return e
-        })
-      )
+    game.systems.get(ResourcesSystem).getAllResources()
+    game.systems.get(ResourcesSystem).signals.setResources.connect((resources) => {
+      setResources(resources)
     })
   }, [])
 
+  console.log('resources', resources)
+
   return (
     <>
-      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2 flex gap-2">
+      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2 flex gap-4">
         {resources.map((e) => (
-          <div className="text-3xl" key={e.id}>{`${e.value} ${e.name}`}</div>
+          <div className="flex gap-1 items-center" key={e.id}>
+            <div>{e.name}</div>
+            <div>{e.value}</div>
+          </div>
         ))}
       </div>
 

@@ -2,6 +2,8 @@ import { Viewport } from 'pixi-viewport'
 import { Container, Graphics } from 'pixi.js'
 
 export class TDScreen extends Container {
+  SCREEN_NAME = 'td'
+
   viewport!: Viewport
   activeContainer: Container = new Container()
 

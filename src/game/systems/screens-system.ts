@@ -6,6 +6,7 @@ import { Signal } from 'typed-signals'
 import { SystemRunner } from './system-runner'
 import { System } from './types'
 
+export type ScreensType = 'map' | 'possession' | 'td'
 export class ScreensSystem implements System {
   public static SYSTEM_ID = 'screens'
 
@@ -19,7 +20,7 @@ export class ScreensSystem implements System {
   systems!: SystemRunner
 
   public signals = {
-    onToggleScreen: new Signal<(type: 'map' | 'possession' | 'td') => void>(),
+    onToggleScreen: new Signal<(type: ScreensType) => void>(),
     onViewportPauseDrag: new Signal<() => void>(),
     onViewportResumeDrag: new Signal<() => void>(),
     onFollowViewportToTarget: new Signal<() => void>()
@@ -29,7 +30,7 @@ export class ScreensSystem implements System {
     this.map = new MapScreen()
     this.possession = new PossessionScreen()
     this.td = new TDScreen()
-    this.currentScreen = this.map
+    this.currentScreen = this.possession
 
     this.signals.onToggleScreen.connect((type) => {
       this.currentScreen.removeFromParent()
@@ -54,12 +55,16 @@ export class ScreensSystem implements System {
     })
   }
 
-  addContainer(container: Container, containerType: 'map' | 'possession' | 'td', index?: number) {
+  addContainer(container: Container, containerType: ScreensType, index?: number) {
     this[containerType].addContainer(container, index)
   }
 
   getActiveContainer() {
     return this.currentScreen.activeContainer
+  }
+
+  getCurrentScreen() {
+    return this.currentScreen
   }
 
   init() {

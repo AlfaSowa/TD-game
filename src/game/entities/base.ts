@@ -2,10 +2,8 @@ import { Container } from 'pixi.js'
 import { BaseAbility } from '../abilities'
 import { Game } from '../game'
 
-type ConfigEntityType = any
 interface IBaseEntity {
   game: Game
-  config: ConfigEntityType
 
   add: (parent: Container) => void
   remove: () => void
@@ -14,23 +12,35 @@ interface IBaseEntity {
   update?: () => void
 }
 
-interface IBaseEntityCustom extends IBaseEntity {}
-
 interface ContainerWithUpdate extends Container {
   update?: () => void
 }
 
+export interface BaseEntityConstructor {
+  game: Game
+}
+
 export class BaseEntity extends Container implements IBaseEntity {
   game: Game
-  private _config: ConfigEntityType
+
   abilities!: Container
 
   children: ContainerWithUpdate[] = []
 
-  constructor({ game, config }: { game: Game; config?: any }) {
+  constructor({ game }: BaseEntityConstructor) {
     super()
     this.game = game
-    this.config = config
+  }
+
+  clicked(callback: (e: any) => void) {
+    this.eventMode = 'static'
+    this.cursor = 'pointer'
+
+    this.on('pointerup', () => {
+      callback.call(this, this)
+    })
+
+    return this
   }
 
   abilitiesUpdate() {
@@ -54,14 +64,6 @@ export class BaseEntity extends Container implements IBaseEntity {
       this.removeFromParent()
       this.destroy()
     }
-  }
-
-  get config(): ConfigEntityType {
-    return this._config
-  }
-
-  set config(value: ConfigEntityType) {
-    this._config = value
   }
 
   update() {

@@ -1,11 +1,14 @@
+import { Container, Graphics } from 'pixi.js'
 import { Castle, Forest } from '../entities'
 import { Game } from '../game'
-import { LevelingSystem } from './leveling-system'
+import { HudSystem } from './hud-system'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
 export class PossessionScreenSystem implements System {
   public static SYSTEM_ID = 'castle'
+
+  view: Container = new Container()
 
   game!: Game
 
@@ -13,15 +16,37 @@ export class PossessionScreenSystem implements System {
   forest!: Forest
 
   init() {
-    const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
+    //TODO переделать на систему ентитис которые инициализируются по id
+    this.castle = new Castle({
+      game: this.game
+    })
+    this.castle.init()
 
-    this.castle = new Castle({ game: this.game, config })
+    this.view.addChild(this.castle)
+
+    this.view.eventMode = 'static'
+    this.view.cursor = 'pointer'
+
+    const r = new Graphics().rect(0, 0, 1000, 1000).fill({ color: 'blue' })
+    const g = new Graphics().rect(250, 150, 100, 100).fill({ color: 'green' })
+
+    r.addChild(g)
+
+    this.view.on('pointerup', () => {
+      this.game.systems.get(HudSystem).signals.onCreateModal.emit(r)
+    })
+
+    this.game.systems.get(ScreensSystem).addContainer(this.view, 'possession')
+
+    this.view.position.set(
+      this.view.parent.width / 2 - this.view.width / 2,
+      this.view.parent.height / 2 - this.view.height / 2
+    )
+
     this.forest = new Forest({ game: this.game })
 
-    this.game.systems.get(ScreensSystem).addContainer(this.castle, 'possession')
     this.game.systems.get(ScreensSystem).addContainer(this.forest, 'possession')
 
-    this.castle.init()
     this.forest.init()
   }
 

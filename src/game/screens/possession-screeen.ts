@@ -8,6 +8,7 @@ import {
 } from './constans'
 
 export class PossessionScreen extends Container {
+  SCREEN_NAME = 'possession'
   viewport!: Viewport
 
   activeContainer: Container = new Container()

@@ -1,9 +1,11 @@
 import { Assets, Sprite } from 'pixi.js'
-import { ScreensSystem } from '../systems'
+import { LevelingSystem, ScreensSystem } from '../systems'
 import { BaseEntity } from './base'
 
 export class City extends BaseEntity {
   async init() {
+    const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'City')
+
     const texture = await Assets.loadBundle(['default'])
     const sprite = new Sprite(texture.default['camp.png'])
 

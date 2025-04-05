@@ -1,36 +1,31 @@
-import { randomNumber } from '../../utils'
 import { Spawner } from '../helpers'
 import { ResourcesSystem, ScreensSystem, SpawnersSystem } from '../systems'
 import { BaseEntity } from './base'
 import { ResourceStump, ResourceTree } from './resources'
 import { Resource } from './resources/resource'
 
-const SPAWN_INTERVAL = 300
-const MAX_SPAW_ELEMENTS = 10
-
+const SPAWN_INTERVAL = 20
+const MAX_SPAW_ELEMENTS = 50
 export class Forest extends BaseEntity {
   spawner!: Spawner<ResourceTree>
 
-  private createTree(): ResourceTree {
-    const r = Math.random()
+  private async createTree(): Promise<ResourceTree> {
     const resourceTree = new ResourceTree({
       game: this.game,
-      onClick: (resource) => {
-        resource.remove()
-      },
       onRemove: (resource) => {
-        this.game.systems.get(ResourcesSystem).signals.onGetResources.emit({ alias: 'wood', value: resource.value })
+        this.game.systems.get(ResourcesSystem).signals.onUpdateResource.emit({ alias: 'wood', value: resource.value })
+
         this.createStump(resource)
         this.spawner.onRemoveItem()
       },
       value: 5
     })
 
-    resourceTree.clicked()
-    resourceTree.x = Math.floor(randomNumber([150, 300]) * Math.sin(360 / r))
-    resourceTree.y = Math.floor(randomNumber([150, 300]) * Math.cos(360 / r))
+    resourceTree.clicked((resource: ResourceTree) => {
+      resource.remove()
+    })
 
-    resourceTree.init()
+    await resourceTree.init()
 
     return resourceTree
   }
@@ -44,13 +39,12 @@ export class Forest extends BaseEntity {
     }
 
     const stumpResource = new ResourceStump({
-      game: this.game,
-      onClick: (res) => {
-        console.log('stumpResource click')
-      }
+      game: this.game
     })
 
-    stumpResource.clicked()
+    stumpResource.clicked((resource: ResourceStump) => {
+      console.log('stumpResource click', resource)
+    })
 
     stumpResource.init().then((e) => {
       e.position.set(tmp.x, Math.floor(tmp.y + 38 - e.height / 2))
@@ -76,7 +70,13 @@ export class Forest extends BaseEntity {
       },
       interval: SPAWN_INTERVAL,
       isInfinity: false,
-      isFilling: false
+      isFilling: false,
+      place: {
+        distance: {
+          min: 100,
+          max: 500
+        }
+      }
     })
 
     this.game.systems.get(ScreensSystem).addContainer(this.spawner, 'possession')
