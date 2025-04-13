@@ -27,6 +27,8 @@ export class BaseEntity extends Container implements IBaseEntity {
 
   children: ContainerWithUpdate[] = []
 
+  private _level: number = 1
+
   constructor({ game }: BaseEntityConstructor) {
     super()
     this.game = game
@@ -71,4 +73,14 @@ export class BaseEntity extends Container implements IBaseEntity {
       this.abilitiesUpdate()
     }
   }
+
+  set level(value: number) {
+    this._level = value
+  }
+
+  get level() {
+    return this._level
+  }
+
+  init() {}
 }

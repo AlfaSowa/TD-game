@@ -18,3 +18,10 @@ export const WORLD_TD_ACTIVE_H = 1000
 
 export const WORLD_TD_W = WORLD_TD_ACTIVE_W + 200
 export const WORLD_TD_H = WORLD_TD_ACTIVE_H + 150
+
+//castle
+export const WORLD_CASTLE_ACTIVE_W = 500
+export const WORLD_CASTLE_ACTIVE_H = 500
+
+export const WORLD_CASTLE_W = WORLD_CASTLE_ACTIVE_W + 50
+export const WORLD_CASTLE_H = WORLD_CASTLE_ACTIVE_H + 50

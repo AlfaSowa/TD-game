@@ -1,5 +1,5 @@
 import { AnimatedSprite, Assets, Spritesheet } from 'pixi.js'
-import { AbilitiesSystem, LevelingSystem } from '../systems'
+import { AbilitiesSystem, LevelingSystem, ScreensSystem } from '../systems'
 import { BaseEntity } from './base'
 
 const atlasData = {
@@ -25,36 +25,14 @@ const atlasData = {
   }
 }
 
-// const a = [
-//   {
-//     type: 'Castle',
-//     position: {
-//       x: 100,
-//       y: 100
-//     }
-//   },
-//   {
-//     type: 'Farm',
-//     position: {
-//       x: 200,
-//       y: 200
-//     }
-//   }
-// ]
-
-// class Render {
-//   b = {
-//     ['Castle']: new Castle(),
-//     ['Farm']: new Farm()
-//   }
-
-//   getClass(type) {
-//     return b[type]
-//   }
-// }
-
 export class Castle extends BaseEntity {
   async init() {
+    this.clicked(() => {
+      this.game.systems.get(ScreensSystem).signals.onToggleScreen.emit('castle')
+    })
+
+    console.log('this.level', this.level)
+
     const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
 
     const texture = await Assets.loadBundle(['default'])
@@ -72,10 +50,6 @@ export class Castle extends BaseEntity {
     this.abilities = this.game.systems.get(AbilitiesSystem).createAbilitiesContainer(['BaseAbility'])
 
     this.addChild(this.abilities)
-
-    if (this.parent) {
-      this.position.set(this.parent.width / 2 - this.width / 2, this.parent.height / 2 - this.height / 2)
-    }
   }
 
   updateResources() {

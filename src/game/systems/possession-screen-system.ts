@@ -1,57 +1,81 @@
-import { Container, Graphics } from 'pixi.js'
-import { Castle, Forest } from '../entities'
+import { Forest, ResourceTree } from '../entities'
+import { BaseEntity } from '../entities/base'
 import { Game } from '../game'
-import { HudSystem } from './hud-system'
+import { BuildingsSystem } from './buildings-system'
 import { ScreensSystem } from './screens-system'
+import { SpawnersSystem } from './spawners-system'
 import { System } from './types'
 
-export class PossessionScreenSystem implements System {
-  public static SYSTEM_ID = 'castle'
+const SPAWN_INTERVAL = 1000
+const MAX_SPAW_ELEMENTS = 10
 
-  view: Container = new Container()
+const mockData = [
+  {
+    type: 'Castle',
+    position: { x: 500, y: 500 },
+    level: 3
+  }
+]
+
+export class PossessionScreenSystem implements System {
+  public static SYSTEM_ID = 'possession-system'
 
   game!: Game
 
-  castle!: Castle
-  forest!: Forest
+  updatingItems: BaseEntity[] = []
 
   init() {
-    //TODO переделать на систему ентитис которые инициализируются по id
-    this.castle = new Castle({
-      game: this.game
+    this.initBuilding()
+    this.initPhaseEntities()
+  }
+
+  initBuilding() {
+    mockData.map((params) => {
+      const tmpElement = this.game.systems.get(BuildingsSystem).getClass(params)
+
+      this.game.systems.get(ScreensSystem).addContainer(tmpElement, 'possession')
+
+      this.updatingItems.push(tmpElement)
+
+      tmpElement.init()
     })
-    this.castle.init()
+  }
 
-    this.view.addChild(this.castle)
-
-    this.view.eventMode = 'static'
-    this.view.cursor = 'pointer'
-
-    const r = new Graphics().rect(0, 0, 1000, 1000).fill({ color: 'blue' })
-    const g = new Graphics().rect(250, 150, 100, 100).fill({ color: 'green' })
-
-    r.addChild(g)
-
-    this.view.on('pointerup', () => {
-      this.game.systems.get(HudSystem).signals.onCreateModal.emit(r)
+  initPhaseEntities() {
+    const forest = this.game.systems.get(BuildingsSystem).getClass<Forest>({
+      type: 'Forest',
+      position: { x: 500, y: 500 }
     })
 
-    this.game.systems.get(ScreensSystem).addContainer(this.view, 'possession')
+    this.game.systems.get(ScreensSystem).addContainer(forest, 'possession')
 
-    this.view.position.set(
-      this.view.parent.width / 2 - this.view.width / 2,
-      this.view.parent.height / 2 - this.view.height / 2
-    )
+    this.updatingItems.push(forest)
 
-    this.forest = new Forest({ game: this.game })
+    forest.init()
 
-    this.game.systems.get(ScreensSystem).addContainer(this.forest, 'possession')
+    forest.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
+      container: forest,
+      maxElementsOnView: MAX_SPAW_ELEMENTS,
+      render: () => {
+        return forest.createTree()
+      },
+      interval: SPAWN_INTERVAL,
+      isInfinity: false,
+      isFilling: false,
+      place: {
+        distance: {
+          min: 100,
+          max: 500
+        }
+      }
+    })
 
-    this.forest.init()
+    forest.addSpawnerToStage()
   }
 
   update() {
-    this.castle.update()
-    this.forest.update()
+    for (const element of this.updatingItems) {
+      element.update()
+    }
   }
 }

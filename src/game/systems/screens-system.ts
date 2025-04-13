@@ -1,12 +1,12 @@
 import { Container } from 'pixi.js'
 import { Game } from '..'
-import { MapScreen, PossessionScreen, TDScreen } from '../screens'
+import { CastleScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
 
 import { Signal } from 'typed-signals'
 import { SystemRunner } from './system-runner'
 import { System } from './types'
 
-export type ScreensType = 'map' | 'possession' | 'td'
+export type ScreensType = 'map' | 'possession' | 'td' | 'castle'
 export class ScreensSystem implements System {
   public static SYSTEM_ID = 'screens'
 
@@ -15,6 +15,7 @@ export class ScreensSystem implements System {
   map!: MapScreen
   possession!: PossessionScreen
   td!: TDScreen
+  castle!: CastleScreen
 
   currentScreen!: MapScreen | PossessionScreen | TDScreen
   systems!: SystemRunner
@@ -30,6 +31,8 @@ export class ScreensSystem implements System {
     this.map = new MapScreen()
     this.possession = new PossessionScreen()
     this.td = new TDScreen()
+    this.castle = new CastleScreen()
+
     this.currentScreen = this.possession
 
     this.signals.onToggleScreen.connect((type) => {
@@ -71,6 +74,7 @@ export class ScreensSystem implements System {
     this.map.init(this.game.app)
     this.possession.init(this.game.app)
     this.td.init()
+    this.castle.init(this.game.app)
 
     this.game.app.stage.addChild(this.currentScreen)
   }

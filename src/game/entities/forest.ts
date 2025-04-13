@@ -1,5 +1,5 @@
 import { Spawner } from '../helpers'
-import { ResourcesSystem, ScreensSystem, SpawnersSystem } from '../systems'
+import { ResourcesSystem, ScreensSystem } from '../systems'
 import { BaseEntity } from './base'
 import { ResourceStump, ResourceTree } from './resources'
 import { Resource } from './resources/resource'
@@ -9,7 +9,7 @@ const MAX_SPAW_ELEMENTS = 50
 export class Forest extends BaseEntity {
   spawner!: Spawner<ResourceTree>
 
-  private async createTree(): Promise<ResourceTree> {
+  async createTree(): Promise<ResourceTree> {
     const resourceTree = new ResourceTree({
       game: this.game,
       onRemove: (resource) => {
@@ -61,29 +61,8 @@ export class Forest extends BaseEntity {
     }
   }
 
-  init() {
-    this.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
-      container: this,
-      maxElementsOnView: MAX_SPAW_ELEMENTS,
-      render: () => {
-        return this.createTree()
-      },
-      interval: SPAWN_INTERVAL,
-      isInfinity: false,
-      isFilling: false,
-      place: {
-        distance: {
-          min: 100,
-          max: 500
-        }
-      }
-    })
-
+  addSpawnerToStage() {
     this.game.systems.get(ScreensSystem).addContainer(this.spawner, 'possession')
-
-    if (this.parent) {
-      this.position.set(this.parent.width / 2 - this.width / 2, this.parent.height / 2 - this.height / 2)
-    }
   }
 
   update() {
