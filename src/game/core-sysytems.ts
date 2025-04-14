@@ -1,7 +1,9 @@
 import {
   AbilitiesSystem,
   BuildingsSystem,
+  CastleScreenSystem,
   CitySystem,
+  FetchDataSystem,
   HudSystem,
   ItemsSystem,
   LevelingSystem,
@@ -15,6 +17,9 @@ import {
 
 export const coreSystems = (systems: SystemRunner) => {
   //systems
+  //fetch data systems
+  systems.add(FetchDataSystem)
+
   //core
   systems.add(BuildingsSystem)
   systems.add(ItemsSystem)
@@ -30,6 +35,7 @@ export const coreSystems = (systems: SystemRunner) => {
 
   //screens
   systems.add(PossessionScreenSystem)
+  systems.add(CastleScreenSystem)
 
   //entities
   systems.add(CitySystem)
@@ -39,5 +45,10 @@ export const coreSystems = (systems: SystemRunner) => {
   //helpers
   systems.add(ResourcesSystem)
 
-  systems.init()
+  systems
+    .get(FetchDataSystem)
+    .getImportantData()
+    .then(() => {
+      systems.init()
+    })
 }

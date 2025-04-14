@@ -1,5 +1,5 @@
 import { AnimatedSprite, Assets, Spritesheet } from 'pixi.js'
-import { AbilitiesSystem, LevelingSystem, ScreensSystem } from '../systems'
+import { AbilitiesSystem, ScreensSystem } from '../systems'
 import { BaseEntity } from './base'
 
 const atlasData = {
@@ -33,7 +33,7 @@ export class Castle extends BaseEntity {
 
     console.log('this.level', this.level)
 
-    const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
+    // const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
 
     const texture = await Assets.loadBundle(['default'])
 

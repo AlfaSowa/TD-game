@@ -9,13 +9,12 @@ export const Layout = () => {
   const [resources, setResources] = useState<CoreResource[]>([])
 
   useEffect(() => {
-    game.systems.get(ResourcesSystem).getAllResources()
+    setResources(game.systems.get(ResourcesSystem).resources)
+
     game.systems.get(ResourcesSystem).signals.setResources.connect((resources) => {
       setResources(resources)
     })
   }, [])
-
-  console.log('resources', resources)
 
   return (
     <>

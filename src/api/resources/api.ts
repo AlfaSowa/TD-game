@@ -6,6 +6,7 @@ export type CoreResource = {
   value: number
 }
 
+//TODO перенести в  FetchDataSystem
 export const getAllCoreResources = (): Promise<CoreResource[]> => {
   return Promise.resolve([
     {
@@ -13,26 +14,26 @@ export const getAllCoreResources = (): Promise<CoreResource[]> => {
       name: 'Золото',
       alias: 'gold',
       quantityPerSecond: 100,
-      value: 100
+      value: 0
     },
     {
       id: '2',
       name: 'Дерево',
       alias: 'wood',
-      value: 100
+      value: 0
     },
     {
       id: '3',
       name: 'Камень',
       alias: 'stone',
       quantityPerSecond: 100,
-      value: 100
+      value: 0
     },
     {
       id: '4',
       name: 'Еда',
       alias: 'food',
-      value: 100
+      value: 0
     }
   ])
 }

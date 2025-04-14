@@ -46,7 +46,7 @@ export class IntervalTicker extends Container {
     return this.currentAmount
   }
 
-  tick = delayToCallback(7, 1000, () => {
+  tick = delayToCallback(1000, 7, () => {
     this.currentAmount += this.currentValue
     this.isAnimation = true
   })

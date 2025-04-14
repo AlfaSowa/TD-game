@@ -13,11 +13,19 @@ type GetClassType = {
     x: number
     y: number
   }
-  level?: number
+  level?: {
+    value: number
+    next: {
+      wood: number
+      gold: number
+      stone: number
+      food: number
+    }
+  }
 }
 
 export class BuildingsSystem implements System {
-  public static SYSTEM_ID = 'buildings'
+  public static SYSTEM_ID = 'buildings-system'
   game!: Game
 
   private entities!: Entity
@@ -33,7 +41,7 @@ export class BuildingsSystem implements System {
     const entity = this.entities[type]
 
     if (level) {
-      entity.level = level
+      entity.level = level.value
     }
 
     if (position) {

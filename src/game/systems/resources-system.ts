@@ -1,5 +1,5 @@
 import { Signal } from 'typed-signals'
-import { CoreResource, getAllCoreResources } from '../../api'
+import { CoreResource } from '../../api'
 import { Game } from '../game'
 import { System } from './types'
 
@@ -11,15 +11,23 @@ export class ResourcesSystem implements System {
 
   public signals = {
     setResources: new Signal<(resources: CoreResource[]) => void>(),
-    onUpdateResource: new Signal<(resources: { value: number; alias: 'wood' | 'gold' }) => void>()
+    onUpdateResource: new Signal<
+      (resources: { value: number; alias: string }[], type: 'increase' | 'decrease') => void
+    >()
   }
 
   constructor() {
-    this.signals.onUpdateResource.connect((resource) => {
+    this.signals.onUpdateResource.connect((resources, type) => {
       this._resources = this._resources.map((e) => {
-        if (e.alias === resource.alias && resource.value) {
-          return { ...e, value: e.value + resource.value }
+        const updatedResource = resources.find((i) => i.alias === e.alias)
+
+        if (updatedResource) {
+          return {
+            ...e,
+            value: type === 'increase' ? e.value + updatedResource.value : e.value - updatedResource.value
+          }
         }
+
         return e
       })
 
@@ -28,15 +36,22 @@ export class ResourcesSystem implements System {
     })
   }
 
-  async getAllResources() {
-    await getAllCoreResources().then((data) => {
-      this._resources = data
+  init() {
+    this.signals.setResources.emit(this._resources)
+  }
 
-      this.signals.setResources.emit(this._resources)
-    })
+  set resources(value: CoreResource[]) {
+    this._resources = value
   }
 
   get resources() {
     return this._resources
+  }
+
+  //провереям всех ли ресурсов хватает на апгрейд
+  checkResourcesToPay(resources: { [key: string]: number }) {
+    return this._resources.every((element) => {
+      return element.value >= resources[element.alias]
+    })
   }
 }

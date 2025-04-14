@@ -13,12 +13,14 @@ export class Forest extends BaseEntity {
     const resourceTree = new ResourceTree({
       game: this.game,
       onRemove: (resource) => {
-        this.game.systems.get(ResourcesSystem).signals.onUpdateResource.emit({ alias: 'wood', value: resource.value })
+        this.game.systems
+          .get(ResourcesSystem)
+          .signals.onUpdateResource.emit([{ alias: 'wood', value: resource.value }], 'increase')
 
         this.createStump(resource)
         this.spawner.onRemoveItem()
       },
-      value: 5
+      value: 3
     })
 
     resourceTree.clicked((resource: ResourceTree) => {
