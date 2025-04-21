@@ -33,8 +33,6 @@ export class Castle extends BaseEntity {
 
     console.log('this.level', this.level)
 
-    // const config = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
-
     const texture = await Assets.loadBundle(['default'])
 
     const spritesheet = new Spritesheet(texture.default['firecamp.png'], atlasData)

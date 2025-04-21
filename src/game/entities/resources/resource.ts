@@ -10,6 +10,7 @@ export class Resource extends BaseEntity {
   onUpdate?: (e: Resource) => void
   onRemove?: (e: Resource) => void
   value: number = 1
+  alias!: string
 
   constructor({ onUpdate, onRemove, value, ...base }: ResourceConstructorType) {
     super(base)

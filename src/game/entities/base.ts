@@ -27,6 +27,8 @@ export class BaseEntity extends Container implements IBaseEntity {
 
   children: ContainerWithUpdate[] = []
 
+  type?: string
+
   private _level: number = 1
 
   constructor({ game }: BaseEntityConstructor) {
@@ -62,7 +64,6 @@ export class BaseEntity extends Container implements IBaseEntity {
 
   remove() {
     if (this.parent) {
-      console.log('remove')
       this.removeFromParent()
       this.destroy()
     }

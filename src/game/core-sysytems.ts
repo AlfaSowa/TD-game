@@ -1,8 +1,8 @@
 import {
   AbilitiesSystem,
-  BuildingsSystem,
   CastleScreenSystem,
   CitySystem,
+  EntitiesRenderSystem,
   FetchDataSystem,
   HudSystem,
   ItemsSystem,
@@ -21,7 +21,7 @@ export const coreSystems = (systems: SystemRunner) => {
   systems.add(FetchDataSystem)
 
   //core
-  systems.add(BuildingsSystem)
+  systems.add(EntitiesRenderSystem)
   systems.add(ItemsSystem)
   systems.add(ScreensSystem)
   systems.add(StoreSystem)

@@ -4,17 +4,14 @@ import { System } from './types'
 export class LevelingSystem implements System {
   public static SYSTEM_ID = 'leveling'
   game!: Game
-  private _data!: any
 
-  set data(value: any) {
-    this._data = value
-  }
+  requestToUpdateEntity(entityType: string) {
+    new Promise((resolve) => {
+      console.log(`запрос на обновление ${entityType}`)
 
-  getSystemData(type: string, entity?: string) {
-    if (!entity) {
-      return this._data[type]
-    }
-
-    return this._data[type]?.find((e: any) => e.type === entity)
+      setTimeout(() => {
+        resolve(console.log(`запрос на обновление ${entityType} выполнен`))
+      }, 1000)
+    })
   }
 }

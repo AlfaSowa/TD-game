@@ -1,5 +1,5 @@
 import { Game } from '../game'
-import { LevelingSystem } from './leveling-system'
+import { EntitiesRenderSystem } from './entities-render-system'
 import { ResourcesSystem } from './resources-system'
 import { System } from './types'
 
@@ -8,32 +8,44 @@ export class FetchDataSystem implements System {
   game!: Game
 
   async getImportantData() {
-    await this.getLevelingData()
+    await this.getPossessionData()
     await this.getAllResources()
   }
 
-  private getLevelingData() {
-    Promise.resolve({
-      buildings: [
-        {
-          type: 'Castle',
-          level: {
-            value: 0,
-            next: {
-              wood: 5,
-              gold: 4,
-              stone: 0,
-              food: 0
-            }
-          },
-          abilities: ['Basic Attack', 'Shield'],
-          image: 'Castle_Blue.png',
-          resourcesRequired: { wood: 100, stone: 50 },
-          position: { x: 500, y: 500 }
-        }
-      ]
-    }).then((data) => {
-      this.game.systems.get(LevelingSystem).data = data
+  private getPossessionData() {
+    Promise.resolve([
+      {
+        type: 'Castle',
+        level: {
+          value: 0,
+          next: {
+            wood: 5,
+            gold: 0,
+            stone: 0,
+            food: 0
+          }
+        },
+        abilities: ['Basic Attack', 'Shield'],
+        image: 'Castle_Blue.png',
+        position: { x: 500, y: 500 }
+      },
+      {
+        type: 'Forest',
+        level: {
+          value: 0,
+          next: {
+            wood: 0,
+            gold: 0,
+            stone: 0,
+            food: 0
+          }
+        },
+        abilities: ['Basic Attack', 'Shield'],
+        image: 'Castle_Blue.png',
+        position: { x: 500, y: 500 }
+      }
+    ]).then((data) => {
+      this.game.systems.get(EntitiesRenderSystem).possessionData = data
     })
   }
 

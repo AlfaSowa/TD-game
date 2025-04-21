@@ -62,6 +62,15 @@ export class ScreensSystem implements System {
     this[containerType].addContainer(container, index)
   }
 
+  removeContainer(containerType: ScreensType, id: number) {
+    for (const element of this[containerType].activeContainer.children) {
+      if (element.uid === id) {
+        element.removeFromParent()
+        element.destroy()
+      }
+    }
+  }
+
   getActiveContainer() {
     return this.currentScreen.activeContainer
   }

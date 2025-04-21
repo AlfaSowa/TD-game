@@ -4,11 +4,12 @@ import { Game } from '../game'
 import { LevelingSystem } from './leveling-system'
 import { ResourcesSystem } from './resources-system'
 
+import { EntitiesRenderSystem } from './entities-render-system'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
 export class CastleScreenSystem implements System {
-  public static SYSTEM_ID = 'castle'
+  public static SYSTEM_ID = 'castle-screen-system'
 
   game!: Game
 
@@ -24,7 +25,9 @@ export class CastleScreenSystem implements System {
   }
 
   init() {
-    this.castle = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
+    this.castle = this.game.systems.get(EntitiesRenderSystem).possessionData.find((e: any) => e.type === 'Castle')
+
+    console.log('this.castle>>>>>>', this.castle)
 
     this.getDataByLevel(this.castle.level.value)
 
@@ -34,6 +37,7 @@ export class CastleScreenSystem implements System {
 
     this.updateButton.on('pointerup', () => {
       const res: { value: number; alias: string }[] = []
+
       for (const element of Object.keys(this.castle.level.next)) {
         if (this.castle.level.next[element]) {
           res.push({ alias: element, value: this.castle.level.next[element] })
@@ -41,10 +45,14 @@ export class CastleScreenSystem implements System {
       }
 
       this.updateButton.eventMode = 'none'
+
+      this.game.systems.get(LevelingSystem).requestToUpdateEntity(this.castle.type)
       this.game.systems.get(ResourcesSystem).signals.onUpdateResource.emit(res, 'decrease')
+      this.game.systems.get(EntitiesRenderSystem).removeEntityFromScreen({ type: 'Forest', screen: 'possession' })
     })
   }
 
+  //TODO подумать когда вызывать checkResourcesToPay, возможно не по таймеру а когда обновляются ресурсы
   private checkToUpdate = delayToCallback(this.interval, () => {
     const result = this.game.systems.get(ResourcesSystem).checkResourcesToPay(this.castle.level.next)
 

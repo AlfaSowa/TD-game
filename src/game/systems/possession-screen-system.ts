@@ -1,8 +1,7 @@
 import { Forest, ResourceTree } from '../entities'
 import { BaseEntity } from '../entities/base'
 import { Game } from '../game'
-import { BuildingsSystem } from './buildings-system'
-import { LevelingSystem } from './leveling-system'
+import { EntitiesRenderSystem } from './entities-render-system'
 import { ScreensSystem } from './screens-system'
 import { SpawnersSystem } from './spawners-system'
 import { System } from './types'
@@ -16,18 +15,23 @@ export class PossessionScreenSystem implements System {
   game!: Game
   updatingItems: BaseEntity[] = []
 
-  data!: any
-
   init() {
-    this.data = this.game.systems.get(LevelingSystem).getSystemData('buildings')
+    this.game.systems.get(EntitiesRenderSystem).signals.onUpdatePossessionData.connect((type) => {
+      const id = this.updatingItems.find((i) => i?.type === type)?.uid
+      this.updatingItems = this.updatingItems.filter((i) => i?.type !== type)
 
-    this.initBuilding()
+      if (id) {
+        this.game.systems.get(ScreensSystem).removeContainer('possession', id)
+      }
+    })
+
+    this.initBuildings()
     this.initPhaseEntities()
   }
 
-  initBuilding() {
-    this.data.map((params: any) => {
-      const tmpElement = this.game.systems.get(BuildingsSystem).getClass(params)
+  initBuildings() {
+    this.game.systems.get(EntitiesRenderSystem).possessionData.map((params: any) => {
+      const tmpElement = this.game.systems.get(EntitiesRenderSystem).createEntity(params)
 
       this.game.systems.get(ScreensSystem).addContainer(tmpElement, 'possession')
 
@@ -38,40 +42,27 @@ export class PossessionScreenSystem implements System {
   }
 
   initPhaseEntities() {
-    const castle = this.game.systems.get(LevelingSystem).getSystemData('buildings', 'Castle')
-
-    //TODO подумать как отрисовывать Entity/Entities в зависимости от левела другой Entity
-    //TODO подумать как удалять Entity/Entities в зависимости от левела другой Entity
-    if (castle.level.value === 0) {
-      const forest = this.game.systems.get(BuildingsSystem).getClass<Forest>({
-        type: 'Forest',
-        position: { x: 500, y: 500 }
-      })
-
-      this.game.systems.get(ScreensSystem).addContainer(forest, 'possession')
-
-      this.updatingItems.push(forest)
-
-      forest.init()
-
-      forest.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
-        container: forest,
-        maxElementsOnView: MAX_SPAW_ELEMENTS,
-        render: () => {
-          return forest.createTree()
-        },
-        interval: SPAWN_INTERVAL,
-        isInfinity: false,
-        isFilling: false,
-        place: {
-          distance: {
-            min: 100,
-            max: 500
+    for (const element of this.updatingItems) {
+      if (element instanceof Forest) {
+        element.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
+          container: element,
+          maxElementsOnView: MAX_SPAW_ELEMENTS,
+          render: () => {
+            return element.createTree()
+          },
+          interval: SPAWN_INTERVAL,
+          isInfinity: false,
+          isFilling: false,
+          place: {
+            distance: {
+              min: 100,
+              max: 500
+            }
           }
-        }
-      })
+        })
 
-      forest.addSpawnerToStage()
+        element.addSpawnerToStage()
+      }
     }
   }
 

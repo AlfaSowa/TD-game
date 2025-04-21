@@ -15,9 +15,10 @@ export class Forest extends BaseEntity {
       onRemove: (resource) => {
         this.game.systems
           .get(ResourcesSystem)
-          .signals.onUpdateResource.emit([{ alias: 'wood', value: resource.value }], 'increase')
+          .signals.onUpdateResource.emit([{ alias: resource.alias, value: resource.value }], 'increase')
 
         this.createStump(resource)
+
         this.spawner.onRemoveItem()
       },
       value: 3
@@ -41,11 +42,17 @@ export class Forest extends BaseEntity {
     }
 
     const stumpResource = new ResourceStump({
-      game: this.game
+      game: this.game,
+      onRemove: (resource) => {
+        this.game.systems
+          .get(ResourcesSystem)
+          .signals.onUpdateResource.emit([{ alias: resource.alias, value: resource.value }], 'increase')
+      },
+      value: 1
     })
 
     stumpResource.clicked((resource: ResourceStump) => {
-      console.log('stumpResource click', resource)
+      resource.remove()
     })
 
     stumpResource.init().then((e) => {
