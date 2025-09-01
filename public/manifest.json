@@ -156,6 +156,19 @@
         },
         {
           "alias": [
+            "images/house_200x200.png",
+            "house_200x200.png"
+          ],
+          "src": [
+            "images/house_200x200@0.5x.png",
+            "images/house_200x200.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
             "images/House_Blue.png",
             "House_Blue.png"
           ],
@@ -247,12 +260,12 @@
         },
         {
           "alias": [
-            "images/house_200x200.png",
-            "house_200x200.png"
+            "images/cave_100x100.png",
+            "cave_100x100.png"
           ],
           "src": [
-            "images/house_200x200@0.5x.png",
-            "images/house_200x200.png"
+            "images/cave_100x100@0.5x.png",
+            "images/cave_100x100.png"
           ],
           "data": {
             "tags": {}

@@ -47,6 +47,8 @@ export class MapScreen extends Container {
   }
 
   addContainer(container: Container, index?: number) {
+    console.log('container', container)
+
     if (typeof index === 'number') {
       this.activeContainer.addChildAt(container, index)
     } else {

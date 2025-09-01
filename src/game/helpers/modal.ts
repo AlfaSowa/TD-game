@@ -60,7 +60,7 @@ export class Modal extends Container {
       this.scrollbox.cursor = 'pointer'
 
       this.scrollbox.on('pointerup', () => {
-        console.log(123123)
+        console.log('Modal pointerup')
       })
 
       // this.scrollbox.position.set(200, 200)

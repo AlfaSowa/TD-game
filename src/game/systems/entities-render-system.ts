@@ -1,8 +1,9 @@
 import { Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Castle } from '../entities'
+import { Castle, Cave } from '../entities'
 import { BaseEntity } from '../entities/base'
 import { Game } from '../game'
+import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
 type Entity = {
@@ -11,10 +12,6 @@ type Entity = {
 
 type GetClassType = {
   type: string
-  position?: {
-    x: number
-    y: number
-  }
   level?: {
     value: number
     next: {
@@ -24,7 +21,10 @@ type GetClassType = {
       food: number
     }
   }
+  abilities?: string[]
   image: string
+  position: { x: number; y: number }
+  container: 'possession' | 'map'
 }
 
 type AddNewEntityType = {
@@ -50,8 +50,8 @@ export class EntitiesRenderSystem implements System {
 
   init() {
     this.entities = {
-      ['Castle']: new Castle({ game: this.game })
-      // ['Forest']: new Forest({ game: this.game })
+      ['Castle']: new Castle({ game: this.game }),
+      ['Cave']: new Cave({ game: this.game })
     }
   }
 
@@ -63,7 +63,19 @@ export class EntitiesRenderSystem implements System {
     return this._possessionData
   }
 
-  createEntity<T extends BaseEntity>({ type, position, level, image }: GetClassType): T {
+  async renderEntities(data: GetClassType[]) {
+    data.map(async (params: GetClassType) => {
+      const element = await this.createEntity(params)
+
+      if (element) {
+        this.game.systems.get(ScreensSystem).addContainer(element, params.container)
+
+        element.init()
+      }
+    })
+  }
+
+  async createEntity<T extends BaseEntity>({ type, position, level, image }: GetClassType): Promise<T> {
     const entity = this.entities[type]
 
     if (entity) {
@@ -78,7 +90,7 @@ export class EntitiesRenderSystem implements System {
       }
 
       if (image) {
-        this.initImg(image, entity)
+        await this.initImg(image, entity)
       }
     }
 

@@ -3,6 +3,7 @@ import { EntitiesRenderSystem } from './entities-render-system'
 import { ResourcesSystem } from './resources-system'
 import { System } from './types'
 
+type RenderContainerType = 'possession' | 'map'
 export class FetchDataSystem implements System {
   public static SYSTEM_ID = 'fetch-data-system'
   game!: Game
@@ -26,11 +27,28 @@ export class FetchDataSystem implements System {
           }
         },
         abilities: ['Basic Attack', 'Shield'],
-        image: 'house_200x200.png',
-        position: { x: 400, y: 400 }
+        image: 'images/house_200x200.png',
+        position: { x: 400, y: 400 },
+        container: 'possession' as RenderContainerType
+      },
+      {
+        type: 'Cave',
+        level: {
+          value: 0,
+          next: {
+            wood: 5,
+            gold: 0,
+            stone: 0,
+            food: 0
+          }
+        },
+        image: 'images/cave_100x100.png',
+        position: { x: 450, y: 450 },
+        container: 'map' as RenderContainerType
       }
     ]).then((data) => {
       this.game.systems.get(EntitiesRenderSystem).possessionData = data
+      this.game.systems.get(EntitiesRenderSystem).renderEntities(data)
     })
   }
 

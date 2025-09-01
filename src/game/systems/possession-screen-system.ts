@@ -24,23 +24,6 @@ export class PossessionScreenSystem implements System {
         this.game.systems.get(ScreensSystem).removeContainer('possession', id)
       }
     })
-
-    this.initBuildings()
-    this.initPhaseEntities()
-  }
-
-  initBuildings() {
-    this.game.systems.get(EntitiesRenderSystem).possessionData.map((params: any) => {
-      const element = this.game.systems.get(EntitiesRenderSystem).createEntity(params)
-
-      if (element) {
-        this.game.systems.get(ScreensSystem).addContainer(element, 'possession')
-
-        this.updatingItems.push(element)
-
-        element.init()
-      }
-    })
   }
 
   initPhaseEntities() {
@@ -69,8 +52,8 @@ export class PossessionScreenSystem implements System {
   }
 
   update() {
-    for (const element of this.updatingItems) {
-      element.update()
-    }
+    // for (const element of this.updatingItems) {
+    //   element.update()
+    // }
   }
 }

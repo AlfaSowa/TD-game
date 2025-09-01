@@ -11,10 +11,10 @@ import {
 export const coreSystems = (systems: SystemRunner) => {
   //systems
   //fetch data systems
+  systems.add(EntitiesRenderSystem)
   systems.add(FetchDataSystem)
 
   //core
-  systems.add(EntitiesRenderSystem)
   // systems.add(ItemsSystem)
   systems.add(ScreensSystem)
   // systems.add(StoreSystem)
@@ -37,6 +37,8 @@ export const coreSystems = (systems: SystemRunner) => {
 
   //helpers
   systems.add(ResourcesSystem)
+
+  systems.get(EntitiesRenderSystem).init()
 
   systems
     .get(FetchDataSystem)
