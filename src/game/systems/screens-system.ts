@@ -33,13 +33,12 @@ export class ScreensSystem implements System {
     this.td = new TDScreen()
     this.castle = new CastleScreen()
 
-    this.currentScreen = this.possession
-
     this.signals.onToggleScreen.connect((type) => {
       this.currentScreen.removeFromParent()
       this.currentScreen = this[type]
       this.game.app.stage.addChild(this.currentScreen)
-      console.log(this.currentScreen.viewport)
+
+      console.log('onToggleScreen', this.currentScreen.viewport)
     })
 
     this.signals.onViewportPauseDrag.connect(() => {
@@ -80,6 +79,8 @@ export class ScreensSystem implements System {
   }
 
   init() {
+    this.currentScreen = this.possession
+
     this.map.init(this.game.app)
     this.possession.init(this.game.app)
     this.td.init()

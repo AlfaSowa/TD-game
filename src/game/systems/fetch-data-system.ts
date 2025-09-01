@@ -26,23 +26,8 @@ export class FetchDataSystem implements System {
           }
         },
         abilities: ['Basic Attack', 'Shield'],
-        image: 'Castle_Blue.png',
-        position: { x: 500, y: 500 }
-      },
-      {
-        type: 'Forest',
-        level: {
-          value: 0,
-          next: {
-            wood: 0,
-            gold: 0,
-            stone: 0,
-            food: 0
-          }
-        },
-        abilities: ['Basic Attack', 'Shield'],
-        image: 'Castle_Blue.png',
-        position: { x: 500, y: 500 }
+        image: 'house_200x200.png',
+        position: { x: 400, y: 400 }
       }
     ]).then((data) => {
       this.game.systems.get(EntitiesRenderSystem).possessionData = data

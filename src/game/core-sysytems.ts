@@ -1,17 +1,10 @@
 import {
-  AbilitiesSystem,
-  CastleScreenSystem,
-  CitySystem,
   EntitiesRenderSystem,
   FetchDataSystem,
   HudSystem,
-  ItemsSystem,
-  LevelingSystem,
   PossessionScreenSystem,
   ResourcesSystem,
   ScreensSystem,
-  SpawnersSystem,
-  StoreSystem,
   SystemRunner
 } from './systems'
 
@@ -22,23 +15,23 @@ export const coreSystems = (systems: SystemRunner) => {
 
   //core
   systems.add(EntitiesRenderSystem)
-  systems.add(ItemsSystem)
+  // systems.add(ItemsSystem)
   systems.add(ScreensSystem)
-  systems.add(StoreSystem)
+  // systems.add(StoreSystem)
 
   //subcore
   systems.add(HudSystem)
-  systems.add(SpawnersSystem)
-  systems.add(LevelingSystem)
-  systems.add(AbilitiesSystem)
+  // systems.add(SpawnersSystem)
+  // systems.add(LevelingSystem)
+  // systems.add(AbilitiesSystem)
   // this.systems.add(TimersSystem)
 
   //screens
   systems.add(PossessionScreenSystem)
-  systems.add(CastleScreenSystem)
+  // systems.add(CastleScreenSystem)
 
   //entities
-  systems.add(CitySystem)
+  // systems.add(CitySystem)
   // this.systems.add(FarmSystem)
   // this.systems.add(SawmillSystem)
 

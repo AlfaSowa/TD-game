@@ -751,6 +751,106 @@
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/дом.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "ptLqTw"
+        },
+        ".assetpack/mipmap/images/дом.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/дом.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/дом.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/дом.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/дом.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/дом.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/дом@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/дом.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/дом@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/дом@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/дом@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/дом@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "1R1B1w"
+        },
+        ".assetpack/mipmap/images/house_200x200.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/house_200x200.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/house_200x200.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/house_200x200.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/house_200x200.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/house_200x200@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/house_200x200@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/house_200x200@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/house_200x200@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/house_200x200@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
         }
     }
 }

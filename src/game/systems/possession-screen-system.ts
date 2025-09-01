@@ -31,13 +31,15 @@ export class PossessionScreenSystem implements System {
 
   initBuildings() {
     this.game.systems.get(EntitiesRenderSystem).possessionData.map((params: any) => {
-      const tmpElement = this.game.systems.get(EntitiesRenderSystem).createEntity(params)
+      const element = this.game.systems.get(EntitiesRenderSystem).createEntity(params)
 
-      this.game.systems.get(ScreensSystem).addContainer(tmpElement, 'possession')
+      if (element) {
+        this.game.systems.get(ScreensSystem).addContainer(element, 'possession')
 
-      this.updatingItems.push(tmpElement)
+        this.updatingItems.push(element)
 
-      tmpElement.init()
+        element.init()
+      }
     })
   }
 

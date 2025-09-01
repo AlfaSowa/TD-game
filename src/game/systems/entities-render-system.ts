@@ -1,5 +1,6 @@
+import { Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Castle, Forest } from '../entities'
+import { Castle } from '../entities'
 import { BaseEntity } from '../entities/base'
 import { Game } from '../game'
 import { System } from './types'
@@ -23,6 +24,7 @@ type GetClassType = {
       food: number
     }
   }
+  image: string
 }
 
 type AddNewEntityType = {
@@ -48,8 +50,8 @@ export class EntitiesRenderSystem implements System {
 
   init() {
     this.entities = {
-      ['Castle']: new Castle({ game: this.game }),
-      ['Forest']: new Forest({ game: this.game })
+      ['Castle']: new Castle({ game: this.game })
+      // ['Forest']: new Forest({ game: this.game })
     }
   }
 
@@ -61,20 +63,34 @@ export class EntitiesRenderSystem implements System {
     return this._possessionData
   }
 
-  createEntity<T extends BaseEntity>({ type, position, level }: GetClassType): T {
+  createEntity<T extends BaseEntity>({ type, position, level, image }: GetClassType): T {
     const entity = this.entities[type]
 
-    entity.type = type
+    if (entity) {
+      entity.type = type
 
-    if (level) {
-      entity.level = level.value
-    }
+      if (level) {
+        entity.level = level.value
+      }
 
-    if (position) {
-      entity.position.set(position.x, position.y)
+      if (position) {
+        entity.position.set(position.x, position.y)
+      }
+
+      if (image) {
+        this.initImg(image, entity)
+      }
     }
 
     return entity as T
+  }
+
+  async initImg(img: string, entity: Container) {
+    const sheet = await Assets.loadBundle(['default'])
+
+    const sprite = new Sprite(sheet.default[img])
+
+    entity.addChild(sprite)
   }
 
   addNewEntityOnScreen({ position, type }: AddNewEntityType) {

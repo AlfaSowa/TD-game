@@ -27,18 +27,20 @@ export class PossessionScreen extends Container {
     this.viewport.on('drag-start', () => {
       this.viewport.interactiveChildren = false
     })
+
     this.viewport.on('drag-end', () => {
       this.viewport.interactiveChildren = true
     })
 
     this.viewport.moveCenter(this.viewport.worldWidth / 2, this.viewport.worldHeight / 2)
     this.viewport.drag().clamp({ direction: 'all' })
+
     this.viewport.addChild(
       new Graphics().rect(0, 0, WORLD_POSSESSION_W, WORLD_POSSESSION_H).fill({ color: 'rgba(149, 138, 122)' })
     )
 
     this.activeContainer.addChild(
-      new Graphics().rect(0, 0, WORLD_POSSESSION_ACTIVE_W, WORLD_POSSESSION_ACTIVE_H).fill({ color: '#a8ae51' })
+      new Graphics().rect(0, 0, WORLD_POSSESSION_ACTIVE_W, WORLD_POSSESSION_ACTIVE_H).fill({ color: '#A66A00' })
     )
 
     this.updateActiveContainerPositio()

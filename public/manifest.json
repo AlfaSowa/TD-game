@@ -231,6 +231,32 @@
           "data": {
             "tags": {}
           }
+        },
+        {
+          "alias": [
+            "images/дом.png",
+            "дом.png"
+          ],
+          "src": [
+            "images/дом@0.5x.png",
+            "images/дом.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/house_200x200.png",
+            "house_200x200.png"
+          ],
+          "src": [
+            "images/house_200x200@0.5x.png",
+            "images/house_200x200.png"
+          ],
+          "data": {
+            "tags": {}
+          }
         }
       ]
     }
