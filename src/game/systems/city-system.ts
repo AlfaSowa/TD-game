@@ -1,4 +1,4 @@
-import { City } from '../entities'
+import { City } from '../buildings'
 import { Game } from '../game'
 
 import { ScreensSystem } from './screens-system'

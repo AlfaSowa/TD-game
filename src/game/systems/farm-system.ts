@@ -4,7 +4,7 @@ import { colorTheme } from '../constants'
 import { Game } from '../game'
 import { state } from '../helpers'
 
-import { Farm, FarmTile } from '../entities'
+import { Farm, FarmTile } from '../buildings'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 

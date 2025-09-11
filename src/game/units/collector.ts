@@ -1,9 +1,8 @@
 import { Container, Graphics } from 'pixi.js'
-import { getNearestContainerTarget, isContainersColision, moveElementToContainer } from '../../../utils'
-import { TAIL_SIZE, colorTheme } from '../../constants'
-import { BaseBuild } from '../buildings/base'
-import { BaseResources } from '../resources/base'
-import { BaseUnit } from './base'
+import { isContainersCollision } from '../../utils'
+import { getNearestContainerTarget, moveElementToContainer } from '../../utils/math2'
+import { BaseUnit } from '../base'
+import { TAIL_SIZE } from '../constants'
 
 export class Collector extends BaseUnit {
   private resources: number = 0
@@ -71,7 +70,7 @@ export class Collector extends BaseUnit {
       const [nearestTarget] = getNearestContainerTarget(this, this.target.children)
 
       if (nearestTarget && nearestTarget instanceof BaseResources) {
-        const isCollision = isContainersColision(this, nearestTarget, this.size, TAIL_SIZE)
+        const isCollision = isContainersCollision(this, nearestTarget, this.size, TAIL_SIZE)
 
         if (!isCollision) {
           moveElementToContainer(this, nearestTarget, this.velocity)

@@ -1,4 +1,5 @@
 import { Container } from 'pixi.js'
+
 import { BaseAbility } from '../abilities'
 import { Game } from '../game'
 

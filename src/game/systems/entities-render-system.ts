@@ -1,7 +1,8 @@
 import { Assets, Container, Sprite } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Castle, Cave } from '../entities'
-import { BaseEntity } from '../entities/base'
+
+import { BaseEntity } from '../base'
+import { Castle, Cave } from '../buildings'
 import { Game } from '../game'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'

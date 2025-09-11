@@ -1,5 +1,5 @@
+import { BaseEntity } from '../base'
 import { ScreensSystem } from '../systems'
-import { BaseEntity } from './base'
 
 export class Castle extends BaseEntity {
   async init() {

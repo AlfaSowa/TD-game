@@ -1,4 +1,6 @@
 import {
+  CastleScreenSystem,
+  CaveScreenSystem,
   EntitiesRenderSystem,
   FetchDataSystem,
   HudSystem,
@@ -28,7 +30,8 @@ export const coreSystems = (systems: SystemRunner) => {
 
   //screens
   systems.add(PossessionScreenSystem)
-  // systems.add(CastleScreenSystem)
+  systems.add(CastleScreenSystem)
+  systems.add(CaveScreenSystem)
 
   //entities
   // systems.add(CitySystem)

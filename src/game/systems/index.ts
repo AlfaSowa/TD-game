@@ -1,5 +1,6 @@
 export * from './abilities-system'
 export * from './castle-screen-system'
+export * from './cave-screen-system'
 export * from './city-system'
 export * from './entities-render-system'
 export * from './farm-system'

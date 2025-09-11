@@ -1,5 +1,5 @@
-import { Castle } from '../entities'
-import { BaseEntity } from '../entities/base'
+import { BaseEntity } from '../base'
+import { Castle } from '../buildings'
 import { Game } from '../game'
 import { System } from './types'
 

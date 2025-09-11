@@ -1,9 +1,9 @@
 import { Assets, Graphics, Sprite } from 'pixi.js'
 import { Vector2 } from '../../utils'
+import { BaseEntity } from '../base'
 import { colorTheme } from '../constants'
 import { Game } from '../game'
 import { FarmSystem } from '../systems'
-import { BaseEntity } from './base'
 
 export class Farm extends BaseEntity {
   gap: number = 2

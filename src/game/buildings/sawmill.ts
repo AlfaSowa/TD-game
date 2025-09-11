@@ -1,5 +1,5 @@
 import { Assets, Sprite } from 'pixi.js'
-import { BaseEntity } from './base'
+import { BaseEntity } from '../base'
 
 export class Sawmill extends BaseEntity {
   async init() {

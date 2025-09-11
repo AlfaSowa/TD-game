@@ -1,6 +1,6 @@
 import { Assets, Sprite } from 'pixi.js'
+import { BaseEntity } from '../base'
 import { ScreensSystem } from '../systems'
-import { BaseEntity } from './base'
 
 export class City extends BaseEntity {
   async init() {

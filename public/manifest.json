@@ -143,6 +143,19 @@
         },
         {
           "alias": [
+            "images/cave_100x100.png",
+            "cave_100x100.png"
+          ],
+          "src": [
+            "images/cave_100x100@0.5x.png",
+            "images/cave_100x100.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
             "images/firecamp.png",
             "firecamp.png"
           ],
@@ -253,19 +266,6 @@
           "src": [
             "images/дом@0.5x.png",
             "images/дом.png"
-          ],
-          "data": {
-            "tags": {}
-          }
-        },
-        {
-          "alias": [
-            "images/cave_100x100.png",
-            "cave_100x100.png"
-          ],
-          "src": [
-            "images/cave_100x100@0.5x.png",
-            "images/cave_100x100.png"
           ],
           "data": {
             "tags": {}

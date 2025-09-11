@@ -402,6 +402,56 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
+        "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png": {
+            "isFolder": false,
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {},
+            "hash": "ND3xKg"
+        },
+        ".assetpack/mipmap/images/cave_100x100.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/cave_100x100.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/cave_100x100.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/cave_100x100.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/cave_100x100.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/cave_100x100@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/cave_100x100@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/cave_100x100@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
+        "E:/js-game-pack/game-frontend/public/images/cave_100x100@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/cave_100x100@0.5x.png",
+            "metaData": {},
+            "inheritedMetaData": {},
+            "transformData": {}
+        },
         "E:/js-game-pack/game-frontend/src/assets/images/firecamp.png": {
             "isFolder": false,
             "parent": "E:/js-game-pack/game-frontend/src/assets/images",
@@ -848,56 +898,6 @@
         "E:/js-game-pack/game-frontend/public/images/дом@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/дом@0.5x.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png": {
-            "isFolder": false,
-            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {},
-            "hash": "ND3xKg"
-        },
-        ".assetpack/mipmap/images/cave_100x100.png": {
-            "isFolder": false,
-            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        ".assetpack/compress/images/cave_100x100.png": {
-            "isFolder": false,
-            "transformParent": ".assetpack/mipmap/images/cave_100x100.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        "E:/js-game-pack/game-frontend/public/images/cave_100x100.png": {
-            "isFolder": false,
-            "transformParent": ".assetpack/compress/images/cave_100x100.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        ".assetpack/mipmap/images/cave_100x100@0.5x.png": {
-            "isFolder": false,
-            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        ".assetpack/compress/images/cave_100x100@0.5x.png": {
-            "isFolder": false,
-            "transformParent": ".assetpack/mipmap/images/cave_100x100@0.5x.png",
-            "metaData": {},
-            "inheritedMetaData": {},
-            "transformData": {}
-        },
-        "E:/js-game-pack/game-frontend/public/images/cave_100x100@0.5x.png": {
-            "isFolder": false,
-            "transformParent": ".assetpack/compress/images/cave_100x100@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}

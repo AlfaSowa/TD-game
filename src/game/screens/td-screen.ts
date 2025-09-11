@@ -1,5 +1,5 @@
 import { Viewport } from 'pixi-viewport'
-import { Container, Graphics } from 'pixi.js'
+import { Application, Container, Graphics } from 'pixi.js'
 
 export class TDScreen extends Container {
   SCREEN_NAME = 'td'
@@ -9,7 +9,7 @@ export class TDScreen extends Container {
 
   public signals = {}
 
-  init() {
+  init(app: Application) {
     this.addChild(new Graphics().rect(0, 0, 430, 932).fill({ color: '#2f4a6a' }))
   }
 

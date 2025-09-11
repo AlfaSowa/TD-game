@@ -1,9 +1,7 @@
-import { Forest, ResourceTree } from '../entities'
-import { BaseEntity } from '../entities/base'
+import { BaseEntity } from '../base'
 import { Game } from '../game'
 import { EntitiesRenderSystem } from './entities-render-system'
 import { ScreensSystem } from './screens-system'
-import { SpawnersSystem } from './spawners-system'
 import { System } from './types'
 
 const SPAWN_INTERVAL = 1000
@@ -28,26 +26,25 @@ export class PossessionScreenSystem implements System {
 
   initPhaseEntities() {
     for (const element of this.updatingItems) {
-      if (element instanceof Forest) {
-        element.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
-          container: element,
-          maxElementsOnView: MAX_SPAW_ELEMENTS,
-          render: () => {
-            return element.createTree()
-          },
-          interval: SPAWN_INTERVAL,
-          isInfinity: false,
-          isFilling: false,
-          place: {
-            distance: {
-              min: 100,
-              max: 500
-            }
-          }
-        })
-
-        element.addSpawnerToStage()
-      }
+      // if (element instanceof Forest) {
+      //   element.spawner = this.game.systems.get(SpawnersSystem).createSpawner<ResourceTree>({
+      //     container: element,
+      //     maxElementsOnView: MAX_SPAW_ELEMENTS,
+      //     render: () => {
+      //       return element.createTree()
+      //     },
+      //     interval: SPAWN_INTERVAL,
+      //     isInfinity: false,
+      //     isFilling: false,
+      //     place: {
+      //       distance: {
+      //         min: 100,
+      //         max: 500
+      //       }
+      //     }
+      //   })
+      //   element.addSpawnerToStage()
+      // }
     }
   }
 

@@ -1,23 +1,28 @@
 import { Container } from 'pixi.js'
 import { Game } from '..'
-import { CastleScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
+import { CastleScreen, CaveScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
 
 import { Signal } from 'typed-signals'
 import { SystemRunner } from './system-runner'
 import { System } from './types'
 
-export type ScreensType = 'map' | 'possession' | 'td' | 'castle'
+export type ScreensType = 'map' | 'possession' | 'td' | 'castle' | 'cave'
+
+type ScreensObjectType = {
+  map: MapScreen
+  possession: PossessionScreen
+  td: TDScreen
+  castle: CastleScreen
+  cave: CaveScreen
+}
 export class ScreensSystem implements System {
   public static SYSTEM_ID = 'screens'
 
   game!: Game
 
-  map!: MapScreen
-  possession!: PossessionScreen
-  td!: TDScreen
-  castle!: CastleScreen
+  screens: ScreensObjectType
 
-  currentScreen!: MapScreen | PossessionScreen | TDScreen
+  currentScreen!: MapScreen | PossessionScreen | TDScreen | CaveScreen | CastleScreen
   systems!: SystemRunner
 
   public signals = {
@@ -28,17 +33,24 @@ export class ScreensSystem implements System {
   }
 
   constructor() {
-    this.map = new MapScreen()
-    this.possession = new PossessionScreen()
-    this.td = new TDScreen()
-    this.castle = new CastleScreen()
+    this.screens = {
+      map: new MapScreen(),
+      possession: new PossessionScreen(),
+      td: new TDScreen(),
+      castle: new CastleScreen(),
+      cave: new CaveScreen()
+    }
 
     this.signals.onToggleScreen.connect((type) => {
+      if (this.currentScreen === this.screens.castle) {
+        console.log('onToggleScreen from castle')
+      }
+
       this.currentScreen.removeFromParent()
-      this.currentScreen = this[type]
+      this.currentScreen = this.screens[type]
       this.game.app.stage.addChild(this.currentScreen)
 
-      console.log('onToggleScreen', this.currentScreen.viewport)
+      // console.log('onToggleScreen', this.currentScreen.viewport)
     })
 
     this.signals.onViewportPauseDrag.connect(() => {
@@ -58,11 +70,11 @@ export class ScreensSystem implements System {
   }
 
   addContainer(container: Container, containerType: ScreensType, index?: number) {
-    this[containerType].addContainer(container, index)
+    this.screens[containerType].addContainer(container, index)
   }
 
   removeContainer(containerType: ScreensType, id: number) {
-    for (const element of this[containerType].activeContainer.children) {
+    for (const element of this.screens[containerType].activeContainer.children) {
       if (element.uid === id) {
         element.removeFromParent()
         element.destroy()
@@ -78,13 +90,18 @@ export class ScreensSystem implements System {
     return this.currentScreen
   }
 
-  init() {
-    this.currentScreen = this.possession
+  getScreen<K extends keyof ScreensObjectType>(screenType: K): ScreensObjectType[K] {
+    return this.screens[screenType]
+  }
 
-    this.map.init(this.game.app)
-    this.possession.init(this.game.app)
-    this.td.init()
-    this.castle.init(this.game.app)
+  init() {
+    this.currentScreen = this.screens.possession
+
+    this.screens.map.init(this.game.app)
+    this.screens.possession.init(this.game.app)
+    this.screens.td.init(this.game.app)
+    this.screens.castle.init(this.game.app)
+    this.screens.cave.init(this.game.app)
 
     this.game.app.stage.addChild(this.currentScreen)
   }
