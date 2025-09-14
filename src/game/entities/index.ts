@@ -1,1 +1,1 @@
-export * from './cave-roads'
+export * from './cave-point'

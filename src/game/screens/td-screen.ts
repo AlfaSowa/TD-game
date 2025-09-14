@@ -1,11 +1,8 @@
-import { Viewport } from 'pixi-viewport'
 import { Application, Container, Graphics } from 'pixi.js'
+import { BaseScreen } from '../base'
 
-export class TDScreen extends Container {
+export class TDScreen extends BaseScreen {
   SCREEN_NAME = 'td'
-
-  viewport!: Viewport
-  activeContainer: Container = new Container()
 
   public signals = {}
 

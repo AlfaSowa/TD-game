@@ -1,10 +1,11 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+
+import { BaseScreen } from '../base'
 import { WORLD_CASTLE_ACTIVE_H, WORLD_CASTLE_ACTIVE_W, WORLD_CASTLE_H, WORLD_CASTLE_W } from './constans'
 
-export class CastleScreen extends Container {
+export class CastleScreen extends BaseScreen {
   SCREEN_NAME = 'castle-screen'
-  viewport!: Viewport
 
   activeContainer: Container = new Container()
 

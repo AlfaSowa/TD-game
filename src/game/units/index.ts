@@ -1,1 +1,2 @@
-export { Lumberman } from './lumberman'
+export * from './fighter'
+export * from './mage'

@@ -1,12 +1,10 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { BaseScreen } from '../base'
 import { WORLD_MAP_ACTIVE_H, WORLD_MAP_ACTIVE_W, WORLD_MAP_H, WORLD_MAP_W } from './constans'
 
-export class MapScreen extends Container {
+export class MapScreen extends BaseScreen {
   SCREEN_NAME = 'map'
-  viewport!: Viewport
-
-  activeContainer: Container = new Container()
 
   init(app: Application) {
     this.viewport = new Viewport({

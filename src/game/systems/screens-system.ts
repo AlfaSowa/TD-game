@@ -3,6 +3,7 @@ import { Game } from '..'
 import { CastleScreen, CaveScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
 
 import { Signal } from 'typed-signals'
+import { CaveScreenSystem } from './cave-screen-system'
 import { SystemRunner } from './system-runner'
 import { System } from './types'
 
@@ -20,7 +21,7 @@ export class ScreensSystem implements System {
 
   game!: Game
 
-  screens: ScreensObjectType
+  screens!: ScreensObjectType
 
   currentScreen!: MapScreen | PossessionScreen | TDScreen | CaveScreen | CastleScreen
   systems!: SystemRunner
@@ -33,24 +34,17 @@ export class ScreensSystem implements System {
   }
 
   constructor() {
-    this.screens = {
-      map: new MapScreen(),
-      possession: new PossessionScreen(),
-      td: new TDScreen(),
-      castle: new CastleScreen(),
-      cave: new CaveScreen()
-    }
-
     this.signals.onToggleScreen.connect((type) => {
-      if (this.currentScreen === this.screens.castle) {
-        console.log('onToggleScreen from castle')
+      if (this.currentScreen === this.screens.cave) {
+        console.log('onToggleScreen from cave')
+        this.game.systems.get(CaveScreenSystem).signals.onResetMainContent.emit()
       }
 
       this.currentScreen.removeFromParent()
       this.currentScreen = this.screens[type]
       this.game.app.stage.addChild(this.currentScreen)
 
-      // console.log('onToggleScreen', this.currentScreen.viewport)
+      this.currentScreen.onLoad()
     })
 
     this.signals.onViewportPauseDrag.connect(() => {
@@ -95,7 +89,16 @@ export class ScreensSystem implements System {
   }
 
   init() {
-    this.currentScreen = this.screens.possession
+    this.screens = {
+      map: new MapScreen({ game: this.game }),
+      possession: new PossessionScreen({ game: this.game }),
+      td: new TDScreen({ game: this.game }),
+      castle: new CastleScreen({ game: this.game }),
+      cave: new CaveScreen({ game: this.game })
+    }
+
+    //!DEV
+    this.currentScreen = this.screens.cave
 
     this.screens.map.init(this.game.app)
     this.screens.possession.init(this.game.app)
@@ -104,6 +107,8 @@ export class ScreensSystem implements System {
     this.screens.cave.init(this.game.app)
 
     this.game.app.stage.addChild(this.currentScreen)
+
+    this.currentScreen.onLoad()
   }
 
   update() {

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react'
 import { CoreResource } from '../../api'
 import { ResourcesSystem } from '../../game/systems'
 import { GameContext } from '../App'
-import { BottomMenu } from '../widgets'
 
 export const Layout = () => {
   const game = useContext(GameContext)
@@ -18,7 +17,7 @@ export const Layout = () => {
 
   return (
     <>
-      <div className="absolute top-0 left-0 w-full bg-slate-400 p-2 flex gap-4">
+      <div className="w-full bg-slate-400 p-2 flex gap-4">
         {resources.map((e) => (
           <div className="flex gap-1 items-center" key={e.id}>
             <div>{e.name}</div>
@@ -26,8 +25,6 @@ export const Layout = () => {
           </div>
         ))}
       </div>
-
-      <BottomMenu />
 
       {/* {isShowCastleGrid && <CastleGrid onClose={setIsShowCastleGrid} />} */}
 

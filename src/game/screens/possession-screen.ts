@@ -1,5 +1,6 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { BaseScreen } from '../base'
 import {
   WORLD_POSSESSION_ACTIVE_H,
   WORLD_POSSESSION_ACTIVE_W,
@@ -7,11 +8,8 @@ import {
   WORLD_POSSESSION_W
 } from './constans'
 
-export class PossessionScreen extends Container {
+export class PossessionScreen extends BaseScreen {
   SCREEN_NAME = 'possession'
-  viewport!: Viewport
-
-  activeContainer: Container = new Container()
 
   public signals = {}
 

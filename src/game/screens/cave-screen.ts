@@ -1,16 +1,17 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { BaseScreen } from '../base'
+import { CaveScreenSystem } from '../systems'
 
 const HEADER_WIDTH = 200
 
-export class CaveScreen extends Container {
+export class CaveScreen extends BaseScreen {
   SCREEN_NAME = 'cave-screen'
-  viewport!: Viewport
-
-  activeContainer: Container = new Container()
 
   header: Container = new Container()
   main: Container = new Container()
+
+  bgId: number = 0
 
   init(app: Application) {
     this.viewport = new Viewport({
@@ -31,6 +32,9 @@ export class CaveScreen extends Container {
     const mainBg = new Graphics()
       .rect(0, 0, app.canvas.width, app.canvas.height - HEADER_WIDTH)
       .fill({ color: '#024C68' })
+
+    this.bgId = mainBg.uid
+
     this.main.addChild(mainBg)
     this.main.position.y = HEADER_WIDTH
 
@@ -40,14 +44,27 @@ export class CaveScreen extends Container {
     this.addChild(this.viewport)
   }
 
+  resetMainContainer() {
+    for (let i = 0; i < this.main.children.length; i++) {
+      if (this.main.children[i].uid !== this.bgId) this.main.removeChildAt(i)
+    }
+  }
+
   addContainer(container: Container) {
     this.activeContainer.addChild(container)
   }
 
   updateContent(container: Container) {
+    for (let i = 0; i < this.main.children.length; i++) {
+      if (this.main.children[i].uid !== this.bgId) this.main.removeChildAt(i)
+    }
     this.main.addChild(container)
 
     console.log('this.main', this.main)
+  }
+
+  onLoad() {
+    this.game.systems.get(CaveScreenSystem).loadMap()
   }
 
   update() {}

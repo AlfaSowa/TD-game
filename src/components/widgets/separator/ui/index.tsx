@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { GameContext } from '../../../App'
 import { Layout } from '../../../entities'
 import { LoadingScreen } from '../../../entities/loading-screen'
+import { BottomMenu } from '../../bottom-menu'
 import { useGameInit, useGetTelegramUser } from '../hooks'
 
 const tg = (window as any)?.Telegram?.WebApp
@@ -14,12 +15,14 @@ export const Separator = () => {
   console.log('tgUser', tgUser)
 
   return (
-    <div>
+    <div className="flex flex-col h-dvh w-screen">
       {!tgUser && !isGameStarted && <LoadingScreen />}
 
       {tgUser && isGameStarted && <Layout />}
 
-      <div id="game-canvas" className="h-dvh w-screen flex items-center justify-center fixed top-0 left-0 -z-10" />
+      <div id="canvas-wrapper" className="flex-1" />
+
+      {tgUser && isGameStarted && <BottomMenu />}
     </div>
   )
 }

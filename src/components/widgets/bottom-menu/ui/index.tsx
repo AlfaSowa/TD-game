@@ -34,7 +34,7 @@ export const BottomMenu = () => {
   ]
 
   return (
-    <div className="absolute bottom-0 left-0 w-full bg-slate-400 flex gap-4 items-center px-2 py-1">
+    <div className="w-full bg-slate-400 flex gap-4 items-center px-2 py-1">
       <div className="grid grid-cols-4 gap-4">
         {buttons.map(({ onClick, icon, title }) => (
           <div key={title} className="flex flex-col items-center">

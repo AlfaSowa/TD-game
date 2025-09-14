@@ -5,6 +5,9 @@ import { BaseUnit } from '../base'
 import { TAIL_SIZE } from '../constants'
 
 export class Collector extends BaseUnit {
+  velocity: number = 3
+  size: number = TAIL_SIZE
+
   private resources: number = 0
   private maxResources: number = 10
 

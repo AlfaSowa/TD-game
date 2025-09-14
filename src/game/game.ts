@@ -42,9 +42,12 @@ export class Game extends Container {
   }
 
   async init() {
+    const canvasWrapper = document.getElementById('canvas-wrapper')
+
     await this.app.init({
       background: '#403d39',
-      resizeTo: window,
+      width: window.innerWidth,
+      height: canvasWrapper!.clientHeight - 96,
       roundPixels: false,
       resolution: 1,
       preference: 'webgpu'
@@ -52,7 +55,7 @@ export class Game extends Container {
 
     await this.initAssets()
 
-    document.getElementById('game-canvas')?.appendChild(this.app.canvas)
+    canvasWrapper!.appendChild(this.app.canvas)
 
     state.init(this)
 

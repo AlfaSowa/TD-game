@@ -1,11 +1,18 @@
 import { Container } from 'pixi.js'
-import { TAIL_SIZE } from '../constants'
+import { Game } from '../game'
+
+export interface BaseUnitConstructor {
+  game: Game
+}
 
 export class BaseUnit extends Container {
-  velocity: number = 3
-  size: number = TAIL_SIZE
+  damage: number = 0
+  game: Game
 
-  stepByPath() {}
+  constructor({ game }: BaseUnitConstructor) {
+    super()
+    this.game = game
+  }
 
-  moveToTargetByPath() {}
+  init() {}
 }
