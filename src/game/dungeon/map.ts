@@ -19,7 +19,7 @@ const fieldsArray = [
   { isFree: true, type: 'Mage' }
 ]
 
-const ROWS = 5
+const ROWS = 3
 
 export class DungeonMap extends Container {
   game: Game
@@ -54,12 +54,13 @@ export class DungeonMap extends Container {
   initFields() {
     const pWidth = this.parent.width / ROWS
 
-    const fields = drawSquareFields({
+    const fields = drawSquareFields<FieldType, DungeonField>({
       fieldsArray,
       pWidth,
       squareSize: pWidth,
       xAmount: ROWS,
-      renderContainer: (field) => this.renderField(field)
+      renderContainer: (field) => this.renderField(field),
+      postRender: (elem, field) => this.postRenderField(elem, field)
     })
 
     setTimeout(() => {
@@ -68,16 +69,23 @@ export class DungeonMap extends Container {
     }, 2000)
   }
 
+  postRenderField(elem: DungeonField, field: FieldType) {
+    elem.drawContent(field)
+  }
+
   renderField(field: FieldType) {
     const element = new DungeonField({ game: this.game })
 
-    element.init()
-
-    element.clicked((f) => {
+    element.clicked((f, o) => {
       console.log(f)
-    })
+      console.log(o)
 
-    element.drawContent(field)
+      for (const element of this.children) {
+        if (element instanceof DungeonField) {
+          element.select(f.uid)
+        }
+      }
+    })
 
     return element
   }

@@ -1,18 +1,19 @@
 import { Container, Graphics } from 'pixi.js'
-import { FieldType } from '../dungeon/field'
 
-export const drawSquareFields = <T extends Container>({
+export const drawSquareFields = <F, T extends Container>({
   fieldsArray,
   pWidth,
   renderContainer,
   squareSize,
   xAmount,
-  yAmount
+  yAmount,
+  postRender
 }: {
-  fieldsArray: FieldType[]
+  fieldsArray: F[]
   squareSize: number
   pWidth: number
-  renderContainer: (field: any) => T
+  renderContainer: (field: F) => T
+  postRender: (elem: T, field: F) => void
   xAmount: number
   yAmount?: number
 }): Container[] => {
@@ -24,9 +25,11 @@ export const drawSquareFields = <T extends Container>({
     //TODO  подумать как сделать чтобы Graphics отрисовывалась вперед container
     const container = renderContainer(fieldsArray[i])
 
-    container.addChildAt(g, 0)
+    container.addChild(g)
 
     container.position.set((i % xAmount) * pWidth, Math.floor(i / (yAmount || xAmount)) * pWidth)
+
+    postRender(container, fieldsArray[i])
 
     fields.push(container)
   }

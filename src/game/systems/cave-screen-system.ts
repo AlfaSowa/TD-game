@@ -1,11 +1,17 @@
 import { Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 
+import { BaseUnit } from '../base'
 import { DungeonMap } from '../dungeon'
 import { CavePoint } from '../entities'
 import { Game } from '../game'
+import { FighterUnit, MageUnit } from '../units'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
+
+type Unit = {
+  [key: string]: () => BaseUnit
+}
 
 const POINTS = 3
 export class CaveScreenSystem implements System {
@@ -14,6 +20,8 @@ export class CaveScreenSystem implements System {
   game!: Game
 
   caveRoads: Container = new Container()
+
+  entities!: Unit
 
   public signals = {
     onUpdateMainContent: new Signal<(container: Container) => void>(),
@@ -32,6 +40,13 @@ export class CaveScreenSystem implements System {
 
       screen.resetMainContainer()
     })
+  }
+
+  init() {
+    this.entities = {
+      ['Mage']: () => new MageUnit({ game: this.game }),
+      ['Fighter']: () => new FighterUnit({ game: this.game })
+    }
   }
 
   loadMap() {
