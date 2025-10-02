@@ -1,23 +1,23 @@
 import { Container } from 'pixi.js'
 import { Game } from '../game'
 
-interface IBaseUnit {
+interface IBaseSpell {
   init?: () => void
   update?: () => void
 }
 
-interface BaseUnitConstructor {
+interface BaseSpellConstructor {
   game: Game
 }
 
-export class BaseUnit extends Container implements IBaseUnit {
-  damage: number = 0
+export class BaseSpell extends Container implements IBaseSpell {
   game: Game
 
-  constructor({ game }: BaseUnitConstructor) {
+  constructor({ game }: BaseSpellConstructor) {
     super()
     this.game = game
   }
 
   init() {}
+  update() {}
 }

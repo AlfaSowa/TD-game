@@ -29,16 +29,14 @@ export class CaveScreen extends BaseScreen {
     const headerBg = new Graphics().rect(0, 0, app.canvas.width, HEADER_WIDTH).fill({ color: '#62B1D0' })
     this.header.addChild(headerBg)
 
-    const mainBg = new Graphics()
-      .rect(0, 0, app.canvas.width, app.canvas.height - HEADER_WIDTH)
-      .fill({ color: '#024C68' })
+    const mainBg = new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#024C68' })
 
     this.bgId = mainBg.uid
 
     this.main.addChild(mainBg)
-    this.main.position.y = HEADER_WIDTH
+    // this.main.position.y = HEADER_WIDTH
 
-    this.addContainer(this.header)
+    // this.addContainer(this.header)
     this.addContainer(this.main)
 
     this.addChild(this.viewport)

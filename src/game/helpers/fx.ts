@@ -1,38 +1,26 @@
 import { Container, Graphics } from 'pixi.js'
 
-export const drawSquareFields = <F, T extends Container>({
-  fieldsArray,
-  pWidth,
-  renderContainer,
-  squareSize,
-  xAmount,
-  yAmount,
-  postRender
-}: {
-  fieldsArray: F[]
-  squareSize: number
-  pWidth: number
-  renderContainer: (field: F) => T
-  postRender: (elem: T, field: F) => void
+type DrawSquareFieldsType = {
+  container: Container
+  NumberOfCols: number
+  fieldSize: number
   xAmount: number
   yAmount?: number
-}): Container[] => {
-  let fields: Container[] = []
-
+}
+export const drawSquareFields = <F, T extends Container>({
+  container,
+  NumberOfCols,
+  fieldSize,
+  xAmount,
+  yAmount
+}: DrawSquareFieldsType) => {
   for (let i = 0; i < (yAmount ? yAmount * xAmount : xAmount * xAmount); i++) {
-    const g = new Graphics().rect(0, 0, squareSize, squareSize).fill({ color: '#f1f1f1' }).stroke(0x00ff00)
+    const field = new Container()
+    const g = new Graphics().rect(0, 0, fieldSize, fieldSize).fill({ color: '#f1f1f1' }).stroke(0x00ff00)
+    field.addChild(g)
 
-    //TODO  подумать как сделать чтобы Graphics отрисовывалась вперед container
-    const container = renderContainer(fieldsArray[i])
+    field.position.set((i % xAmount) * NumberOfCols, Math.floor(i / xAmount) * NumberOfCols)
 
-    container.addChild(g)
-
-    container.position.set((i % xAmount) * pWidth, Math.floor(i / (yAmount || xAmount)) * pWidth)
-
-    postRender(container, fieldsArray[i])
-
-    fields.push(container)
+    container.addChild(field)
   }
-
-  return fields
 }

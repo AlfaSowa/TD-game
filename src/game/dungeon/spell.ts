@@ -1,33 +1,31 @@
 import { Container, Graphics } from 'pixi.js'
-import { BaseUnit } from '../base'
 import { Game } from '../game'
 import { DangeonSystem } from '../systems'
 
-interface DungeonFieldConstructor {
+interface SpellFieldConstructor {
   game: Game
 }
 
-export type DangeonEnemiesType = {
+export type DangeonSpellType = {
   type: string | null
 }
 
-export class DungeonField extends Container {
+export class SpellField extends Container {
   game: Game
 
-  owner!: BaseUnit
   isSelected: boolean = false
 
-  constructor({ game }: DungeonFieldConstructor) {
+  constructor({ game }: SpellFieldConstructor) {
     super()
     this.game = game
   }
 
-  clicked(callback: (e: DungeonField, f: BaseUnit) => void) {
+  clicked(callback: (e: SpellField) => void) {
     this.eventMode = 'static'
     this.cursor = 'pointer'
 
     this.on('pointerup', () => {
-      callback.call(this, this, this.owner)
+      callback.call(this, this)
     })
 
     return this
@@ -41,7 +39,7 @@ export class DungeonField extends Container {
           if (element instanceof Graphics) {
             const size = element.width - 1
             element.clear()
-            element.rect(0, 0, size, size).fill({ color: '#FF8073' }).stroke(0x00ff00)
+            element.rect(0, 0, size, size).fill({ color: '#399200' }).stroke(0x00ff00)
           }
         }
       }
@@ -63,14 +61,15 @@ export class DungeonField extends Container {
     return null
   }
 
-  drawContent(field: DangeonEnemiesType) {
+  drawContent(field: DangeonSpellType) {
+    console.log('field', field)
+
     if (field.type) {
-      const entity = this.game.systems.get(DangeonSystem).entities[field.type]()
+      const entity = this.game.systems.get(DangeonSystem).spells[field.type]()
 
       if (entity) {
         entity.init()
 
-        this.owner = entity
         this.addChild(entity)
 
         entity.position.set(this.width / 2 - entity.width / 2, this.height / 2 - entity.height / 2)
