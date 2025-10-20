@@ -1,7 +1,7 @@
 import { Container, Graphics } from 'pixi.js'
 import { BaseUnit } from '../base'
 import { Game } from '../game'
-import { DangeonSystem } from '../systems'
+import { DungeonSystem } from '../systems'
 
 interface DungeonFieldConstructor {
   game: Game
@@ -20,6 +20,11 @@ export class DungeonField extends Container {
   constructor({ game }: DungeonFieldConstructor) {
     super()
     this.game = game
+  }
+
+  updateGraphics(size: number) {
+    const g = new Graphics().rect(0, 0, size, size).fill({ color: '#f1f1f1' }).stroke(0x00ff00)
+    this.addChild(g)
   }
 
   clicked(callback: (e: DungeonField, f: BaseUnit) => void) {
@@ -65,7 +70,7 @@ export class DungeonField extends Container {
 
   drawContent(field: DangeonEnemiesType) {
     if (field.type) {
-      const entity = this.game.systems.get(DangeonSystem).entities[field.type]()
+      const entity = this.game.systems.get(DungeonSystem).entities[field.type]()
 
       if (entity) {
         entity.init()

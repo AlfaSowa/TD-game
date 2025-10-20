@@ -1,13 +1,13 @@
 import { Container } from 'pixi.js'
 import { Game } from '..'
-import { CastleScreen, CaveScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
+import { CastleScreen, CaveScreen, DungeonMapScreen, MapScreen, PossessionScreen, TDScreen } from '../screens'
 
 import { Signal } from 'typed-signals'
 import { CaveScreenSystem } from './cave-screen-system'
 import { SystemRunner } from './system-runner'
 import { System } from './types'
 
-export type ScreensType = 'map' | 'possession' | 'td' | 'castle' | 'cave'
+export type ScreensType = 'map' | 'possession' | 'td' | 'castle' | 'cave' | 'dungeonMap'
 
 type ScreensObjectType = {
   map: MapScreen
@@ -15,6 +15,7 @@ type ScreensObjectType = {
   td: TDScreen
   castle: CastleScreen
   cave: CaveScreen
+  dungeonMap: DungeonMapScreen
 }
 export class ScreensSystem implements System {
   public static SYSTEM_ID = 'screens'
@@ -23,7 +24,7 @@ export class ScreensSystem implements System {
 
   screens!: ScreensObjectType
 
-  currentScreen!: MapScreen | PossessionScreen | TDScreen | CaveScreen | CastleScreen
+  currentScreen!: MapScreen | PossessionScreen | TDScreen | CaveScreen | CastleScreen | DungeonMapScreen
   systems!: SystemRunner
 
   public signals = {
@@ -94,7 +95,8 @@ export class ScreensSystem implements System {
       possession: new PossessionScreen({ game: this.game }),
       td: new TDScreen({ game: this.game }),
       castle: new CastleScreen({ game: this.game }),
-      cave: new CaveScreen({ game: this.game })
+      cave: new CaveScreen({ game: this.game }),
+      dungeonMap: new DungeonMapScreen({ game: this.game })
     }
 
     //!DEV
@@ -105,6 +107,7 @@ export class ScreensSystem implements System {
     this.screens.td.init(this.game.app)
     this.screens.castle.init(this.game.app)
     this.screens.cave.init(this.game.app)
+    this.screens.dungeonMap.init(this.game.app)
 
     this.game.app.stage.addChild(this.currentScreen)
 

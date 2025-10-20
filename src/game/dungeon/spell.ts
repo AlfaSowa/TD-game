@@ -1,6 +1,6 @@
 import { Container, Graphics } from 'pixi.js'
 import { Game } from '../game'
-import { DangeonSystem } from '../systems'
+import { DungeonSystem } from '../systems'
 
 interface SpellFieldConstructor {
   game: Game
@@ -65,7 +65,7 @@ export class SpellField extends Container {
     console.log('field', field)
 
     if (field.type) {
-      const entity = this.game.systems.get(DangeonSystem).spells[field.type]()
+      const entity = this.game.systems.get(DungeonSystem).spells[field.type]()
 
       if (entity) {
         entity.init()

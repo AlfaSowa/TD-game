@@ -1,8 +1,6 @@
-import { Button } from '@pixi/ui'
-import { Container, Graphics, Text } from 'pixi.js'
+import { Container, Graphics } from 'pixi.js'
 import { Game } from '../game'
 import { drawSquareFields } from '../helpers'
-import { DangeonSystem } from '../systems'
 import { DangeonEnemiesType, DungeonField } from './field'
 import { DangeonSpellType, SpellField } from './spell'
 
@@ -61,111 +59,57 @@ export class DungeonMap extends Container {
   fieldSelected: DungeonField | null = null
   spellSelected: SpellField | null = null
 
+  pWidth: number = 0
+
   constructor({ game }: DungeonMapConstructor) {
     super()
     this.game = game
   }
 
   init() {
-    const bg = new Graphics().rect(0, 0, this.parent.width, this.parent.height).fill({ color: '#85004B' })
-
-    this.addChild(bg)
-
-    this.checkIsReady()
-
-    this.initSpellPanel()
     this.initFields()
 
-    this.renderButtons()
-
-    setTimeout(() => {
-      this.plug.removeFromParent()
-      this.startRound()
-    }, 500)
+    // this.startRound()
   }
 
   startRound() {
-    console.log('startRound')
     this.fillData()
-    this.addChild(this.spellPanel, this.fielsPanel, this.buttonsGroup)
   }
 
   fillData() {
     console.log('fillData')
-  }
 
-  checkIsReady() {
-    if (!this.isReady) {
-      this.plug.position.set(this.parent.width / 2 - 50, this.parent.height / 2 - 50)
-
-      this.addChild(this.plug)
-    }
-  }
-
-  initSpellPanel() {
-    const pWidth = this.parent.width / SPELLS
-
-    drawSquareFields<DangeonSpellType, SpellField>({
-      container: this.spellPanel,
-      fieldSize: pWidth,
-      NumberOfCols: pWidth,
-      xAmount: SPELLS,
-      yAmount: 1
-    })
-
-    this.spellPanel.position.set(0, SPELL_PANEL_POSITION_Y)
-  }
-
-  renderSpell() {
-    const element = new SpellField({ game: this.game })
-
-    element.clicked((f) => {
-      console.log(f)
-
-      for (const element of this.spellPanel.children) {
-        if (element instanceof SpellField) {
-          const selected = element.select(f.uid)
-
-          if (selected) {
-            this.spellSelected = selected
-          }
-        }
+    for (const [index, container] of this.fielsPanel.children.entries()) {
+      if (fieldsArray[index].type) {
+        console.log(fieldsArray[index])
       }
-    })
-
-    return element
-  }
-
-  postRenderSpell(elem: SpellField, field: DangeonSpellType) {
-    if (field) {
-      elem.drawContent(field)
     }
   }
 
   initFields() {
-    const pWidth = this.parent.width / FIELDS
+    this.pWidth = this.parent.width / FIELDS
 
     drawSquareFields<DangeonEnemiesType, DungeonField>({
       container: this.fielsPanel,
-      fieldSize: pWidth,
-      NumberOfCols: pWidth,
-      xAmount: FIELDS
+      fieldSize: this.pWidth,
+      xAmount: FIELDS,
+      renderElementFx: () => this.renderField()
     })
 
     this.fielsPanel.position.set(0, FIELDS_PANEL_POSITION_Y)
+
+    this.addChild(this.fielsPanel)
   }
 
-  renderField(field: DangeonEnemiesType) {
+  renderField() {
     const element = new DungeonField({ game: this.game })
 
-    element.clicked((f, o) => {
-      console.log(f)
-      console.log(o)
+    element.updateGraphics(this.pWidth)
 
+    element.clicked((f, o) => {
       for (const element of this.fielsPanel.children) {
         if (element instanceof DungeonField) {
           const selected = element.select(f.uid)
-
           if (selected) {
             this.fieldSelected = selected
           }
@@ -180,26 +124,5 @@ export class DungeonMap extends Container {
     if (field) {
       elem.drawContent(field)
     }
-  }
-
-  renderButtons() {
-    const buttonView = new Container()
-    const buttonBg = new Graphics().rect(0, 0, 100, 50).fill(0xffffff)
-    const textInstance = new Text({ text: 'ХОД' })
-    // textInstance.anchor.set(0.5)
-    buttonView.addChild(buttonBg, textInstance)
-
-    const button = new Button(buttonView)
-    button.onPress.connect(() => {
-      if (this.fieldSelected && this.spellSelected) {
-        this.game.systems.get(DangeonSystem).signals.onInteraction.emit(this.fieldSelected, this.spellSelected)
-      }
-    })
-
-    this.buttonsGroup.addChild(button.view)
-
-    const gap = this.parent.height - (FIELDS_PANEL_POSITION_Y + this.fielsPanel.height)
-
-    this.buttonsGroup.position.set(25, this.parent.height - gap / 2 - 25)
   }
 }

@@ -62,7 +62,7 @@ export class CaveScreen extends BaseScreen {
   }
 
   onLoad() {
-    this.game.systems.get(CaveScreenSystem).loadMap()
+    this.game.systems.get(CaveScreenSystem).loadCavePoints()
   }
 
   update() {}

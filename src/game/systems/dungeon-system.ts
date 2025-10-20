@@ -16,7 +16,7 @@ type Spells = {
   [key: string]: () => BaseSpell
 }
 
-export class DangeonSystem implements System {
+export class DungeonSystem implements System {
   public static SYSTEM_ID = 'dangeon-system'
 
   game!: Game

@@ -1,9 +1,9 @@
 import { Container } from 'pixi.js'
 import { Signal } from 'typed-signals'
 
-import { DungeonMap } from '../dungeon'
 import { CavePoint } from '../entities'
 import { Game } from '../game'
+import { DungeonMapScreenSystem } from './dungeon-map-screen-system'
 import { ScreensSystem } from './screens-system'
 import { System } from './types'
 
@@ -34,18 +34,15 @@ export class CaveScreenSystem implements System {
     })
   }
 
-  loadMap() {
+  loadCavePoints() {
     for (let i = 0; i < POINTS; i++) {
       const point = new CavePoint({ game: this.game })
       point.init()
       point.position.set(this.game.app.canvas.width / 2 - 50, i * 200)
 
       point.clicked(() => {
-        const map = new DungeonMap({ game: this.game })
-
-        this.signals.onUpdateMainContent.emit(map)
-
-        map.init()
+        this.game.systems.get(DungeonMapScreenSystem).signals.onUpdateCavePoint.emit(point)
+        this.game.systems.get(ScreensSystem).signals.onToggleScreen.emit('dungeonMap')
       })
 
       this.caveRoads.addChild(point)

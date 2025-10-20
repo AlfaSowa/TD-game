@@ -1,5 +1,6 @@
 export * from './castle-screen'
 export * from './cave-screen'
+export * from './dungeon-map-screen'
 export * from './map-screen'
 export * from './possession-screen'
 export * from './td-screen'
