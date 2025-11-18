@@ -1,5 +1,4 @@
 import { Game } from '../game'
-import { FarmSystem } from '../systems'
 
 type FarmDataType = {
   id: string
@@ -22,13 +21,10 @@ class State {
 
   set initFarm(data: any) {
     this.farmData = data
-
-    this.game.systems.get(FarmSystem).signals.onInitFarm.emit()
   }
 
   set updateFarm(data: any[]) {
     this.farmData.data = data
-    this.game.systems.get(FarmSystem).signals.onUpdateFarm.emit()
   }
 
   get farm() {

@@ -1,6 +1,7 @@
+import { heuristic, removeElementFromArray, Vector2 } from '../../../utils'
+import { getDistBetweenTargets } from '../../../utils/math2'
+import { TAIL_SIZE } from '../../constants'
 import { Game } from '../../game'
-import { TAIL_SIZE } from '../../game/constants'
-import { getDistBetweenTargets, heuristic, removeElementFromArray, Vector2 } from '../../utils'
 
 import { Spot } from './pathfinder-spot'
 

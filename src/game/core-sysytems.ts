@@ -1,16 +1,12 @@
+import { ResourcesSystem } from './entities'
 import {
   CastleScreenSystem,
   CaveScreenSystem,
-  DungeonMapScreenSystem,
-  DungeonSystem,
-  EntitiesRenderSystem,
-  FetchDataSystem,
-  HudSystem,
+  DungeonScreenSystem,
   PossessionScreenSystem,
-  ResourcesSystem,
-  ScreensSystem,
-  SystemRunner
-} from './systems'
+  ScreensSystem
+} from './screens'
+import { DungeonSystem, EntitiesRenderSystem, FetchDataSystem, HudSystem, PlayerSystem, SystemRunner } from './systems'
 
 export const coreSystems = (systems: SystemRunner) => {
   //systems
@@ -21,27 +17,22 @@ export const coreSystems = (systems: SystemRunner) => {
   //core
   // systems.add(ItemsSystem)
   systems.add(ScreensSystem)
+  systems.add(PlayerSystem)
   // systems.add(StoreSystem)
 
   //subcore
   systems.add(HudSystem)
   // systems.add(SpawnersSystem)
   // systems.add(LevelingSystem)
-  // systems.add(AbilitiesSystem)
   // this.systems.add(TimersSystem)
 
   //screens
   systems.add(PossessionScreenSystem)
   systems.add(CastleScreenSystem)
   systems.add(CaveScreenSystem)
-  systems.add(DungeonMapScreenSystem)
+  systems.add(DungeonScreenSystem)
 
   systems.add(DungeonSystem)
-
-  //entities
-  // systems.add(CitySystem)
-  // this.systems.add(FarmSystem)
-  // this.systems.add(SawmillSystem)
 
   //helpers
   systems.add(ResourcesSystem)

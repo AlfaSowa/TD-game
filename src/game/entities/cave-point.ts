@@ -1,9 +1,6 @@
 import { Container, Graphics } from 'pixi.js'
 import { Game } from '../game'
-
-export interface BaseEntityConstructor {
-  game: Game
-}
+import { BaseEntityConstructor } from './base'
 
 export class CavePoint extends Container {
   game: Game

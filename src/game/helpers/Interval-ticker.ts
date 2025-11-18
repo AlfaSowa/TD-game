@@ -1,5 +1,4 @@
 import { Container, Text, TextStyle } from 'pixi.js'
-import { delayToCallback } from '../utils'
 
 interface IIntervalTicker {
   value: number
@@ -46,10 +45,10 @@ export class IntervalTicker extends Container {
     return this.currentAmount
   }
 
-  tick = delayToCallback(1000, 7, () => {
-    this.currentAmount += this.currentValue
-    this.isAnimation = true
-  })
+  // tick = delayToCallback(1000, 7, () => {
+  //   this.currentAmount += this.currentValue
+  //   this.isAnimation = true
+  // })
 
   animation() {
     if (this.isAnimation) {
@@ -64,6 +63,6 @@ export class IntervalTicker extends Container {
 
   update() {
     this.animation()
-    this.tick()
+    // this.tick()
   }
 }
