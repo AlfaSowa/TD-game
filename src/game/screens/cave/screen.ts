@@ -1,17 +1,15 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { CavePoint } from '../../entities'
+import { EntitiesRenderSystem } from '../../systems'
 import { BaseScreen } from '../base'
-import { CaveScreenSystem } from './system'
+import { ScreensSystem } from '../system'
 
-const HEADER_WIDTH = 200
-
+const POINTS = 3
 export class CaveScreen extends BaseScreen {
   SCREEN_NAME = 'cave-screen'
 
-  header: Container = new Container()
-  main: Container = new Container()
-
-  bgId: number = 0
+  roads: Container = new Container()
 
   init(app: Application) {
     this.viewport = new Viewport({
@@ -22,47 +20,51 @@ export class CaveScreen extends BaseScreen {
       events: app.renderer.events
     })
 
-    this.activeContainer.addChild(new Graphics().rect(0, 0, 400, 400).fill({ color: '#a8ae51' }))
+    this.activeContainer.addChild(
+      new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#a8ae51' })
+    )
 
     this.viewport.addChild(this.activeContainer)
 
-    const headerBg = new Graphics().rect(0, 0, app.canvas.width, HEADER_WIDTH).fill({ color: '#62B1D0' })
-    this.header.addChild(headerBg)
-
-    const mainBg = new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#024C68' })
-
-    this.bgId = mainBg.uid
-
-    this.main.addChild(mainBg)
-    // this.main.position.y = HEADER_WIDTH
-
-    // this.addContainer(this.header)
-    this.addContainer(this.main)
-
     this.addChild(this.viewport)
-  }
-
-  resetMainContainer() {
-    for (let i = 0; i < this.main.children.length; i++) {
-      if (this.main.children[i].uid !== this.bgId) this.main.removeChildAt(i)
-    }
   }
 
   addContainer(container: Container) {
     this.activeContainer.addChild(container)
   }
 
-  updateContent(container: Container) {
-    for (let i = 0; i < this.main.children.length; i++) {
-      if (this.main.children[i].uid !== this.bgId) this.main.removeChildAt(i)
-    }
-    this.main.addChild(container)
+  createRoads() {
+    for (let i = 0; i < POINTS; i++) {
+      const point = new CavePoint({ game: this.game })
+      point.init()
+      point.position.set(this.game.app.canvas.width / 2 - 50, i * 200)
 
-    console.log('this.main', this.main)
+      point.clicked(() => {
+        this.game.systems.get(ScreensSystem).signals.onToggleScreen.emit('dungeonMap')
+      })
+
+      this.roads.addChild(point)
+    }
+
+    this.addChild(this.roads)
   }
 
-  onLoad() {
-    this.game.systems.get(CaveScreenSystem).loadCavePoints()
+  onFirstLoad() {
+    console.log('CaveScreen isFirstLoaded')
+
+    this.game.systems.get(EntitiesRenderSystem).renderData('cave')
+
+    this.isFirstLoaded = true
+  }
+
+  async onLoad() {
+    console.log('CaveScreen onLoad')
+
+    if (!this.isFirstLoaded) {
+      await this.onFirstLoad()
+    }
+
+    this.createRoads()
   }
 
   update() {}

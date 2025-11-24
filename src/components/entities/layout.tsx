@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { CoreResource } from '../../api'
-import { ResourcesSystem } from '../../game/entities'
+import { ResourcesSystem } from '../../game/systems'
 import { GameContext } from '../App'
 
 export const Layout = () => {

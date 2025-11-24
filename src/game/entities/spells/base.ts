@@ -1,23 +1,12 @@
-import { Container } from 'pixi.js'
-import { Game } from '../../game'
+import { BaseEntity } from '../base'
 
-interface IBaseSpell {
-  init?: () => void
-  update?: () => void
+export enum SpellType {
+  NOTARGET = 'NOTARGET',
+  MELEE = 'MElEE',
+  RANGE = 'RANGE'
 }
+export class BaseSpell extends BaseEntity {
+  damage: number = 0
 
-interface BaseSpellConstructor {
-  game: Game
-}
-
-export class BaseSpell extends Container implements IBaseSpell {
-  game: Game
-
-  constructor({ game }: BaseSpellConstructor) {
-    super()
-    this.game = game
-  }
-
-  init() {}
-  update() {}
+  type: SpellType = SpellType.NOTARGET
 }

@@ -1,9 +1,8 @@
 import { Container, Graphics } from 'pixi.js'
 
 import { Game } from '../../game'
-import { drawSquareFields } from '../../helpers'
-import { DangeonEnemiesType, DungeonField } from './field'
-import { DangeonSpellType, SpellField } from './spell'
+import { Cell, Grid } from '../../ui'
+import { DangeonSpellType } from './spell'
 
 interface DungeonMapConstructor {
   game: Game
@@ -24,15 +23,11 @@ export class DungeonMap extends Container {
 
   plug: Graphics = new Graphics().rect(0, 0, 100, 100).fill({ color: '#f1f1f1' })
 
-  spellPanel: Container = new Container()
-  fielsPanel: Container = new Container()
-
-  buttonsGroup: Container = new Container()
-
-  fieldSelected: DungeonField | null = null
-  spellSelected: SpellField | null = null
+  fieldSelected: Cell | null = null
 
   pWidth: number = 0
+
+  grid: Grid = new Grid()
 
   constructor({ game }: DungeonMapConstructor) {
     super()
@@ -40,26 +35,17 @@ export class DungeonMap extends Container {
   }
 
   init() {
-    this.initFields()
-  }
-
-  initFields() {
     this.pWidth = this.parent.width / FIELDS
 
-    drawSquareFields<DangeonEnemiesType, DungeonField>({
-      container: this.fielsPanel,
-      fieldSize: this.pWidth,
-      xAmount: FIELDS,
-      renderElementFx: () => this.renderField()
-    })
+    this.grid.init(() => this.renderField(), this.pWidth, FIELDS)
 
-    this.fielsPanel.position.set(0, FIELDS_PANEL_POSITION_Y)
+    this.grid.position.set(0, 0)
 
-    this.addChild(this.fielsPanel)
+    this.addChild(this.grid)
   }
 
   renderField() {
-    const element = new DungeonField({ game: this.game })
+    const element = new Cell()
 
     element.updateGraphics(this.pWidth)
 
@@ -69,8 +55,8 @@ export class DungeonMap extends Container {
       //показать содержимое контейнера клетки
       console.log(o)
 
-      for (const element of this.fielsPanel.children) {
-        if (element instanceof DungeonField) {
+      for (const element of this.grid.children) {
+        if (element instanceof Cell) {
           const selected = element.select(f.uid)
           if (selected) {
             this.fieldSelected = selected

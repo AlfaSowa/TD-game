@@ -1,6 +1,6 @@
-import { Container, Graphics } from 'pixi.js'
-import { Game } from '../game'
-import { DungeonSystem } from '../systems'
+import { Container } from 'pixi.js'
+import { Game } from '../../game'
+import { Cell, Grid } from '../../ui'
 
 interface SpellFieldConstructor {
   game: Game
@@ -10,70 +10,52 @@ export type DangeonSpellType = {
   type: string | null
 }
 
-export class SpellField extends Container {
+const FIELDS = 6
+export class SpellsMap extends Container {
   game: Game
 
-  isSelected: boolean = false
+  fieldSelected: Cell | null = null
+
+  pWidth: number = 0
+
+  grid: Grid = new Grid()
 
   constructor({ game }: SpellFieldConstructor) {
     super()
     this.game = game
   }
 
-  clicked(callback: (e: SpellField) => void) {
-    this.eventMode = 'static'
-    this.cursor = 'pointer'
+  init() {
+    this.pWidth = this.parent.width / FIELDS
 
-    this.on('pointerup', () => {
-      callback.call(this, this)
+    this.grid.init(() => this.renderField(), this.pWidth, FIELDS, 1)
+
+    this.grid.position.set(0, this.game.app.canvas.height - this.grid.height)
+
+    this.addChild(this.grid)
+  }
+
+  renderField() {
+    const element = new Cell()
+
+    element.updateGraphics(this.pWidth)
+
+    element.clicked((f, o) => {
+      //показать контейнер клетки
+      console.log(f)
+      //показать содержимое контейнера клетки
+      console.log(o)
+
+      for (const element of this.grid.children) {
+        if (element instanceof Cell) {
+          const selected = element.select(f.uid)
+          if (selected) {
+            this.fieldSelected = selected
+          }
+        }
+      }
     })
 
-    return this
-  }
-
-  select(uid: number) {
-    if (uid === this.uid) {
-      if (!this.isSelected) {
-        this.isSelected = true
-        for (const element of this.children) {
-          if (element instanceof Graphics) {
-            const size = element.width - 1
-            element.clear()
-            element.rect(0, 0, size, size).fill({ color: '#399200' }).stroke(0x00ff00)
-          }
-        }
-      }
-
-      return this
-    } else {
-      if (this.isSelected) {
-        this.isSelected = false
-        for (const element of this.children) {
-          if (element instanceof Graphics) {
-            const size = element.width - 1
-            element.clear()
-            element.rect(0, 0, size, size).fill({ color: '#f1f1f1' }).stroke(0x00ff00)
-          }
-        }
-      }
-    }
-
-    return null
-  }
-
-  drawContent(field: DangeonSpellType) {
-    console.log('field', field)
-
-    if (field.type) {
-      const entity = this.game.systems.get(DungeonSystem).spells[field.type]()
-
-      if (entity) {
-        entity.init()
-
-        this.addChild(entity)
-
-        entity.position.set(this.width / 2 - entity.width / 2, this.height / 2 - entity.height / 2)
-      }
-    }
+    return element
   }
 }

@@ -1,6 +1,5 @@
 import { Container } from 'pixi.js'
 
-import { BaseSpell } from '../entities'
 import { Game } from '../game'
 
 interface IBaseEntity {
@@ -24,13 +23,9 @@ export interface BaseEntityConstructor {
 export class BaseEntity extends Container implements IBaseEntity {
   game: Game
 
-  abilities!: Container
-
   children: ContainerWithUpdate[] = []
 
   type?: string
-
-  private _level: number = 1
 
   constructor({ game }: BaseEntityConstructor) {
     super()
@@ -48,17 +43,8 @@ export class BaseEntity extends Container implements IBaseEntity {
     return this
   }
 
-  abilitiesUpdate() {
-    for (const ability of this.abilities.children) {
-      if (ability instanceof BaseSpell) {
-        ability.update()
-      }
-    }
-  }
-
   add(parent: Container) {
     if (!this.parent) {
-      console.log('add')
       parent.addChild(this)
     }
   }
@@ -70,19 +56,7 @@ export class BaseEntity extends Container implements IBaseEntity {
     }
   }
 
-  update() {
-    if (this.abilities) {
-      this.abilitiesUpdate()
-    }
-  }
-
-  set level(value: number) {
-    this._level = value
-  }
-
-  get level() {
-    return this._level
-  }
+  update() {}
 
   init() {}
 }

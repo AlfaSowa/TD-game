@@ -1,20 +1,53 @@
-import { ResourcesSystem } from '../entities'
+import { SpellType } from '../entities'
 import { Game } from '../game'
-import { EntitiesRenderSystem } from './entities-render'
+import { ResourcesSystem } from './resources'
 
 import { System } from './types'
 
-type RenderContainerType = 'possession' | 'map'
+type FetchBuildingsDataResolve = {
+  type: string
+  level?: {
+    value: number
+    next: {
+      wood: number
+      gold: number
+      stone: number
+      food: number
+    }
+  }
+  abilities?: string[]
+  image: string
+  position: { x: number; y: number }
+  container: string
+}
+
+type FetchPlayerDataResolve = {
+  spells: { type: SpellType; name: string; damage: number }[]
+}
+
 export class FetchDataSystem implements System {
   public static SYSTEM_ID = 'fetch-data-system'
   game!: Game
 
+  //TODO переделать на стор
+  buildings: FetchBuildingsDataResolve[] = []
+  playerData: FetchPlayerDataResolve | null = null
+
   async getImportantData() {
-    await this.getPossessionData()
+    await this.fetchBuildingsData()
     await this.getAllResources()
+    await this.getPlayerData()
   }
 
-  private getPossessionData() {
+  private getPlayerData() {
+    Promise.resolve({
+      spells: [{ type: SpellType.MELEE, name: 'MeleeAttack', damage: 10 }]
+    }).then((data) => {
+      this.playerData = data
+    })
+  }
+
+  private fetchBuildingsData() {
     Promise.resolve([
       {
         type: 'Castle',
@@ -30,7 +63,7 @@ export class FetchDataSystem implements System {
         abilities: ['Basic Attack', 'Shield'],
         image: 'images/house_200x200.png',
         position: { x: 400, y: 400 },
-        container: 'possession' as RenderContainerType
+        container: 'possession'
       },
       {
         type: 'Cave',
@@ -45,11 +78,10 @@ export class FetchDataSystem implements System {
         },
         image: 'images/cave_100x100.png',
         position: { x: 450, y: 450 },
-        container: 'map' as RenderContainerType
+        container: 'map'
       }
     ]).then((data) => {
-      this.game.systems.get(EntitiesRenderSystem).possessionData = data
-      this.game.systems.get(EntitiesRenderSystem).renderEntities(data)
+      this.buildings = data
     })
   }
 

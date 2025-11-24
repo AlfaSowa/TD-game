@@ -1,139 +1,79 @@
-import { Assets, Container, Sprite } from 'pixi.js'
-import { Signal } from 'typed-signals'
-
-import { Castle, Cave } from '../entities'
-import { BaseEntity } from '../entities/base'
+import { Assets, Sprite } from 'pixi.js'
+import { BaseBuilding, BaseSpell, BaseUnit, Castle, Cave, FighterUnit, MageUnit, MeleeAttack } from '../entities'
 import { Game } from '../game'
-import { ScreensSystem } from '../screens'
+import { ScreensSystem, ScreensType } from '../screens'
+import { FetchDataSystem } from './fetch-data'
 import { System } from './types'
 
-type Entity = {
-  [key: string]: BaseEntity
+type Buildings = {
+  [key: string]: () => BaseBuilding
 }
 
-type GetClassType = {
-  type: string
-  level?: {
-    value: number
-    next: {
-      wood: number
-      gold: number
-      stone: number
-      food: number
-    }
-  }
-  abilities?: string[]
-  image: string
-  position: { x: number; y: number }
-  container: 'possession' | 'map'
+type Units = {
+  [key: string]: () => BaseUnit
 }
 
-type AddNewEntityType = {
-  type: string
-  position: { x: number; y: number }
-}
-
-type RemoveEntityType = {
-  type: string
-  screen: string
+type Spells = {
+  [key: string]: () => BaseSpell
 }
 
 export class EntitiesRenderSystem implements System {
   public static SYSTEM_ID = 'entities-render-system'
+
   game!: Game
 
-  private entities!: Entity
-  private _possessionData: any
-
-  public signals = {
-    onUpdatePossessionData: new Signal<(type: string) => void>()
-  }
+  private buildings!: Buildings
+  private units!: Units
+  private spells!: Spells
 
   init() {
-    this.entities = {
-      ['Castle']: new Castle({ game: this.game }),
-      ['Cave']: new Cave({ game: this.game })
+    this.buildings = {
+      ['Castle']: () => new Castle({ game: this.game }),
+      ['Cave']: () => new Cave({ game: this.game })
+    }
+
+    this.units = {
+      ['Mage']: () => new MageUnit({ game: this.game }),
+      ['Fighter']: () => new FighterUnit({ game: this.game })
+    }
+
+    this.spells = {
+      ['MeleeAttack']: () => new MeleeAttack({ game: this.game })
     }
   }
 
-  set possessionData(value: any) {
-    this._possessionData = value
-  }
+  async renderData(container: ScreensType) {
+    const buildingsData = this.game.systems.get(FetchDataSystem).buildings
 
-  get possessionData() {
-    return this._possessionData
-  }
+    for (const element of buildingsData) {
+      const entity = this.createBuildByAlias(element?.type)
 
-  async renderEntities(data: GetClassType[]) {
-    data.map(async (params: GetClassType) => {
-      const element = await this.createEntity(params)
+      if (entity && element.container === container) {
+        entity.type = element.type
+        entity.position.set(element.position.x, element.position.y)
 
-      if (element) {
-        this.game.systems.get(ScreensSystem).addContainer(element, params.container)
+        const sheet = await Assets.loadBundle(['default'])
 
-        element.init()
-      }
-    })
-  }
+        const sprite = new Sprite(sheet.default[element.image])
 
-  async createEntity<T extends BaseEntity>({ type, position, level, image }: GetClassType): Promise<T> {
-    const entity = this.entities[type]
+        entity.addChild(sprite)
 
-    if (entity) {
-      entity.type = type
+        this.game.systems.get(ScreensSystem).addContainer(entity, element.container)
 
-      if (level) {
-        entity.level = level.value
-      }
-
-      if (position) {
-        entity.position.set(position.x, position.y)
-      }
-
-      if (image) {
-        await this.initImg(image, entity)
+        entity.init()
       }
     }
-
-    return entity as T
   }
 
-  async initImg(img: string, entity: Container) {
-    const sheet = await Assets.loadBundle(['default'])
-
-    const sprite = new Sprite(sheet.default[img])
-
-    entity.addChild(sprite)
+  createBuildByAlias(alias: string) {
+    return this.buildings[alias]?.()
   }
 
-  addNewEntityOnScreen({ position, type }: AddNewEntityType) {
-    //TODO mock
-    new Promise((resolve) => {
-      console.log(`запрос на добавление ${type} на позицию ${position}`)
-
-      setTimeout(() => {
-        resolve(console.log(`запрос на добавление ${type} выполнен`))
-      }, 1000)
-    }).then(() => {
-      console.log(`addNewEntityOnScreen выполнен`)
-    })
+  createUnitByAlias(alias: string) {
+    return this.units[alias]?.()
   }
 
-  removeEntityFromScreen({ type, screen }: RemoveEntityType) {
-    //TODO mock
-    new Promise((resolve) => {
-      console.log(`запрос на удаление ${type}`)
-
-      setTimeout(() => {
-        if (screen === 'possession') {
-          this._possessionData = this._possessionData.filter((i: any) => i.type !== type)
-          this.signals.onUpdatePossessionData.emit(type)
-        }
-
-        resolve(console.log(`запрос на удаление ${type} выполнен`))
-      }, 1000)
-    }).then(() => {
-      console.log(`removeEntityFromScreen выполнен`)
-    })
+  createSpellByAlias(alias: string) {
+    return this.spells[alias]?.()
   }
 }

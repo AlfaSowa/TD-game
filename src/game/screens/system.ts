@@ -3,11 +3,11 @@ import { Signal } from 'typed-signals'
 import { Game } from '..'
 import { System, SystemRunner } from '../systems'
 
-import { CastleScreen } from './castle'
+import { CastleScreen, CastleScreenSystem } from './castle'
 import { CaveScreen, CaveScreenSystem } from './cave'
-import { DungeonScreen } from './dungeon'
+import { DungeonScreen, DungeonScreenSystem } from './dungeon'
 import { MapScreen } from './map'
-import { PossessionScreen } from './possession'
+import { PossessionScreen, PossessionScreenSystem } from './possession'
 
 export type ScreensType = 'map' | 'possession' | 'castle' | 'cave' | 'dungeonMap'
 
@@ -37,11 +37,6 @@ export class ScreensSystem implements System {
 
   constructor() {
     this.signals.onToggleScreen.connect((type) => {
-      if (this.currentScreen === this.screens.cave) {
-        console.log('onToggleScreen from cave')
-        this.game.systems.get(CaveScreenSystem).signals.onResetMainContent.emit()
-      }
-
       this.currentScreen.removeFromParent()
       this.currentScreen = this.screens[type]
       this.game.app.stage.addChild(this.currentScreen)
@@ -63,6 +58,13 @@ export class ScreensSystem implements System {
         this.currentScreen.viewport.height / 2
       )
     })
+  }
+
+  addScreens() {
+    this.game.systems.add(PossessionScreenSystem)
+    this.game.systems.add(CastleScreenSystem)
+    this.game.systems.add(CaveScreenSystem)
+    this.game.systems.add(DungeonScreenSystem)
   }
 
   addContainer(container: Container, containerType: ScreensType, index?: number) {

@@ -1,14 +1,3 @@
-import { BaseGameObject } from '../baseObject'
+import { BaseUnit } from './base'
 
-import { Collector } from './collector'
-
-export class Lumberman extends Collector {
-  init(target: BaseGameObject, store: BaseGameObject) {
-    this.setTarget(target)
-    this.setStore(store)
-  }
-
-  update() {
-    super.update()
-  }
-}
+export class Lumberman extends BaseUnit {}

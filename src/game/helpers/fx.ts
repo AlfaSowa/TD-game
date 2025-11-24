@@ -7,13 +7,7 @@ type DrawSquareFieldsType = {
   yAmount?: number
   renderElementFx?: () => Container
 }
-export const drawSquareFields = <F, T extends Container>({
-  container,
-  fieldSize,
-  xAmount,
-  yAmount,
-  renderElementFx
-}: DrawSquareFieldsType) => {
+export const drawSquareFields = ({ container, fieldSize, xAmount, yAmount, renderElementFx }: DrawSquareFieldsType) => {
   for (let i = 0; i < (yAmount ? yAmount * xAmount : xAmount * xAmount); i++) {
     let field = renderElementFx ? renderElementFx() : new Container()
 

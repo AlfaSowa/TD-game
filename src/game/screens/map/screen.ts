@@ -1,5 +1,6 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { EntitiesRenderSystem } from '../../systems'
 import { BaseScreen } from '../base'
 import { WORLD_MAP_ACTIVE_H, WORLD_MAP_ACTIVE_W, WORLD_MAP_H, WORLD_MAP_W } from '../constans'
 
@@ -54,6 +55,22 @@ export class MapScreen extends BaseScreen {
     }
 
     // this.updateActiveContainerPositio()
+  }
+
+  onFirstLoad() {
+    console.log('MapScreen isFirstLoaded')
+
+    this.game.systems.get(EntitiesRenderSystem).renderData('map')
+
+    this.isFirstLoaded = true
+  }
+
+  async onLoad() {
+    console.log('MapScreen onLoad')
+
+    if (!this.isFirstLoaded) {
+      await this.onFirstLoad()
+    }
   }
 
   update() {}

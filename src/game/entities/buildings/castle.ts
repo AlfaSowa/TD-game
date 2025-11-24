@@ -1,14 +1,10 @@
 import { ScreensSystem } from '../../screens'
-import { BaseEntity } from '../base'
+import { BaseBuilding } from './base'
 
-export class Castle extends BaseEntity {
-  async init() {
+export class Castle extends BaseBuilding {
+  init() {
     this.clicked(() => {
       this.game.systems.get(ScreensSystem).signals.onToggleScreen.emit('castle')
     })
-  }
-
-  updateResources() {
-    console.log('updateResources')
   }
 }

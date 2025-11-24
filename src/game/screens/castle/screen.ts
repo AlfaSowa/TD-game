@@ -37,14 +37,14 @@ export class CastleScreen extends BaseScreen {
       new Graphics().rect(0, 0, WORLD_CASTLE_ACTIVE_W, WORLD_CASTLE_ACTIVE_H).fill({ color: '#a8ae51' })
     )
 
-    this.updateActiveContainerPositio()
+    this.updateActiveContainerPosition()
 
     this.viewport.addChild(this.activeContainer)
 
     this.addChild(this.viewport)
   }
 
-  updateActiveContainerPositio() {
+  updateActiveContainerPosition() {
     this.activeContainer.position.set(
       this.viewport.width / 2 - this.activeContainer.width / 2,
       this.viewport.height / 2 - this.activeContainer.height / 2

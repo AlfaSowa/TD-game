@@ -1,32 +1,17 @@
 import { Container, Graphics } from 'pixi.js'
-import { BaseUnit } from '../base'
-import { Game } from '../game'
+import { BaseEntity } from '../../entities'
 
-interface DungeonFieldConstructor {
-  game: Game
-}
-
-export type DangeonEnemiesType = {
-  type: string | null
-}
-
-export class DungeonField extends Container {
-  game: Game
-
-  owner!: BaseUnit
+export class Cell extends Container {
   isSelected: boolean = false
 
-  constructor({ game }: DungeonFieldConstructor) {
-    super()
-    this.game = game
-  }
+  owner!: BaseEntity
 
   updateGraphics(size: number) {
     const g = new Graphics().rect(0, 0, size, size).fill({ color: '#f1f1f1' }).stroke(0x00ff00)
     this.addChild(g)
   }
 
-  clicked(callback: (e: DungeonField, f: BaseUnit) => void) {
+  clicked(callback: (e: Cell, f: BaseEntity) => void) {
     this.eventMode = 'static'
     this.cursor = 'pointer'
 

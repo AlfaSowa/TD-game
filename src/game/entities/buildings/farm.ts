@@ -3,6 +3,7 @@ import { Vector2 } from '../../../utils'
 import { colorTheme } from '../../constants'
 import { Game } from '../../game'
 import { BaseEntity } from '../base'
+import { BaseBuilding } from './base'
 
 export class Farm extends BaseEntity {
   gap: number = 2
@@ -31,7 +32,7 @@ interface IFarmTile {
   data: FarmTileType
 }
 
-export class FarmTile extends BaseEntity {
+export class FarmTile extends BaseBuilding {
   id: string
   size: number = 0
 

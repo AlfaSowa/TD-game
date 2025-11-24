@@ -1,8 +1,8 @@
 import { Assets, Graphics, Sprite } from 'pixi.js'
-import { Resource } from './resource'
+import { BaseResources } from './base'
 
-export class ResourceTree extends Resource {
-  alias = 'wood'
+export class ResourceTree extends BaseResources {
+  alias = 'tree-resource'
 
   async init() {
     const texture = await Assets.loadBundle(['default'])

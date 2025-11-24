@@ -1,7 +1,6 @@
 import { BaseEntity } from '../../entities/base'
 import { Game } from '../../game'
-import { EntitiesRenderSystem, System } from '../../systems'
-import { ScreensSystem } from '../system'
+import { System } from '../../systems'
 
 const SPAWN_INTERVAL = 1000
 const MAX_SPAW_ELEMENTS = 10
@@ -13,14 +12,13 @@ export class PossessionScreenSystem implements System {
   updatingItems: BaseEntity[] = []
 
   init() {
-    this.game.systems.get(EntitiesRenderSystem).signals.onUpdatePossessionData.connect((type) => {
-      const id = this.updatingItems.find((i) => i?.type === type)?.uid
-      this.updatingItems = this.updatingItems.filter((i) => i?.type !== type)
-
-      if (id) {
-        this.game.systems.get(ScreensSystem).removeContainer('possession', id)
-      }
-    })
+    // this.game.systems.get(EntitiesRenderSystem).signals.onUpdatePossessionData.connect((type) => {
+    //   const id = this.updatingItems.find((i) => i?.type === type)?.uid
+    //   this.updatingItems = this.updatingItems.filter((i) => i?.type !== type)
+    //   if (id) {
+    //     this.game.systems.get(ScreensSystem).removeContainer('possession', id)
+    //   }
+    // })
   }
 
   initPhaseEntities() {

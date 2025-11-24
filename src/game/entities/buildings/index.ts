@@ -1,3 +1,4 @@
+export * from './base'
 export * from './castle'
 export * from './cave'
 export * from './city'

@@ -1,11 +1,11 @@
 // import { ResourceStump, ResourceTree } from '../entities'
 // import { Resource } from '../entities/resources/resource'
 
-import { BaseEntity } from '../base'
+import { BaseBuilding } from './base'
 
 const SPAWN_INTERVAL = 20
 const MAX_SPAW_ELEMENTS = 50
-export class Forest extends BaseEntity {
+export class Forest extends BaseBuilding {
   // spawner!: Spawner<ResourceTree>
   // async createTree(): Promise<ResourceTree> {
   //   const resourceTree = new ResourceTree({

@@ -1,9 +1,9 @@
 import { Container, Graphics } from 'pixi.js'
 import { getNearestContainerTarget } from '../../../utils/math2'
 import { TAIL_SIZE } from '../../constants'
-import { BaseEntity } from '../base'
+import { BaseUnit } from './base'
 
-export class Collector extends BaseEntity {
+export class Collector extends BaseUnit {
   velocity: number = 3
   size: number = TAIL_SIZE
 

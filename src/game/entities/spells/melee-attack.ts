@@ -1,8 +1,10 @@
 import { Graphics } from 'pixi.js'
-import { BaseSpell } from './base'
+import { BaseSpell, SpellType } from './base'
 
 export class MeleeAttack extends BaseSpell {
-  damage: number = 1
+  damage = 10
+
+  type = SpellType.MELEE
 
   init() {
     const g = new Graphics().rect(0, 0, 20, 20).fill({ color: '#FF0000' })

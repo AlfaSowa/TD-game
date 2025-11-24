@@ -23,6 +23,10 @@ export class BaseScreen extends Container implements IScreen {
 
   activeContainer: Container = new Container()
 
+  isFirstLoaded: boolean = false
+
+  onFirstLoad() {}
+
   onLoad() {}
 
   constructor({ game }: ScreenConstructor) {

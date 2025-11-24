@@ -1,8 +1,9 @@
 import { Graphics } from 'pixi.js'
-import { BaseEntity } from '../base'
+import { BaseUnit } from './base'
 
-export class FighterUnit extends BaseEntity {
-  damage: number = 5
+export class FighterUnit extends BaseUnit {
+  damage: number = 7
+  hp: number = 150
 
   init() {
     const g = new Graphics().rect(0, 0, 50, 50).fill({ color: '#A61000' })

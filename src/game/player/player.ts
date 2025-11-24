@@ -1,26 +1,18 @@
 import { Container } from 'pixi.js'
+import { BaseSpell } from '../entities'
 import { Game } from '../game'
 
-type PlayerAbilities = {
-  [key in string]: string
-}
-
-type PlayerStats = {
-  damage: number
-}
-
-interface PlayerConstructor {
+export interface PlayerConstructor {
   game: Game
 }
 
 export class Player extends Container {
+  damage: number = 7
+  hp: number = 150
+
   game: Game
 
-  private abilities: PlayerAbilities = {}
-
-  private stats: PlayerStats = {
-    damage: 10
-  }
+  spells: BaseSpell[] = []
 
   constructor({ game }: PlayerConstructor) {
     super()

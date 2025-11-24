@@ -1,8 +1,8 @@
 import { Assets, Sprite } from 'pixi.js'
 import { ScreensSystem } from '../../screens'
-import { BaseEntity } from '../base'
+import { BaseBuilding } from './base'
 
-export class City extends BaseEntity {
+export class City extends BaseBuilding {
   async init() {
     const texture = await Assets.loadBundle(['default'])
     const sprite = new Sprite(texture.default['camp.png'])
