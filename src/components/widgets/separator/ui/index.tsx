@@ -41,13 +41,13 @@ export const Separator = () => {
   //   }
   // }, [])
 
-  if (!tgUser || !isGameStarted) {
-    return <LoadingScreen message={loadingMessages[loadingState]} />
-  }
-
   return (
     <div className="flex flex-col h-dvh w-screen">
-      <Layout />
+      {(!tgUser || !isGameStarted) && <LoadingScreen message={loadingMessages[loadingState]} />}
+
+      {tgUser && isGameStarted && <Layout />}
+
+      <div id="canvas-wrapper" className=" absolute top-0 left-0" />
     </div>
   )
 }

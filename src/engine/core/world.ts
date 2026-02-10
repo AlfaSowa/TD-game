@@ -55,11 +55,10 @@ export class World {
     component: ComponentConstructor<C>
   ): C | undefined {
     const componentMap = this.components.get(component.name)
-
-    return componentMap ? (componentMap.get(entity) as C) : undefined
+    return componentMap ? (componentMap!.get(entity) as C) : undefined
   }
 
-  public with<C extends Component>(...componentClasses: ComponentConstructor<C>[]) {
+  public with(...componentClasses: ComponentConstructor<Component>[]) {
     return [...this.entities.values()].filter((entity) => {
       return componentClasses.every((componentClass) => {
         return this.getComponent(entity, componentClass)

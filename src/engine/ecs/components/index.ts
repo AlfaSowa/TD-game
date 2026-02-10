@@ -1,2 +1,4 @@
 export * from './component'
+export * from './movement-component'
 export * from './position-component'
+export * from './velocity-component'
