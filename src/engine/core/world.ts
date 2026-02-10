@@ -4,18 +4,13 @@ import { Entity } from '../ecs/entities'
 type ComponentConstructor<C extends Component> = new (...args: any[]) => C
 
 export class World {
-  private nextEntityId: number = 0
-
   private entities = new Map<number, Entity>()
   private components = new Map<string, Map<Entity, Component>>()
 
   public createEntity<T extends Entity>(supplier: { new (): T }): T {
-    const id = this.nextEntityId++
     const entity = new supplier()
 
-    this.entities.set(id, entity)
-
-    entity.setId = id
+    this.entities.set(entity.uid, entity)
 
     return entity
   }
@@ -27,12 +22,12 @@ export class World {
     return entity as T
   }
 
-  public destroyEntity<T extends Entity>(entity: T) {
-    this.entities.delete(entity.getId)
-    for (const component of this.components.values()) {
-      component.delete(entity)
-    }
-  }
+  // public destroyEntity<T extends Entity>(entity: T) {
+  //   this.entities.delete(entity.getId)
+  //   for (const component of this.components.values()) {
+  //     component.delete(entity)
+  //   }
+  // }
 
   public addComponent<C extends Component, E extends Entity>(entity: E, component: C) {
     const type = component.constructor.name
