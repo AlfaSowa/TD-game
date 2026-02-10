@@ -8,7 +8,15 @@
   </head>
   <body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.tsx"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- <script id="tg" src="https://telegram.org/js/telegram-web-app.js" async></script>
+    <script>
+      const tg = document.getElementById('tg')
+      tg.onload = function (data) {
+        const event = new CustomEvent('loadTg', { detail: window.Telegram })
+        window.dispatchEvent(event)
+      }
+    </script> -->
   </body>
 </html>

@@ -1,19 +1,18 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { CoreResource } from '../../api'
-import { ResourcesSystem } from '../../game/systems'
 import { GameContext } from '../App'
 
 export const Layout = () => {
   const game = useContext(GameContext)
   const [resources, setResources] = useState<CoreResource[]>([])
 
-  useEffect(() => {
-    setResources(game.systems.get(ResourcesSystem).resources)
+  // useEffect(() => {
+  //   setResources(game.systems.get(ResourcesSystem).resources)
 
-    game.systems.get(ResourcesSystem).signals.setResources.connect((resources) => {
-      setResources(resources)
-    })
-  }, [])
+  //   game.systems.get(ResourcesSystem).signals.setResources.connect((resources) => {
+  //     setResources(resources)
+  //   })
+  // }, [])
 
   return (
     <>

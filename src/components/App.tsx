@@ -10,6 +10,7 @@ export const App = () => {
   return (
     <GameContext.Provider value={game}>
       <Separator />
+      <div id="canvas-wrapper" className="flex-1" />
     </GameContext.Provider>
   )
 }

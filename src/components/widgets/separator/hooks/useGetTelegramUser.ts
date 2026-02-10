@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { state } from '../../../../game/helpers'
 import { setCookie } from '../../../../utils'
 import { authUser } from '../api'
 
@@ -10,18 +9,16 @@ export const useGetTelegramUser = (tg: any) => {
   const [tgUser, setTgUsesr] = useState<any>(null)
   setCookie('innerData', data, 365)
 
-  useEffect(() => {
-    if (tg) {
-      tg.disableVerticalSwipes()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (tg) {
+  //     tg?.WebApp.disableVerticalSwipes()
+  //   }
+  // }, [tg])
 
   useEffect(() => {
     if (!tgUser && data) {
       authUser().then((user) => {
         if (user) {
-          state.updateInnerUserData = data
-          state.updateUserGold = user?.gold
           setTgUsesr(user)
         }
       })
