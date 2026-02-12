@@ -1,11 +1,9 @@
-import { Graphics } from 'pixi.js'
 import { Signal } from 'typed-signals'
-import { Engine } from '../engine/core'
-import { MovementComponent, VelocityComponent } from '../engine/ecs/components'
-import { Entity } from '../engine/ecs/entities'
+import { Engine, IGame } from '../engine/core'
 import { MapScene } from './scenes'
+import { MainMenuScene } from './scenes/main-menu-scene'
 
-export class Game {
+export class Game implements IGame {
   engine: Engine = new Engine()
   isStarted: boolean = false
 
@@ -22,16 +20,12 @@ export class Game {
 
       await this.engine.init(canvasWrapper)
 
-      const player = this.engine.world.createEntity(Entity)
-      player.addChild(new Graphics().rect(0, 0, 30, 30).fill({ color: 'red' }))
-      this.engine.app.stage.addChild(player)
-
-      this.engine.world.addComponent(player, new MovementComponent())
-      this.engine.world.addComponent(player, new VelocityComponent(5))
-
+      this.engine.sceneManager.add(MainMenuScene, false)
       this.engine.sceneManager.add(MapScene)
 
-      this.engine.sceneManager.loadScene(MapScene)
+      this.engine.sceneManager.loadScene(MainMenuScene)
+
+      console.log(this.engine.app)
 
       this.engine.start(this.update)
     }

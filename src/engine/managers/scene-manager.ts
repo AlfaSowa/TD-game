@@ -1,21 +1,23 @@
 import { Application } from 'pixi.js'
-import { Scene } from '../core'
+import { Engine, Scene } from '../core'
 
 type SceneConstructor<C extends Scene> = new (id: string) => C
 
 export class SceneManager {
+  engine!: Engine
   scenes = new Map<string, Scene>()
   app!: Application
 
   currentScene: Scene | undefined
 
-  init(app: Application) {
+  init(app: Application, engine: Engine) {
     this.app = app
+    this.engine = engine
   }
 
-  add(scene: SceneConstructor<Scene>) {
+  add(scene: SceneConstructor<Scene>, isViewport: boolean = true) {
     const newScene = new scene(scene.name)
-    newScene.init(this.app)
+    newScene.init(this.app, this.engine, isViewport)
     this.scenes.set(newScene.id, newScene)
   }
 
@@ -23,7 +25,7 @@ export class SceneManager {
     return this.scenes.get(scene.name)
   }
 
-  remove(scene: SceneConstructor<Scene>) {
+  delete(scene: SceneConstructor<Scene>) {
     this.scenes.delete(scene.name)
   }
 
@@ -34,15 +36,16 @@ export class SceneManager {
 
     const newScene = this.scenes.get(scene.name)
     if (newScene) {
+      newScene.onLoad()
       this.app.stage.addChildAt(newScene.view, 0)
-
-      console.log(this.app)
+      this.currentScene = newScene
     }
   }
 
   removeFromStage(scene: Scene) {
     const tmpScene = this.scenes.get(scene.id)
     if (tmpScene) {
+      tmpScene.onUnLoad()
       tmpScene?.view.removeFromParent()
       //   tmpScene?.view.destroy()
     }

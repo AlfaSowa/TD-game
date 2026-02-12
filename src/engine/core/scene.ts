@@ -1,5 +1,6 @@
 import { Viewport } from 'pixi-viewport-new'
 import { Application, Container, Graphics } from 'pixi.js'
+import { Engine } from './engine'
 
 export const WORLD_MAP_ACTIVE_W = 1000
 export const WORLD_MAP_ACTIVE_H = 1000
@@ -8,6 +9,7 @@ export const WORLD_MAP_W = WORLD_MAP_ACTIVE_W + 200
 export const WORLD_MAP_H = WORLD_MAP_ACTIVE_H + 150
 
 export class Scene {
+  engine!: Engine
   id: string
 
   view: Container = new Container()
@@ -18,7 +20,9 @@ export class Scene {
     this.id = id
   }
 
-  init(app: Application, isViewport: boolean = true) {
+  init(app: Application, engine: Engine, isViewport: boolean = true) {
+    this.engine = engine
+
     if (isViewport) {
       this.viewport = new Viewport({
         screenWidth: window.innerWidth,
@@ -44,7 +48,20 @@ export class Scene {
       this.viewport.addChild(this.activeContainer)
 
       this.view.addChild(this.viewport)
+    } else {
+      this.activeContainer.addChild(
+        new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#f1f1f1' })
+      )
+      this.view.addChild(this.activeContainer)
     }
+  }
+
+  onLoad(): void {
+    console.log('load scene')
+  }
+
+  onUnLoad(): void {
+    console.log('unload scene')
   }
 
   update(dt: number) {}

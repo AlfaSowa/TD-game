@@ -16,9 +16,7 @@ export class SystemRunner {
   add<S extends System>(system: S): void {
     this.systems.push(system)
     this.systems.sort((a, b) => {
-      console.log(this.comporator.get(a.priority))
-
-      return 0
+      return this.comporator.get(a.priority)! - this.comporator.get(b.priority)!
     })
   }
 

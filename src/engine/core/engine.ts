@@ -1,15 +1,19 @@
 import { Application } from 'pixi.js'
 import { MovementSystem, SystemRunner } from '../ecs/systems'
 import { EngineContext } from '../engine-ctx'
-import { SceneManager } from '../managers'
+import { SceneManager, UiManager } from '../managers'
 import { World } from './world'
 
 export class Engine {
   app: Application = new Application()
 
+  //core
   systems: SystemRunner = new SystemRunner()
-  sceneManager: SceneManager = new SceneManager()
   engineContext = new EngineContext()
+
+  //managers
+  sceneManager: SceneManager = new SceneManager()
+  uiManager: UiManager = new UiManager()
 
   world = new World()
 
@@ -30,7 +34,9 @@ export class Engine {
     this.systems.add(new MovementSystem())
 
     this.systems.init()
-    this.sceneManager.init(this.app)
+
+    this.sceneManager.init(this.app, this)
+    this.uiManager.init(this.app, this)
   }
 
   start(update: (dt: number) => void) {
