@@ -1,7 +1,7 @@
 import { Signal } from 'typed-signals'
 import { Engine, IGame } from '../engine/core'
-import { MapScene } from './scenes'
-import { MainMenuScene } from './scenes/main-menu-scene'
+import { systemsRunner } from './ecs/systems'
+import { scenesRunner } from './scenes/runner'
 
 export class Game implements IGame {
   engine: Engine = new Engine()
@@ -18,12 +18,14 @@ export class Game implements IGame {
       this.isStarted = true
       this.signals.onGameStarted.emit(true)
 
+      //----- SYSTEMS -----
+      systemsRunner(this.engine)
+
+      //----- ENGINE INIT -----
       await this.engine.init(canvasWrapper)
 
-      this.engine.sceneManager.add(MainMenuScene, false)
-      this.engine.sceneManager.add(MapScene)
-
-      this.engine.sceneManager.loadScene(MainMenuScene)
+      //----- SCENES -----
+      scenesRunner(this.engine)
 
       console.log(this.engine.app)
 

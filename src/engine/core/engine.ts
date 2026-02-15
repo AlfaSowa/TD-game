@@ -1,5 +1,5 @@
 import { Application } from 'pixi.js'
-import { MovementSystem, SystemRunner } from '../ecs/systems'
+import { ClickSystem, MovementSystem, SystemRunner } from '../ecs/systems'
 import { EngineContext } from '../engine-ctx'
 import { SceneManager, UiManager } from '../managers'
 import { World } from './world'
@@ -30,8 +30,11 @@ export class Engine {
     canvas!.appendChild(this.app.canvas)
 
     this.engineContext.register(World, this.world)
+    this.engineContext.register(Application, this.app)
+    this.engineContext.register(SceneManager, this.sceneManager)
 
     this.systems.add(new MovementSystem())
+    this.systems.add(new ClickSystem())
 
     this.systems.init()
 

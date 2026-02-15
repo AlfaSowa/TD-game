@@ -17,8 +17,6 @@ export class UiManager {
     this.uiBoxes.set(uiBox.view.uid, uiBox)
     uiBox.init(this.engine)
 
-    console.log(this.uiBoxes)
-
     return uiBox
   }
 
@@ -31,8 +29,6 @@ export class UiManager {
     if (uiBoxTmp) {
       this.app.stage.addChild(uiBoxTmp.view)
     }
-
-    console.log(this.app.stage)
   }
 
   removeFromStage(uiBox: UiBox) {
@@ -40,7 +36,6 @@ export class UiManager {
     if (uiBoxTmp) {
       uiBoxTmp?.view.removeFromParent()
       //   tmpScene?.view.destroy()
-      console.log(this.app.stage)
     }
   }
 

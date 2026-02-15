@@ -5,10 +5,14 @@ import { Engine } from '../core'
 const PADDING = 20
 export class UiBox {
   engine!: Engine
-  view: Graphics = new Graphics()
+  view: Container = new Container()
+  g: Graphics = new Graphics()
+  color: string
 
-  constructor(position: Vector2) {
+  constructor(position: Vector2, color: string = 'rgba(43, 43,43, 1)') {
+    this.color = color
     this.view.position.set(position.x, position.y)
+
     this.resize()
   }
 
@@ -21,8 +25,9 @@ export class UiBox {
   }
 
   resize() {
-    this.view.clear()
-    this.view.rect(0, 0, this.view.width + PADDING, this.view.height + PADDING).fill({ color: 'green' })
+    this.g.clear()
+    this.g.rect(0, 0, this.view.width, this.view.height).fill({ color: this.color })
+    this.view.addChildAt(this.g, 0)
   }
 
   update(dt: number) {}

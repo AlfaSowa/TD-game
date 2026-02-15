@@ -1,3 +1,4 @@
+export * from './clickable-component'
 export * from './component'
 export * from './movement-component'
 export * from './position-component'

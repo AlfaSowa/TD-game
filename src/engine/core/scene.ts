@@ -50,7 +50,7 @@ export class Scene {
       this.view.addChild(this.viewport)
     } else {
       this.activeContainer.addChild(
-        new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#f1f1f1' })
+        new Graphics().rect(0, 0, app.canvas.width, app.canvas.height).fill({ color: '#a85556' })
       )
       this.view.addChild(this.activeContainer)
     }

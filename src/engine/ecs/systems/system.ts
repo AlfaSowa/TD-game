@@ -6,5 +6,7 @@ export interface System {
 
   update(ctx: EngineContext, dt: number): void
 
+  onRemove?(ctx: EngineContext): void
+
   init?(): void
 }
