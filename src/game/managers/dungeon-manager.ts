@@ -1,12 +1,18 @@
-import { Container } from 'pixi.js'
+import { Assets, Container } from 'pixi.js'
 import { Engine } from '../../engine/core'
 import { UiSlot } from '../../engine/ui'
 import { drawSquareFields } from '../../engine/utils'
 import { BattleEndSystem, BattleInitSystem, BattleSystem } from '../ecs/systems'
 
 export class DungeonManager {
-  static run(engine: Engine, view: Container, field: Container) {
-    engine.systems.add(new BattleInitSystem(view, field))
+  static async initAssets() {
+    return await Assets.loadBundle(['default'])
+  }
+
+  static async run(engine: Engine, view: Container, field: Container) {
+    const texture = await this.initAssets()
+
+    engine.systems.add(new BattleInitSystem(view, field, texture))
     engine.systems.add(new BattleSystem())
     engine.systems.add(new BattleEndSystem())
 

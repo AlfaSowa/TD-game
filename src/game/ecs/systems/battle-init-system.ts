@@ -1,6 +1,6 @@
-import { Application, Container, Graphics } from 'pixi.js'
+import { Application, Container, Graphics, Sprite } from 'pixi.js'
 import { World } from '../../../engine/core'
-import { ClickableComponent } from '../../../engine/ecs/components'
+import { ClickableComponent, SelectableComponent } from '../../../engine/ecs/components'
 import { Entity } from '../../../engine/ecs/entities'
 import { System } from '../../../engine/ecs/systems'
 import { SystemPriority } from '../../../engine/ecs/systems/types'
@@ -13,13 +13,15 @@ export class BattleInitSystem implements System {
   priority: SystemPriority = SystemPriority.LOW
   view: Container
   field: Container
+  texture: any
 
-  constructor(view: Container, field: Container) {
+  constructor(view: Container, field: Container, texture: any) {
     this.view = view
     this.field = field
+    this.texture = texture
   }
 
-  update(ctx: EngineContext, dt: number): void {
+  update(ctx: EngineContext, dt: number) {
     const world = ctx.get<World>(World)
     const sceneManager = ctx.get<SceneManager>(SceneManager)
     const app = ctx.get<Application>(Application)
@@ -47,7 +49,8 @@ export class BattleInitSystem implements System {
 
       for (let i = 0; i < 4; i++) {
         const enemy = world.createEntity(Entity)
-        enemy.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'brown' }))
+
+        enemy.addChild(new Sprite(this.texture.default['Tree2.png']))
 
         this.field.children[i].addChild(enemy)
 
@@ -59,6 +62,7 @@ export class BattleInitSystem implements System {
         world.addComponent(enemy, new HealthComponent(50))
         world.addComponent(enemy, new EnemyComponent())
         world.addComponent(enemy, new ClickableComponent())
+        world.addComponent(enemy, new SelectableComponent())
       }
 
       battle.phase = BattlePhase.GAME_START

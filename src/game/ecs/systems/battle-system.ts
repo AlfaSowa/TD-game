@@ -37,7 +37,6 @@ export class BattleSystem implements System {
     }
 
     for (const entity of world.with(HealthComponent)) {
-      console.log(123)
       world.destroyEntity(entity)
       entity.removeAllListeners()
       entity.removeFromParent()

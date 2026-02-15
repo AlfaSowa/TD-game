@@ -13,9 +13,9 @@ export class ClickSystem implements System {
     const world = ctx.get<World>(World)
 
     for (const entity of world.with(ClickableComponent)) {
-      // const clickable = world.getComponent(entity, ClickableComponent)!
+      const clickable = world.getComponent(entity, ClickableComponent)!
 
-      if (this.bound.has(entity)) continue
+      if (clickable.bound) continue
 
       entity.eventMode = 'static'
       entity.cursor = 'pointer'
@@ -24,18 +24,16 @@ export class ClickSystem implements System {
         console.log('Clicked entity:', entity.uid)
       })
 
-      this.bound.add(entity)
+      clickable.bound = true
     }
   }
 
   onRemove(ctx: EngineContext): void {
     const world = ctx.get<World>(World)
 
-    console.log(123)
-
     for (const entity of world.with(ClickableComponent)) {
-      console.log(1)
-
+      const clickable = world.getComponent(entity, ClickableComponent)!
+      clickable.bound = false
       entity.removeAllListeners()
     }
   }

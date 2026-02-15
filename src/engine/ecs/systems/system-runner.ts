@@ -22,9 +22,9 @@ export class SystemRunner {
     })
   }
 
-  init() {
+  init(ctx: EngineContext) {
     for (const sistem of this.systems) {
-      sistem.init?.()
+      sistem.init?.(ctx)
     }
   }
 
@@ -42,7 +42,7 @@ export class SystemRunner {
 
   update(ctx: EngineContext, dt: number) {
     for (const sistem of this.systems) {
-      sistem.update(ctx, dt)
+      sistem.update?.(ctx, dt)
     }
   }
 }

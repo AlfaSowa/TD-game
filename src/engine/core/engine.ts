@@ -1,5 +1,7 @@
-import { Application } from 'pixi.js'
-import { ClickSystem, MovementSystem, SystemRunner } from '../ecs/systems'
+import { Application, Assets } from 'pixi.js'
+import manifest from '../../../public/manifest.json'
+import { ClickSystem, HighlightSystem, MovementSystem, SystemRunner } from '../ecs/systems'
+import { SelectSystem } from '../ecs/systems/select-system'
 import { EngineContext } from '../engine-ctx'
 import { SceneManager, UiManager } from '../managers'
 import { World } from './world'
@@ -27,6 +29,26 @@ export class Engine {
       preference: 'webgpu'
     })
 
+    await Assets.init({ manifest })
+
+    this.app.stage.eventMode = 'static'
+    this.app.stage.cursor = 'pointer'
+
+    this.app.stage.on('pointerup', (event) => {
+      const target = event.target
+
+      if (!target || !target.uid) {
+        this.world.emit('emptyClicked', { originalEvent: event })
+        return
+      }
+
+      this.world.emit('entityClicked', {
+        entityId: target.uid,
+        originalEvent: event,
+        mouse: event.global
+      })
+    })
+
     canvas!.appendChild(this.app.canvas)
 
     this.engineContext.register(World, this.world)
@@ -35,8 +57,10 @@ export class Engine {
 
     this.systems.add(new MovementSystem())
     this.systems.add(new ClickSystem())
+    this.systems.add(new SelectSystem())
+    this.systems.add(new HighlightSystem())
 
-    this.systems.init()
+    this.systems.init(this.engineContext)
 
     this.sceneManager.init(this.app, this)
     this.uiManager.init(this.app, this)

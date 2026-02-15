@@ -1,12 +1,20 @@
+import { FederatedPointerEvent, Point } from 'pixi.js'
 import { Component } from '../ecs/components'
 import { Entity } from '../ecs/entities'
 
 type ComponentConstructor<C extends Component> = new (...args: any[]) => C
 
+type WorldEventData = {
+  entityId?: number
+  originalEvent: FederatedPointerEvent
+  mouse?: Point
+}
 export class World {
   private entities = new Map<number, Entity>()
   private components = new Map<string, Map<Entity, Component>>()
   private singletons = new Map<string, number>()
+
+  private listeners = new Map()
 
   public createEntity<T extends Entity>(supplier?: { new (): T }): T {
     const entity = supplier ? new supplier() : (new Entity() as T)
@@ -78,5 +86,40 @@ export class World {
         return this.getComponent(entity, componentClass)
       })
     })
+  }
+
+  on(eventName: string, callback: (arg: WorldEventData) => void) {
+    let set = this.listeners.get(eventName)
+
+    if (!set) {
+      set = new Set()
+      this.listeners.set(eventName, set)
+    }
+
+    set.add(callback)
+
+    // удобно вернуть функцию для отписки
+    return () => this.off(eventName, callback)
+  }
+
+  off(eventName: string, callback: (args: WorldEventData) => void) {
+    const set = this.listeners.get(eventName)
+    if (!set) return
+
+    set.delete(callback)
+
+    if (set.size === 0) {
+      this.listeners.delete(eventName)
+    }
+  }
+
+  emit(eventName: string, data: WorldEventData) {
+    const set = this.listeners.get(eventName)
+    if (!set) return
+
+    // делаем копию, чтобы можно было отписываться во время вызова
+    for (const cb of [...set]) {
+      cb(data)
+    }
   }
 }

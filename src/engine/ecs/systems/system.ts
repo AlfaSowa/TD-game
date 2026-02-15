@@ -4,9 +4,9 @@ import { SystemPriority } from './types'
 export interface System {
   priority: SystemPriority
 
-  update(ctx: EngineContext, dt: number): void
+  update?(ctx: EngineContext, dt: number): void
 
   onRemove?(ctx: EngineContext): void
 
-  init?(): void
+  init?(ctx: EngineContext): void
 }
