@@ -6,18 +6,19 @@ import { System } from '../../../engine/ecs/systems'
 import { SystemPriority } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import { SceneManager } from '../../../engine/managers'
+import { UiSlot } from '../../../engine/ui'
+import { drawSquareFields } from '../../../engine/utils'
 import { MapScene } from '../../scenes'
 import { BattleComponent, BattlePhase, EnemyComponent, HealthComponent } from '../components'
 
 export class BattleInitSystem implements System {
   priority: SystemPriority = SystemPriority.LOW
   view: Container
-  field: Container
   texture: any
+  container: Container = new Container()
 
-  constructor(view: Container, field: Container, texture: any) {
+  constructor(view: Container, texture: any) {
     this.view = view
-    this.field = field
     this.texture = texture
   }
 
@@ -31,6 +32,21 @@ export class BattleInitSystem implements System {
 
     if (battle?.phase === BattlePhase.INIT) {
       console.log('Game INIT')
+
+      drawSquareFields({
+        container: this.container,
+        xAmount: 5,
+        gap: 2,
+        renderElementFx: () =>
+          new UiSlot(
+            app.canvas.width / 5 - (app.canvas.width / 100) * 4,
+            app.canvas.width / 5 - (app.canvas.width / 100) * 4
+          )
+      })
+
+      this.container.position.set(app.canvas.width / 2 - this.container.width / 2, 300)
+
+      this.view.addChild(this.container)
 
       const player = world.createEntity(Entity)
       player.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'green' }))
@@ -52,11 +68,14 @@ export class BattleInitSystem implements System {
 
         enemy.addChild(new Sprite(this.texture.default['Tree2.png']))
 
-        this.field.children[i].addChild(enemy)
+        enemy.width = this.container.children[i].width
+        enemy.height = this.container.children[i].height
+
+        this.container.children[i].addChild(enemy)
 
         enemy.position.set(
-          this.field.children[i].width / 2 - enemy.width / 2,
-          this.field.children[i].height / 2 - enemy.height / 2
+          this.container.children[i].width / 2 - enemy.width / 2,
+          this.container.children[i].height / 2 - enemy.height / 2
         )
 
         world.addComponent(enemy, new HealthComponent(50))
@@ -70,7 +89,7 @@ export class BattleInitSystem implements System {
   }
 
   onRemove(): void {
-    this.field.removeFromParent()
-    this.field.destroy()
+    this.container.removeFromParent()
+    this.container.destroy()
   }
 }
