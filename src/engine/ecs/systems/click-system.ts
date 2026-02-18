@@ -22,6 +22,7 @@ export class ClickSystem implements System {
 
       entity.on('pointerup', (event) => {
         console.log('Clicked entity:', entity.uid)
+        console.log(entity)
       })
 
       clickable.bound = true

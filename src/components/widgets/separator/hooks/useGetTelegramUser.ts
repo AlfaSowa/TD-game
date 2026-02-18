@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { setCookie } from '../../../../utils'
-import { authUser } from '../api'
 
 export const useGetTelegramUser = (tg: any) => {
   const data = import.meta.env.MODE === 'development' ? import.meta.env.VITE_APP_USER_DATA : tg?.initData
@@ -15,15 +14,15 @@ export const useGetTelegramUser = (tg: any) => {
   //   }
   // }, [tg])
 
-  useEffect(() => {
-    if (!tgUser && data) {
-      authUser().then((user) => {
-        if (user) {
-          setTgUsesr(user)
-        }
-      })
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!tgUser && data) {
+  //     authUser().then((user) => {
+  //       if (user) {
+  //         setTgUsesr(user)
+  //       }
+  //     })
+  //   }
+  // }, [])
 
   return { tgUser }
 }

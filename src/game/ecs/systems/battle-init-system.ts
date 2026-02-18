@@ -8,8 +8,17 @@ import { EngineContext } from '../../../engine/engine-ctx'
 import { SceneManager } from '../../../engine/managers'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
+import { enemyConfigs, EnemyType } from '../../configs'
+import { BattleConfigType } from '../../managers'
 import { MapScene } from '../../scenes'
-import { BattleComponent, BattlePhase, EnemyComponent, HealthComponent } from '../components'
+import {
+  BattleComponent,
+  BattlePhase,
+  DamageComponent,
+  EnemyComponent,
+  HealthComponent,
+  PlayerComponent
+} from '../components'
 
 export class BattleInitSystem implements System {
   priority: SystemPriority = SystemPriority.LOW
@@ -17,9 +26,12 @@ export class BattleInitSystem implements System {
   texture: any
   container: Container = new Container()
 
-  constructor(view: Container, texture: any) {
+  battleConfig: BattleConfigType
+
+  constructor(view: Container, texture: any, battleConfig: BattleConfigType) {
     this.view = view
     this.texture = texture
+    this.battleConfig = battleConfig
   }
 
   update(ctx: EngineContext, dt: number) {
@@ -35,7 +47,8 @@ export class BattleInitSystem implements System {
 
       drawSquareFields({
         container: this.container,
-        xAmount: 5,
+        xAmount: this.battleConfig.field.w,
+        yAmount: this.battleConfig.field.h,
         gap: 2,
         renderElementFx: () =>
           new UiSlot(
@@ -48,7 +61,8 @@ export class BattleInitSystem implements System {
 
       this.view.addChild(this.container)
 
-      const player = world.createEntity(Entity)
+      const player = world.getOrCreateSingleton(PlayerComponent, new PlayerComponent())
+
       player.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'green' }))
       player.position.set(app.canvas.width / 2 - player.width / 2, 30)
 
@@ -60,32 +74,45 @@ export class BattleInitSystem implements System {
       })
 
       world.addComponent(player, new HealthComponent(100))
+      world.addComponent(player, new DamageComponent(50))
+      world.addComponent(player, new PlayerComponent())
 
       this.view.addChild(player)
 
-      for (let i = 0; i < 4; i++) {
-        const enemy = world.createEntity(Entity)
+      for (const enemy of this.battleConfig.enemies) {
+        const enemySlot = this.container.children[enemy.position]
 
-        enemy.addChild(new Sprite(this.texture.default['Tree2.png']))
+        if (enemySlot) {
+          const enemyEntity = this.createEnemy(world, enemy.type)
 
-        enemy.width = this.container.children[i].width
-        enemy.height = this.container.children[i].height
+          enemyEntity.addChild(new Sprite(this.texture.default[enemy.texture]))
 
-        this.container.children[i].addChild(enemy)
+          enemyEntity.width = enemySlot.width
+          enemyEntity.height = enemySlot.height
 
-        enemy.position.set(
-          this.container.children[i].width / 2 - enemy.width / 2,
-          this.container.children[i].height / 2 - enemy.height / 2
-        )
-
-        world.addComponent(enemy, new HealthComponent(50))
-        world.addComponent(enemy, new EnemyComponent())
-        world.addComponent(enemy, new ClickableComponent())
-        world.addComponent(enemy, new SelectableComponent())
+          enemySlot.addChild(enemyEntity)
+        }
       }
 
       battle.phase = BattlePhase.GAME_START
     }
+  }
+
+  createEnemy(world: World, type: EnemyType) {
+    const enemyEntity = world.createEntity(Entity)
+
+    const config = enemyConfigs[type]
+
+    console.log(config.health)
+
+    world.addComponent(enemyEntity, new HealthComponent(config.health))
+    world.addComponent(enemyEntity, new DamageComponent(config.damage))
+
+    world.addComponent(enemyEntity, new EnemyComponent())
+    world.addComponent(enemyEntity, new ClickableComponent())
+    world.addComponent(enemyEntity, new SelectableComponent())
+
+    return enemyEntity
   }
 
   onRemove(): void {

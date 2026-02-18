@@ -1,3 +1,5 @@
 export * from './battle-component'
+export * from './damage-component'
 export * from './enemy-component'
 export * from './health-component'
+export * from './player-component'

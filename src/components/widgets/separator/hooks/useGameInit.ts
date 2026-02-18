@@ -5,7 +5,7 @@ export const useGameInit = (game: Game, user: any) => {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!game.isStarted && user) {
+    if (!game.isStarted) {
       game.init()
     }
   }, [user])

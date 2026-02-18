@@ -22,9 +22,9 @@ export const Separator = () => {
   console.log('tg', tg)
 
   useEffect(() => {
-    if (tgUser) {
-      setLoadingState('game')
-    }
+    // if (tgUser) {
+    setLoadingState('game')
+    // }
   }, [tgUser])
 
   // useEffect(() => {
@@ -43,9 +43,9 @@ export const Separator = () => {
 
   return (
     <div className="flex flex-col h-dvh w-screen">
-      {(!tgUser || !isGameStarted) && <LoadingScreen message={loadingMessages[loadingState]} />}
+      {!isGameStarted && <LoadingScreen message={loadingMessages[loadingState]} />}
 
-      {tgUser && isGameStarted && <Layout />}
+      {isGameStarted && <Layout />}
 
       <div id="canvas-wrapper" className=" absolute top-0 left-0" />
     </div>

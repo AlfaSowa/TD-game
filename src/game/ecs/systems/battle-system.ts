@@ -1,4 +1,5 @@
 import { World } from '../../../engine/core'
+import { SelectableComponent } from '../../../engine/ecs/components'
 import { System } from '../../../engine/ecs/systems'
 import { SystemPriority } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
@@ -15,12 +16,13 @@ export class BattleSystem implements System {
     const battle = world.getComponent(battleEntity, BattleComponent)
 
     if (battle?.phase === BattlePhase.GAME_START) {
-      for (const entity of world.with(HealthComponent, EnemyComponent)) {
+      for (const entity of world.with(HealthComponent, EnemyComponent, SelectableComponent)) {
         const health = world.getComponent(entity, HealthComponent)!
         const enemy = world.getComponent(entity, EnemyComponent)!
+        const selectable = world.getComponent(entity, SelectableComponent)!
 
-        if (enemy.selected) {
-          console.log(enemy)
+        if (selectable.selected) {
+          // console.log(health.health)
         }
       }
     }

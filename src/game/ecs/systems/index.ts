@@ -1,5 +1,6 @@
 export * from './battle-end-system'
 export * from './battle-init-system'
 export * from './battle-system'
+export * from './damage-system'
 export * from './health-system'
 export * from './runner'
