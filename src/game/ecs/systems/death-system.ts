@@ -1,11 +1,11 @@
 import { World } from '../../../engine/core'
 import { System } from '../../../engine/ecs/systems'
-import { SystemPriority } from '../../../engine/ecs/systems/types'
+import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import { DeathTagComponent } from '../components'
 
 export class DeathSystem implements System {
-  priority: SystemPriority = SystemPriority.HIGH
+  priority = SYSTEM_PRIORITY.SUPPORT
 
   update(ctx: EngineContext, dt: number): void {
     const world = ctx.get<World>(World)

@@ -1,18 +1,20 @@
 import { EngineContext } from '../../engine-ctx'
 import { System } from './system'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 type SystemConstructor<S extends System> = new (...args: any[]) => S
 
 export class SystemRunner {
   private systems: System[] = []
 
-  comporator = new Map<SystemPriority, number>()
+  comporator = new Map<SYSTEM_PRIORITY, number>()
 
   public SystemManager() {
-    this.comporator.set(SystemPriority.LOW, 1)
-    this.comporator.set(SystemPriority.MEDIUM, 2)
-    this.comporator.set(SystemPriority.HIGH, 3)
+    this.comporator.set(SYSTEM_PRIORITY.LOW, 1)
+    this.comporator.set(SYSTEM_PRIORITY.INTERMEDIATE, 2)
+    this.comporator.set(SYSTEM_PRIORITY.SUPPORT, 3)
+    this.comporator.set(SYSTEM_PRIORITY.HIGH, 4)
+    this.comporator.set(SYSTEM_PRIORITY.DANGER, 5)
   }
 
   add<S extends System>(system: S): void {

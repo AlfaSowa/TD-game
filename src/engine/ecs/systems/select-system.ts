@@ -3,10 +3,10 @@ import { World } from '../../core'
 import { EngineContext } from '../../engine-ctx'
 import { SelectableComponent } from '../components'
 import { System } from './system'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 export class SelectSystem implements System {
-  priority: SystemPriority = SystemPriority.LOW
+  priority = SYSTEM_PRIORITY.LOW
 
   init(ctx: EngineContext) {
     const world = ctx.get<World>(World)

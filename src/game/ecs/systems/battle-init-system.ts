@@ -3,7 +3,7 @@ import { World } from '../../../engine/core'
 import { ClickableComponent, SelectableComponent } from '../../../engine/ecs/components'
 import { Entity } from '../../../engine/ecs/entities'
 import { System } from '../../../engine/ecs/systems'
-import { SystemPriority } from '../../../engine/ecs/systems/types'
+import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
@@ -19,7 +19,8 @@ import {
 } from '../components'
 
 export class BattleInitSystem implements System {
-  priority: SystemPriority = SystemPriority.LOW
+  priority = SYSTEM_PRIORITY.LOW
+
   view: Container
   texture: any
   container: Container = new Container()

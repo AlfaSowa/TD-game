@@ -2,10 +2,10 @@ import { World } from '../../core'
 import { EngineContext } from '../../engine-ctx'
 import { ClickableComponent } from '../components'
 import { System } from './system'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 export class ClickSystem implements System {
-  priority: SystemPriority = SystemPriority.LOW
+  priority = SYSTEM_PRIORITY.LOW
 
   bound = new WeakSet()
 

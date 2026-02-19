@@ -2,7 +2,14 @@ import { Assets, Container } from 'pixi.js'
 import { Engine } from '../../engine/core'
 import { randomNumber } from '../../utils'
 import { EnemyType } from '../configs'
-import { BattleEndSystem, BattleInitSystem, BattleSystem, DamageSystem, DeathSystem, TurnSystem } from '../ecs/systems'
+import {
+  BattleEndSystem,
+  BattleInitSystem,
+  BattleSystem,
+  DeathSystem,
+  IntervalDamageSystem,
+  TurnSystem
+} from '../ecs/systems'
 
 export type EnemyEntityType = {
   position: number
@@ -39,19 +46,20 @@ export class DungeonManager {
     engine.systems.add(new BattleInitSystem(view, texture, battleConfig))
     engine.systems.add(new BattleSystem())
     engine.systems.add(new BattleEndSystem())
-    engine.systems.add(new DamageSystem())
+    engine.systems.add(new IntervalDamageSystem())
     engine.systems.add(new DeathSystem())
     engine.systems.add(new TurnSystem())
 
     console.log('app', engine.app)
     console.log('world', engine.world)
+    console.log('systems', engine.systems)
   }
 
   static stop(engine: Engine) {
     engine.systems.remove(BattleInitSystem, engine.engineContext)
     engine.systems.remove(BattleSystem, engine.engineContext)
     engine.systems.remove(BattleEndSystem, engine.engineContext)
-    engine.systems.remove(DamageSystem, engine.engineContext)
+    engine.systems.remove(IntervalDamageSystem, engine.engineContext)
     engine.systems.remove(DeathSystem, engine.engineContext)
     engine.systems.remove(TurnSystem, engine.engineContext)
   }

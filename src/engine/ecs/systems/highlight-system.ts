@@ -2,10 +2,10 @@ import { World } from '../../core'
 import { EngineContext } from '../../engine-ctx'
 import { SelectableComponent } from '../components'
 import { System } from './system'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 export class HighlightSystem implements System {
-  priority: SystemPriority = SystemPriority.MEDIUM
+  priority = SYSTEM_PRIORITY.INTERMEDIATE
 
   update(ctx: EngineContext, dt: number): void {
     const world = ctx.get<World>(World)

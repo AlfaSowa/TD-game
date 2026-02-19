@@ -1,13 +1,19 @@
 import { World } from '../../../engine/core'
 import { SelectableComponent } from '../../../engine/ecs/components'
 import { System } from '../../../engine/ecs/systems'
-import { SystemPriority } from '../../../engine/ecs/systems/types'
+import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
-import { EnemyComponent, HealthComponent, PlayerTagComponent, TurnComponent } from '../components'
+import {
+  EnemyComponent,
+  HealthComponent,
+  IntervalDamageComponent,
+  PlayerTagComponent,
+  TurnComponent
+} from '../components'
 import { BattleComponent, BattlePhase } from '../components/battle-component'
 
 export class BattleSystem implements System {
-  priority: SystemPriority = SystemPriority.MEDIUM
+  priority = SYSTEM_PRIORITY.LOW
 
   update(ctx: EngineContext, dt: number): void {
     const world = ctx.get<World>(World)
@@ -30,9 +36,12 @@ export class BattleSystem implements System {
           console.log('world', world)
 
           turnComponent.attacker = player
+          world.addComponent(entity, new IntervalDamageComponent({ damagePerTick: 50, duration: 3, interval: 1 }))
+
           turnComponent.defender = entity
 
           selectable.selected = false
+          turnComponent.btnPressed = false
         }
       }
     }

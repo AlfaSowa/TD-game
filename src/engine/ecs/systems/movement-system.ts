@@ -2,12 +2,12 @@ import { World } from '../../core'
 import { EngineContext } from '../../engine-ctx'
 import { MovementComponent, VelocityComponent } from '../components'
 import { System } from './system'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 type MoveMovesKeys = 'KeyW' | 'KeyA' | 'KeyS' | 'KeyD'
 
 export class MovementSystem implements System {
-  priority: SystemPriority = SystemPriority.MEDIUM
+  priority = SYSTEM_PRIORITY.LOW
 
   KeyW: boolean = false
   KeyA: boolean = false

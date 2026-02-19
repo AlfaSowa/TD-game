@@ -1,8 +1,8 @@
 import { EngineContext } from '../../engine-ctx'
-import { SystemPriority } from './types'
+import { SYSTEM_PRIORITY } from './types'
 
 export interface System {
-  priority: SystemPriority
+  priority: SYSTEM_PRIORITY
 
   update?(ctx: EngineContext, dt: number): void
 

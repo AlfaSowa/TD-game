@@ -1,5 +1,7 @@
-export enum SystemPriority {
+export enum SYSTEM_PRIORITY {
   LOW,
-  MEDIUM,
-  HIGH
+  INTERMEDIATE,
+  SUPPORT,
+  HIGH,
+  DANGER
 }
