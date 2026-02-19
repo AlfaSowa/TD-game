@@ -7,7 +7,7 @@ import { SystemPriority } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
-import { enemyConfigs, EnemyType } from '../../configs'
+import { enemyConfigs, EnemyType, playerConfig } from '../../configs'
 import { BattleConfigType } from '../../managers'
 import {
   BattleComponent,
@@ -15,7 +15,7 @@ import {
   DamageComponent,
   EnemyComponent,
   HealthComponent,
-  PlayerComponent
+  PlayerTagComponent
 } from '../components'
 
 export class BattleInitSystem implements System {
@@ -80,7 +80,7 @@ export class BattleInitSystem implements System {
   }
 
   createPlayer(world: World, app: Application) {
-    const player = world.getOrCreateSingleton(PlayerComponent, new PlayerComponent())
+    const player = world.getOrCreateSingleton(PlayerTagComponent, new PlayerTagComponent())
 
     player.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'green' }))
     player.position.set(app.canvas.width / 2 - player.width / 2, 30)
@@ -92,9 +92,9 @@ export class BattleInitSystem implements System {
       console.log('click player')
     })
 
-    world.addComponent(player, new HealthComponent(100))
-    world.addComponent(player, new DamageComponent(50))
-    world.addComponent(player, new PlayerComponent())
+    world.addComponent(player, new HealthComponent(playerConfig.health))
+    world.addComponent(player, new DamageComponent(playerConfig.damage))
+    world.addComponent(player, new PlayerTagComponent())
 
     this.view.addChild(player)
   }

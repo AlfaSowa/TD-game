@@ -1,3 +1,3 @@
 import { Component } from '../../../engine/ecs/components'
 
-export class PlayerComponent implements Component {}
+export class PlayerTagComponent implements Component {}

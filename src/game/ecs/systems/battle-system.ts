@@ -3,11 +3,11 @@ import { SelectableComponent } from '../../../engine/ecs/components'
 import { System } from '../../../engine/ecs/systems'
 import { SystemPriority } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
-import { EnemyComponent, HealthComponent } from '../components'
+import { EnemyComponent, HealthComponent, PlayerTagComponent, TurnComponent } from '../components'
 import { BattleComponent, BattlePhase } from '../components/battle-component'
 
 export class BattleSystem implements System {
-  priority: SystemPriority = SystemPriority.LOW
+  priority: SystemPriority = SystemPriority.MEDIUM
 
   update(ctx: EngineContext, dt: number): void {
     const world = ctx.get<World>(World)
@@ -16,13 +16,23 @@ export class BattleSystem implements System {
     const battle = world.getComponent(battleEntity, BattleComponent)
 
     if (battle?.phase === BattlePhase.GAME_START) {
-      for (const entity of world.with(HealthComponent, EnemyComponent, SelectableComponent)) {
-        const health = world.getComponent(entity, HealthComponent)!
-        const enemy = world.getComponent(entity, EnemyComponent)!
+      for (const entity of world.with(EnemyComponent, SelectableComponent)) {
+        const enemyComponent = world.getComponent(entity, EnemyComponent)!
         const selectable = world.getComponent(entity, SelectableComponent)!
 
-        if (selectable.selected) {
-          // console.log(health.health)
+        const player = world.getOrCreateSingleton(PlayerTagComponent, new PlayerTagComponent())
+        const playerComponent = world.getComponent(player, PlayerTagComponent)
+
+        const turnEntity = world.getOrCreateSingleton(TurnComponent, new TurnComponent())
+        const turnComponent = world.getComponent(turnEntity, TurnComponent)!
+
+        if (selectable.selected && turnComponent.btnPressed) {
+          console.log('world', world)
+
+          turnComponent.attacker = player
+          turnComponent.defender = entity
+
+          selectable.selected = false
         }
       }
     }
@@ -40,9 +50,6 @@ export class BattleSystem implements System {
 
     for (const entity of world.with(HealthComponent)) {
       world.destroyEntity(entity)
-      entity.removeAllListeners()
-      entity.removeFromParent()
-      entity.destroy()
     }
   }
 }

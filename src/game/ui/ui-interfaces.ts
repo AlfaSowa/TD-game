@@ -2,6 +2,7 @@ import { BitmapText } from 'pixi.js'
 import { Engine } from '../../engine/core'
 import { UiBox, UiSlot } from '../../engine/ui'
 import { Vector2 } from '../../utils'
+import { TurnComponent } from '../ecs'
 import { DungeonScene } from '../scenes/dungeon-scene'
 
 const BUTTONS_HEIGHT = 50
@@ -61,6 +62,45 @@ export class UiInterfaces {
     uiBox.addContainer(optionsBtnSlot)
 
     uiBox.view.position.set(engine.app.canvas.width / 2 - uiBox.view.width / 2, 200)
+
+    uiBox.resize()
+
+    return uiBox
+  }
+
+  static createTurnStartBtn(engine: Engine): UiBox {
+    const uiBox = engine.uiManager.add(new UiBox(new Vector2(0, 0), 'rgba(0, 0, 0, 0)'))
+
+    const startTurnBtnText = new BitmapText({
+      text: 'Конец хода',
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fill: 'rgb(14, 14, 14)'
+      }
+    })
+
+    const startTurnBtnSlot = new UiSlot(engine.app.canvas.width - 60, BUTTONS_HEIGHT, 'rgba(101, 101, 101, 1)')
+
+    const turnBtn = engine.world.getOrCreateSingleton(TurnComponent, new TurnComponent())
+    const turnBtnComponent = engine.world.getComponent(turnBtn, TurnComponent)!
+
+    startTurnBtnSlot.clicked((f) => {
+      console.log('Конец хода')
+      turnBtnComponent.btnPressed = true
+    })
+
+    startTurnBtnText.position.x = startTurnBtnSlot.width / 2 - startTurnBtnText.width / 2
+    startTurnBtnText.position.y = startTurnBtnSlot.height / 2 - startTurnBtnText.height / 2
+
+    startTurnBtnSlot.addChild(startTurnBtnText)
+
+    uiBox.addContainer(startTurnBtnSlot)
+
+    uiBox.view.position.set(
+      engine.app.canvas.width / 2 - uiBox.view.width / 2,
+      engine.app.canvas.height - startTurnBtnSlot.height - 10
+    )
 
     uiBox.resize()
 

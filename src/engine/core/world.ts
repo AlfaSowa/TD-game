@@ -33,6 +33,7 @@ export class World {
 
   public destroyEntity<E extends Entity>(entity: E) {
     this.entities.delete(entity.uid)
+
     for (const component of this.components.values()) {
       component.delete(entity)
     }

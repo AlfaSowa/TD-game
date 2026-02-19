@@ -1,7 +1,8 @@
 import { Assets, Container } from 'pixi.js'
 import { Engine } from '../../engine/core'
+import { randomNumber } from '../../utils'
 import { EnemyType } from '../configs'
-import { BattleEndSystem, BattleInitSystem, BattleSystem, DamageSystem } from '../ecs/systems'
+import { BattleEndSystem, BattleInitSystem, BattleSystem, DamageSystem, DeathSystem, TurnSystem } from '../ecs/systems'
 
 export type EnemyEntityType = {
   position: number
@@ -18,11 +19,11 @@ export type BattleConfigType = {
 
 const battleConfig: BattleConfigType = {
   enemies: [
-    { position: 3, texture: 'Castle_Blue.png', type: 'mage' },
-    { position: 1, texture: 'House_Blue.png', type: 'warrior' },
-    { position: 5, texture: 'House_Red.png', type: 'warrior' },
-    { position: 20, texture: 'Tree2.png', type: 'mage' },
-    { position: 11, texture: 'camp.png', type: 'mage' }
+    { position: Math.floor(randomNumber([1, 3])), texture: 'Castle_Blue.png', type: 'mage' },
+    { position: Math.floor(randomNumber([4, 8])), texture: 'House_Blue.png', type: 'warrior' },
+    { position: Math.floor(randomNumber([9, 15])), texture: 'House_Red.png', type: 'warrior' },
+    { position: Math.floor(randomNumber([16, 20])), texture: 'Tree2.png', type: 'mage' },
+    { position: Math.floor(randomNumber([20, 25])), texture: 'camp.png', type: 'mage' }
   ],
   field: { h: 5, w: 5 }
 }
@@ -39,6 +40,8 @@ export class DungeonManager {
     engine.systems.add(new BattleSystem())
     engine.systems.add(new BattleEndSystem())
     engine.systems.add(new DamageSystem())
+    engine.systems.add(new DeathSystem())
+    engine.systems.add(new TurnSystem())
 
     console.log('app', engine.app)
     console.log('world', engine.world)
@@ -49,5 +52,7 @@ export class DungeonManager {
     engine.systems.remove(BattleSystem, engine.engineContext)
     engine.systems.remove(BattleEndSystem, engine.engineContext)
     engine.systems.remove(DamageSystem, engine.engineContext)
+    engine.systems.remove(DeathSystem, engine.engineContext)
+    engine.systems.remove(TurnSystem, engine.engineContext)
   }
 }
