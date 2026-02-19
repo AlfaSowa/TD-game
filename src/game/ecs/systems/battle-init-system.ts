@@ -5,12 +5,10 @@ import { Entity } from '../../../engine/ecs/entities'
 import { System } from '../../../engine/ecs/systems'
 import { SystemPriority } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
-import { SceneManager } from '../../../engine/managers'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
 import { enemyConfigs, EnemyType } from '../../configs'
 import { BattleConfigType } from '../../managers'
-import { MapScene } from '../../scenes'
 import {
   BattleComponent,
   BattlePhase,
@@ -36,7 +34,6 @@ export class BattleInitSystem implements System {
 
   update(ctx: EngineContext, dt: number) {
     const world = ctx.get<World>(World)
-    const sceneManager = ctx.get<SceneManager>(SceneManager)
     const app = ctx.get<Application>(Application)
 
     const battleEntity = world.getOrCreateSingleton(BattleComponent, new BattleComponent())
@@ -61,23 +58,7 @@ export class BattleInitSystem implements System {
 
       this.view.addChild(this.container)
 
-      const player = world.getOrCreateSingleton(PlayerComponent, new PlayerComponent())
-
-      player.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'green' }))
-      player.position.set(app.canvas.width / 2 - player.width / 2, 30)
-
-      player.eventMode = 'static'
-      player.cursor = 'pointer'
-
-      player.on('pointerup', () => {
-        sceneManager.loadScene(MapScene)
-      })
-
-      world.addComponent(player, new HealthComponent(100))
-      world.addComponent(player, new DamageComponent(50))
-      world.addComponent(player, new PlayerComponent())
-
-      this.view.addChild(player)
+      this.createPlayer(world, app)
 
       for (const enemy of this.battleConfig.enemies) {
         const enemySlot = this.container.children[enemy.position]
@@ -98,12 +79,30 @@ export class BattleInitSystem implements System {
     }
   }
 
+  createPlayer(world: World, app: Application) {
+    const player = world.getOrCreateSingleton(PlayerComponent, new PlayerComponent())
+
+    player.addChild(new Graphics().rect(0, 0, 50, 50).fill({ color: 'green' }))
+    player.position.set(app.canvas.width / 2 - player.width / 2, 30)
+
+    player.eventMode = 'static'
+    player.cursor = 'pointer'
+
+    player.on('pointerup', () => {
+      console.log('click player')
+    })
+
+    world.addComponent(player, new HealthComponent(100))
+    world.addComponent(player, new DamageComponent(50))
+    world.addComponent(player, new PlayerComponent())
+
+    this.view.addChild(player)
+  }
+
   createEnemy(world: World, type: EnemyType) {
     const enemyEntity = world.createEntity(Entity)
 
     const config = enemyConfigs[type]
-
-    console.log(config.health)
 
     world.addComponent(enemyEntity, new HealthComponent(config.health))
     world.addComponent(enemyEntity, new DamageComponent(config.damage))

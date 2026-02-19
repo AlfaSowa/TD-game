@@ -26,6 +26,7 @@ const battleConfig: BattleConfigType = {
   ],
   field: { h: 5, w: 5 }
 }
+
 export class DungeonManager {
   static async initAssets() {
     return await Assets.loadBundle(['default'])
