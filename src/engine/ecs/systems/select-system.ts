@@ -22,11 +22,6 @@ export class SelectSystem implements System {
     const e = world.getEntity(entityId)
     if (!e) return
 
-    for (const entity of world.with(SelectableComponent)) {
-      const selectable = world.getComponent(entity, SelectableComponent)!
-      selectable.selected = false
-    }
-
     const selectable = world.getComponent(e, SelectableComponent)!
 
     if (selectable) {

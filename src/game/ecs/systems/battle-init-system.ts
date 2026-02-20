@@ -8,14 +8,15 @@ import { EngineContext } from '../../../engine/engine-ctx'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
 import { enemyConfigs, EnemyType, playerConfig } from '../../configs'
-import { BattleConfigType } from '../../managers'
+import { BattleConfigType, PlayerSpellConfigType } from '../../managers'
 import {
   BattleComponent,
   BattlePhase,
   DamageComponent,
   EnemyComponent,
   HealthComponent,
-  PlayerTagComponent
+  PlayerTagComponent,
+  SpellComponent
 } from '../components'
 
 export class BattleInitSystem implements System {
@@ -24,13 +25,16 @@ export class BattleInitSystem implements System {
   view: Container
   texture: any
   container: Container = new Container()
+  spells: Container = new Container()
 
   battleConfig: BattleConfigType
+  playerSpellConfig: PlayerSpellConfigType
 
-  constructor(view: Container, texture: any, battleConfig: BattleConfigType) {
+  constructor(view: Container, texture: any, battleConfig: BattleConfigType, playerSpellConfig: PlayerSpellConfigType) {
     this.view = view
     this.texture = texture
     this.battleConfig = battleConfig
+    this.playerSpellConfig = playerSpellConfig
   }
 
   update(ctx: EngineContext, dt: number) {
@@ -61,6 +65,8 @@ export class BattleInitSystem implements System {
 
       this.createPlayer(world, app)
 
+      this.createSpells(world, app)
+
       for (const enemy of this.battleConfig.enemies) {
         const enemySlot = this.container.children[enemy.position]
 
@@ -77,6 +83,46 @@ export class BattleInitSystem implements System {
       }
 
       battle.phase = BattlePhase.GAME_START
+
+      console.log(222, world.with(SpellComponent, SelectableComponent))
+      console.log(222, world.with(EnemyComponent, SelectableComponent))
+    }
+  }
+
+  createSpells(world: World, app: Application) {
+    drawSquareFields({
+      container: this.spells,
+      xAmount: 5,
+      yAmount: 1,
+      gap: 2,
+      renderElementFx: () =>
+        new UiSlot(
+          app.canvas.width / 5 - (app.canvas.width / 100) * 4,
+          app.canvas.width / 5 - (app.canvas.width / 100) * 4
+        )
+    })
+
+    this.spells.position.set(app.canvas.width / 2 - this.spells.width / 2, 100)
+
+    this.view.addChild(this.spells)
+
+    for (const spell of this.playerSpellConfig.spells) {
+      const slot = this.spells.children[spell.position]
+
+      if (slot) {
+        const entity = world.createEntity(Entity)
+
+        world.addComponent(entity, new ClickableComponent())
+        world.addComponent(entity, new SelectableComponent())
+        world.addComponent(entity, new SpellComponent())
+
+        entity.addChild(new Sprite(this.texture.default[spell.texture]))
+
+        entity.width = slot.width
+        entity.height = slot.height
+
+        slot.addChild(entity)
+      }
     }
   }
 

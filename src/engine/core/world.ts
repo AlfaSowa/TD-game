@@ -14,7 +14,7 @@ export class World {
   private components = new Map<string, Map<Entity, Component>>()
   private singletons = new Map<string, number>()
 
-  private listeners = new Map()
+  listeners = new Map()
 
   public createEntity<T extends Entity>(supplier?: { new (): T }): T {
     const entity = supplier ? new supplier() : (new Entity() as T)

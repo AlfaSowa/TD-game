@@ -8,6 +8,8 @@ import {
   BattleSystem,
   DeathSystem,
   IntervalDamageSystem,
+  SelectEnemySystem,
+  SelectSpellSystem,
   TurnSystem
 } from '../ecs/systems'
 
@@ -16,6 +18,7 @@ export type EnemyEntityType = {
   texture: string
   type: EnemyType
 }
+
 export type BattleConfigType = {
   enemies: EnemyEntityType[]
   field: {
@@ -35,6 +38,19 @@ const battleConfig: BattleConfigType = {
   field: { h: 5, w: 5 }
 }
 
+export type PlayerSpellType = {
+  position: number
+  texture: string
+}
+
+export type PlayerSpellConfigType = {
+  spells: PlayerSpellType[]
+}
+
+const playerSpellsConfig: PlayerSpellConfigType = {
+  spells: [{ position: 0, texture: 'Castle_Blue.png' }]
+}
+
 export class DungeonManager {
   static async initAssets() {
     return await Assets.loadBundle(['default'])
@@ -43,12 +59,18 @@ export class DungeonManager {
   static async run(engine: Engine, view: Container) {
     const texture = await this.initAssets()
 
-    engine.systems.add(new BattleInitSystem(view, texture, battleConfig))
+    engine.systems.add(new BattleInitSystem(view, texture, battleConfig, playerSpellsConfig))
     engine.systems.add(new BattleSystem())
     engine.systems.add(new BattleEndSystem())
     engine.systems.add(new IntervalDamageSystem())
     engine.systems.add(new DeathSystem())
     engine.systems.add(new TurnSystem())
+
+    engine.systems.add(new SelectEnemySystem())
+    engine.systems.get(SelectEnemySystem)?.init?.(engine.engineContext)
+
+    engine.systems.add(new SelectSpellSystem())
+    engine.systems.get(SelectSpellSystem)?.init?.(engine.engineContext)
 
     console.log('app', engine.app)
     console.log('world', engine.world)
@@ -62,5 +84,8 @@ export class DungeonManager {
     engine.systems.remove(IntervalDamageSystem, engine.engineContext)
     engine.systems.remove(DeathSystem, engine.engineContext)
     engine.systems.remove(TurnSystem, engine.engineContext)
+
+    engine.systems.remove(SelectEnemySystem, engine.engineContext)
+    engine.systems.remove(SelectSpellSystem, engine.engineContext)
   }
 }

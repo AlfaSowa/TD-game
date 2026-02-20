@@ -33,10 +33,10 @@ export class BattleSystem implements System {
         const turnComponent = world.getComponent(turnEntity, TurnComponent)!
 
         if (selectable.selected && turnComponent.btnPressed) {
-          console.log('world', world)
+          console.log('world1231231', world)
 
           turnComponent.attacker = player
-          world.addComponent(entity, new IntervalDamageComponent({ damagePerTick: 50, duration: 3, interval: 1 }))
+          world.addComponent(entity, new IntervalDamageComponent({ damagePerTick: 30, duration: 3, interval: 1 }))
 
           turnComponent.defender = entity
 

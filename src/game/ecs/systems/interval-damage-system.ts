@@ -17,6 +17,8 @@ export class IntervalDamageSystem implements System {
       intervalDamage.timeLeft -= dt
       intervalDamage.elapsed += dt
 
+      entity.tint = 'red'
+
       if (intervalDamage.elapsed >= intervalDamage.interval) {
         health.currentHealth = health.currentHealth - intervalDamage.damagePerTick
         intervalDamage.elapsed = 0
@@ -28,6 +30,7 @@ export class IntervalDamageSystem implements System {
       }
 
       if (intervalDamage.timeLeft <= 0) {
+        entity.tint = 0xffffff
         world.removeComponent(entity, IntervalDamageComponent)
       }
 

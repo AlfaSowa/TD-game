@@ -39,10 +39,24 @@ export class Engine {
 
       if (!target || !target.uid) {
         this.world.emit('emptyClicked', { originalEvent: event })
+        this.world.emit('enemyClicked', { originalEvent: event })
+        this.world.emit('spellClicked', { originalEvent: event })
         return
       }
 
       this.world.emit('entityClicked', {
+        entityId: target.uid,
+        originalEvent: event,
+        mouse: event.global
+      })
+
+      this.world.emit('enemyClicked', {
+        entityId: target.uid,
+        originalEvent: event,
+        mouse: event.global
+      })
+
+      this.world.emit('spellClicked', {
         entityId: target.uid,
         originalEvent: event,
         mouse: event.global
