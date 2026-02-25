@@ -3,15 +3,15 @@ import { World } from '../../../engine/core'
 import { System } from '../../../engine/ecs/systems'
 import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
-import { AbilityComponent, ActionIntentComponent, SelectedAbilityComponent } from '../components'
+import { ActionIntentComponent, SelectedTargetComponent } from '../components'
 
-export class SelectSpellSystem implements System {
+export class SelectTargetSystem implements System {
   priority = SYSTEM_PRIORITY.LOW
 
   init(ctx: EngineContext) {
     const world = ctx.get<World>(World)
 
-    world.on('selectAbility', ({ entityId, originalEvent }) => {
+    world.on('selectTarget', ({ entityId, originalEvent }) => {
       if (entityId) {
         this.onEntityClicked(entityId, originalEvent, world)
       }
@@ -21,8 +21,8 @@ export class SelectSpellSystem implements System {
   update(ctx: EngineContext, dt: number): void {
     const world = ctx.get<World>(World)
 
-    for (const entity of world.with(SelectedAbilityComponent)) {
-      const clickable = world.getComponent(entity, SelectedAbilityComponent)!
+    for (const entity of world.with(SelectedTargetComponent)) {
+      const clickable = world.getComponent(entity, SelectedTargetComponent)!
 
       if (clickable.bound) continue
 
@@ -42,25 +42,23 @@ export class SelectSpellSystem implements System {
     const e = world.getEntity(entityId)
     if (!e) return
 
-    const spell = world.getComponent(e, SelectedAbilityComponent)!
+    const enemy = world.getComponent(e, SelectedTargetComponent)!
 
-    if (!spell) return
+    if (!enemy) return
 
     const actionIntentEntity = world.getOrCreateSingleton(ActionIntentComponent, new ActionIntentComponent())
     const actionIntent = world.getComponent(actionIntentEntity, ActionIntentComponent)
 
-    for (const entity of world.with(SelectedAbilityComponent)) {
-      const selectable = world.getComponent(entity, SelectedAbilityComponent)!
+    for (const entity of world.with(SelectedTargetComponent)) {
+      const selectable = world.getComponent(entity, SelectedTargetComponent)!
       selectable.selected = false
       entity.tint = 0xffffff
     }
 
-    const selectable = world.getComponent(e, SelectedAbilityComponent)!
-    const ability = world.getComponent(e, AbilityComponent)
+    const selectable = world.getComponent(e, SelectedTargetComponent)!
 
-    if (selectable && actionIntent && ability) {
-      actionIntent.abilityId = ability.abilityId
-
+    if (selectable && actionIntent) {
+      actionIntent.target = e
       selectable.selected = true
       e.tint = 0x00ff00
     }
@@ -69,8 +67,10 @@ export class SelectSpellSystem implements System {
   onRemove(ctx: EngineContext): void {
     const world = ctx.get<World>(World)
 
-    for (const entity of world.with(SelectedAbilityComponent)) {
-      const selected = world.getComponent(entity, SelectedAbilityComponent)!
+    console.log('8989')
+
+    for (const entity of world.with(SelectedTargetComponent)) {
+      const selected = world.getComponent(entity, SelectedTargetComponent)!
 
       selected.bound = false
       selected.selected = false

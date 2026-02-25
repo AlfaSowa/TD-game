@@ -1,16 +1,14 @@
 import { Assets, Container } from 'pixi.js'
 import { Engine } from '../../engine/core'
 import { randomNumber } from '../../utils'
-import { EnemyType } from '../configs'
+import { AbilitiesIds, EnemyType } from '../configs'
 import {
   BattleEndSystem,
   BattleInitSystem,
   BattleSystem,
   DeathSystem,
-  IntervalDamageSystem,
-  SelectEnemySystem,
   SelectSpellSystem,
-  TurnSystem
+  SelectTargetSystem
 } from '../ecs/systems'
 
 export type EnemyEntityType = {
@@ -41,6 +39,7 @@ const battleConfig: BattleConfigType = {
 export type PlayerSpellType = {
   position: number
   texture: string
+  id: AbilitiesIds
 }
 
 export type PlayerSpellConfigType = {
@@ -48,7 +47,10 @@ export type PlayerSpellConfigType = {
 }
 
 const playerSpellsConfig: PlayerSpellConfigType = {
-  spells: [{ position: 0, texture: 'Castle_Blue.png' }]
+  spells: [
+    { position: 0, texture: 'House_Red.png', id: 'fireball' },
+    { position: 1, texture: 'House_Blue.png', id: 'heal' }
+  ]
 }
 
 export class DungeonManager {
@@ -62,15 +64,7 @@ export class DungeonManager {
     engine.systems.add(new BattleInitSystem(view, texture, battleConfig, playerSpellsConfig))
     engine.systems.add(new BattleSystem())
     engine.systems.add(new BattleEndSystem())
-    engine.systems.add(new IntervalDamageSystem())
     engine.systems.add(new DeathSystem())
-    engine.systems.add(new TurnSystem())
-
-    engine.systems.add(new SelectEnemySystem())
-    engine.systems.get(SelectEnemySystem)?.init?.(engine.engineContext)
-
-    engine.systems.add(new SelectSpellSystem())
-    engine.systems.get(SelectSpellSystem)?.init?.(engine.engineContext)
 
     console.log('app', engine.app)
     console.log('world', engine.world)
@@ -78,14 +72,11 @@ export class DungeonManager {
   }
 
   static stop(engine: Engine) {
-    engine.systems.remove(BattleInitSystem, engine.engineContext)
-    engine.systems.remove(BattleSystem, engine.engineContext)
-    engine.systems.remove(BattleEndSystem, engine.engineContext)
-    engine.systems.remove(IntervalDamageSystem, engine.engineContext)
-    engine.systems.remove(DeathSystem, engine.engineContext)
-    engine.systems.remove(TurnSystem, engine.engineContext)
-
-    engine.systems.remove(SelectEnemySystem, engine.engineContext)
-    engine.systems.remove(SelectSpellSystem, engine.engineContext)
+    engine.systems.remove(BattleInitSystem)
+    engine.systems.remove(BattleSystem)
+    engine.systems.remove(BattleEndSystem)
+    engine.systems.remove(DeathSystem)
+    engine.systems.remove(SelectTargetSystem)
+    engine.systems.remove(SelectSpellSystem)
   }
 }

@@ -1,21 +1,21 @@
 {
     "assets": {
-        "C:/projects/td-game/TD-game/src/assets": {
+        "E:/js-game-pack/game-frontend/src/assets": {
             "isFolder": true,
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images": {
             "isFolder": true,
-            "parent": "C:/projects/td-game/TD-game/src/assets",
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images/layout.jpg": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/deploy-images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -23,7 +23,7 @@
         },
         ".assetpack/mipmap/deploy-images/layout.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/layout.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -35,7 +35,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/layout.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/layout.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/layout.jpg",
             "metaData": {},
@@ -44,7 +44,7 @@
         },
         ".assetpack/mipmap/deploy-images/layout@0.5x.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/layout.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/layout.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -56,31 +56,31 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/layout@0.5x.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/layout@0.5x.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/layout@0.5x.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.afdesign": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.afdesign": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/deploy-images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
             "hash": "-HSD7g"
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/logo.afdesign": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/logo.afdesign": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.afdesign",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.afdesign",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.jpg": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/deploy-images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -88,7 +88,7 @@
         },
         ".assetpack/mipmap/deploy-images/logo.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -100,7 +100,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/logo.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/logo.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/logo.jpg",
             "metaData": {},
@@ -109,7 +109,7 @@
         },
         ".assetpack/mipmap/deploy-images/logo@0.5x.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -121,31 +121,31 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/logo@0.5x.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/logo@0.5x.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/logo@0.5x.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.svg": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.svg": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/deploy-images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
             "hash": "UttxEQ"
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/logo.svg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/logo.svg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/logo.svg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/logo.svg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/deploy-images/screenshot-1.jpg": {
+        "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/deploy-images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/deploy-images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -153,7 +153,7 @@
         },
         ".assetpack/mipmap/deploy-images/screenshot-1.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/screenshot-1.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -165,7 +165,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/screenshot-1.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/screenshot-1.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/screenshot-1.jpg",
             "metaData": {},
@@ -174,7 +174,7 @@
         },
         ".assetpack/mipmap/deploy-images/screenshot-1@0.5x.jpg": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/deploy-images/screenshot-1.jpg",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/deploy-images/screenshot-1.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -186,75 +186,75 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/deploy-images/screenshot-1@0.5x.jpg": {
+        "E:/js-game-pack/game-frontend/public/deploy-images/screenshot-1@0.5x.jpg": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/deploy-images/screenshot-1@0.5x.jpg",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/fonts": {
+        "E:/js-game-pack/game-frontend/src/assets/fonts": {
             "isFolder": true,
-            "parent": "C:/projects/td-game/TD-game/src/assets",
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/fonts/monogram-extended-italic.ttf": {
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended-italic.ttf": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/fonts",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
             "hash": "NFlvhQ"
         },
-        "C:/projects/td-game/TD-game/public/fonts/monogram-extended-italic.ttf": {
+        "E:/js-game-pack/game-frontend/public/fonts/monogram-extended-italic.ttf": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/fonts/monogram-extended-italic.ttf",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended-italic.ttf",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/fonts/monogram-extended.ttf": {
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended.ttf": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/fonts",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
             "hash": "lh5mNA"
         },
-        "C:/projects/td-game/TD-game/public/fonts/monogram-extended.ttf": {
+        "E:/js-game-pack/game-frontend/public/fonts/monogram-extended.ttf": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/fonts/monogram-extended.ttf",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram-extended.ttf",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/fonts/monogram.ttf": {
+        "E:/js-game-pack/game-frontend/src/assets/fonts/monogram.ttf": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/fonts",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/fonts",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
             "hash": "vtb12g"
         },
-        "C:/projects/td-game/TD-game/public/fonts/monogram.ttf": {
+        "E:/js-game-pack/game-frontend/public/fonts/monogram.ttf": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/fonts/monogram.ttf",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/fonts/monogram.ttf",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images": {
+        "E:/js-game-pack/game-frontend/src/assets/images": {
             "isFolder": true,
-            "parent": "C:/projects/td-game/TD-game/src/assets",
+            "parent": "E:/js-game-pack/game-frontend/src/assets",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/123.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/123.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -262,7 +262,7 @@
         },
         ".assetpack/mipmap/images/123.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/123.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/123.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -274,7 +274,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/123.png": {
+        "E:/js-game-pack/game-frontend/public/images/123.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/123.png",
             "metaData": {},
@@ -283,7 +283,7 @@
         },
         ".assetpack/mipmap/images/123@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/123.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/123.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -295,16 +295,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/123@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/123@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/123@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/camp.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/camp.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -312,7 +312,7 @@
         },
         ".assetpack/mipmap/images/camp.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/camp.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/camp.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -324,7 +324,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/camp.png": {
+        "E:/js-game-pack/game-frontend/public/images/camp.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/camp.png",
             "metaData": {},
@@ -333,7 +333,7 @@
         },
         ".assetpack/mipmap/images/camp@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/camp.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/camp.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -345,16 +345,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/camp@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/camp@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/camp@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/Castle_Blue.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -362,7 +362,7 @@
         },
         ".assetpack/mipmap/images/Castle_Blue.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Castle_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -374,7 +374,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Castle_Blue.png": {
+        "E:/js-game-pack/game-frontend/public/images/Castle_Blue.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Castle_Blue.png",
             "metaData": {},
@@ -383,7 +383,7 @@
         },
         ".assetpack/mipmap/images/Castle_Blue@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Castle_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Castle_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -395,16 +395,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Castle_Blue@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/Castle_Blue@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Castle_Blue@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/cave_100x100.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -412,7 +412,7 @@
         },
         ".assetpack/mipmap/images/cave_100x100.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/cave_100x100.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -424,7 +424,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/cave_100x100.png": {
+        "E:/js-game-pack/game-frontend/public/images/cave_100x100.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/cave_100x100.png",
             "metaData": {},
@@ -433,7 +433,7 @@
         },
         ".assetpack/mipmap/images/cave_100x100@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/cave_100x100.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/cave_100x100.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -445,16 +445,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/cave_100x100@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/cave_100x100@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/cave_100x100@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/firecamp.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/firecamp.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -462,7 +462,7 @@
         },
         ".assetpack/mipmap/images/firecamp.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/firecamp.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/firecamp.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -474,7 +474,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/firecamp.png": {
+        "E:/js-game-pack/game-frontend/public/images/firecamp.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/firecamp.png",
             "metaData": {},
@@ -483,7 +483,7 @@
         },
         ".assetpack/mipmap/images/firecamp@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/firecamp.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/firecamp.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -495,16 +495,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/firecamp@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/firecamp@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/firecamp@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/house_200x200.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -512,7 +512,7 @@
         },
         ".assetpack/mipmap/images/house_200x200.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/house_200x200.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -524,7 +524,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/house_200x200.png": {
+        "E:/js-game-pack/game-frontend/public/images/house_200x200.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/house_200x200.png",
             "metaData": {},
@@ -533,7 +533,7 @@
         },
         ".assetpack/mipmap/images/house_200x200@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/house_200x200.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/house_200x200.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -545,16 +545,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/house_200x200@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/house_200x200@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/house_200x200@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/House_Blue.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -562,7 +562,7 @@
         },
         ".assetpack/mipmap/images/House_Blue.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/House_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -574,7 +574,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/House_Blue.png": {
+        "E:/js-game-pack/game-frontend/public/images/House_Blue.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/House_Blue.png",
             "metaData": {},
@@ -583,7 +583,7 @@
         },
         ".assetpack/mipmap/images/House_Blue@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/House_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -595,16 +595,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/House_Blue@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/House_Blue@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/House_Blue@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/House_Red.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -612,7 +612,7 @@
         },
         ".assetpack/mipmap/images/House_Red.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/House_Red.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -624,7 +624,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/House_Red.png": {
+        "E:/js-game-pack/game-frontend/public/images/House_Red.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/House_Red.png",
             "metaData": {},
@@ -633,7 +633,7 @@
         },
         ".assetpack/mipmap/images/House_Red@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/House_Red.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/House_Red.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -645,16 +645,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/House_Red@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/House_Red@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/House_Red@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/Tower_Blue.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -662,7 +662,7 @@
         },
         ".assetpack/mipmap/images/Tower_Blue.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tower_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -674,7 +674,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tower_Blue.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tower_Blue.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tower_Blue.png",
             "metaData": {},
@@ -683,7 +683,7 @@
         },
         ".assetpack/mipmap/images/Tower_Blue@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tower_Blue.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tower_Blue.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -695,16 +695,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tower_Blue@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tower_Blue@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tower_Blue@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/Tree1.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -712,7 +712,7 @@
         },
         ".assetpack/mipmap/images/Tree1.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree1.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -724,7 +724,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree1.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree1.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree1.png",
             "metaData": {},
@@ -733,7 +733,7 @@
         },
         ".assetpack/mipmap/images/Tree1@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree1.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -745,16 +745,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree1@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree1@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree1@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/Tree1Shadow.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/Tree1Shadow.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -762,7 +762,7 @@
         },
         ".assetpack/mipmap/images/Tree1Shadow.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree1Shadow.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1Shadow.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -774,7 +774,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree1Shadow.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree1Shadow.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree1Shadow.png",
             "metaData": {},
@@ -783,7 +783,7 @@
         },
         ".assetpack/mipmap/images/Tree1Shadow@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree1Shadow.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree1Shadow.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -795,16 +795,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree1Shadow@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree1Shadow@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree1Shadow@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/Tree2.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -812,7 +812,7 @@
         },
         ".assetpack/mipmap/images/Tree2.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree2.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -824,7 +824,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree2.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree2.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree2.png",
             "metaData": {},
@@ -833,7 +833,7 @@
         },
         ".assetpack/mipmap/images/Tree2@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/Tree2.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/Tree2.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -845,16 +845,16 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/Tree2@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/Tree2@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/Tree2@0.5x.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/src/assets/images/дом.png": {
+        "E:/js-game-pack/game-frontend/src/assets/images/дом.png": {
             "isFolder": false,
-            "parent": "C:/projects/td-game/TD-game/src/assets/images",
+            "parent": "E:/js-game-pack/game-frontend/src/assets/images",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {},
@@ -862,7 +862,7 @@
         },
         ".assetpack/mipmap/images/дом.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/дом.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/дом.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -874,7 +874,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/дом.png": {
+        "E:/js-game-pack/game-frontend/public/images/дом.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/дом.png",
             "metaData": {},
@@ -883,7 +883,7 @@
         },
         ".assetpack/mipmap/images/дом@0.5x.png": {
             "isFolder": false,
-            "transformParent": "C:/projects/td-game/TD-game/src/assets/images/дом.png",
+            "transformParent": "E:/js-game-pack/game-frontend/src/assets/images/дом.png",
             "metaData": {},
             "inheritedMetaData": {},
             "transformData": {}
@@ -895,7 +895,7 @@
             "inheritedMetaData": {},
             "transformData": {}
         },
-        "C:/projects/td-game/TD-game/public/images/дом@0.5x.png": {
+        "E:/js-game-pack/game-frontend/public/images/дом@0.5x.png": {
             "isFolder": false,
             "transformParent": ".assetpack/compress/images/дом@0.5x.png",
             "metaData": {},

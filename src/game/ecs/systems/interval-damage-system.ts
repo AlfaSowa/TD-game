@@ -22,11 +22,6 @@ export class IntervalDamageSystem implements System {
       if (intervalDamage.elapsed >= intervalDamage.interval) {
         health.currentHealth = health.currentHealth - intervalDamage.damagePerTick
         intervalDamage.elapsed = 0
-
-        console.log(
-          'enemy HP',
-          `${health.currentHealth} из ${health.maxHealth}: damage ${intervalDamage.damagePerTick} `
-        )
       }
 
       if (intervalDamage.timeLeft <= 0) {

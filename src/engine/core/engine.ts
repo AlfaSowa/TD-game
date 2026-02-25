@@ -39,8 +39,8 @@ export class Engine {
 
       if (!target || !target.uid) {
         this.world.emit('emptyClicked', { originalEvent: event })
-        this.world.emit('enemyClicked', { originalEvent: event })
-        this.world.emit('spellClicked', { originalEvent: event })
+        this.world.emit('selectTarget', { originalEvent: event })
+        this.world.emit('selectAbility', { originalEvent: event })
         return
       }
 
@@ -50,13 +50,13 @@ export class Engine {
         mouse: event.global
       })
 
-      this.world.emit('enemyClicked', {
+      this.world.emit('selectTarget', {
         entityId: target.uid,
         originalEvent: event,
         mouse: event.global
       })
 
-      this.world.emit('spellClicked', {
+      this.world.emit('selectAbility', {
         entityId: target.uid,
         originalEvent: event,
         mouse: event.global
@@ -68,13 +68,14 @@ export class Engine {
     this.engineContext.register(World, this.world)
     this.engineContext.register(Application, this.app)
     this.engineContext.register(SceneManager, this.sceneManager)
+    this.engineContext.register(SystemRunner, this.systems)
+
+    this.systems.init(this.engineContext)
 
     this.systems.add(new MovementSystem())
     this.systems.add(new ClickSystem())
     this.systems.add(new SelectSystem())
     this.systems.add(new HighlightSystem())
-
-    this.systems.init(this.engineContext)
 
     this.sceneManager.init(this.app, this)
     this.uiManager.init(this.app, this)
@@ -82,7 +83,7 @@ export class Engine {
 
   start(update: (dt: number) => void) {
     this.app.ticker.add(() => {
-      this.systems.update(this.engineContext, this.app.ticker.deltaTime)
+      this.systems.update(this.app.ticker.deltaTime)
       this.sceneManager.update(this.app.ticker.deltaTime)
 
       update(this.app.ticker.deltaTime)

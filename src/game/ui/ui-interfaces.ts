@@ -2,7 +2,7 @@ import { BitmapText } from 'pixi.js'
 import { Engine } from '../../engine/core'
 import { UiBox, UiSlot } from '../../engine/ui'
 import { Vector2 } from '../../utils'
-import { TurnComponent } from '../ecs'
+import { TurnActionBattleComponent } from '../ecs'
 import { DungeonScene } from '../scenes/dungeon-scene'
 
 const BUTTONS_HEIGHT = 50
@@ -82,8 +82,8 @@ export class UiInterfaces {
 
     const startTurnBtnSlot = new UiSlot(engine.app.canvas.width - 60, BUTTONS_HEIGHT, 'rgba(101, 101, 101, 1)')
 
-    const turnBtn = engine.world.getOrCreateSingleton(TurnComponent, new TurnComponent())
-    const turnBtnComponent = engine.world.getComponent(turnBtn, TurnComponent)!
+    const turnBtn = engine.world.getOrCreateSingleton(TurnActionBattleComponent, new TurnActionBattleComponent())
+    const turnBtnComponent = engine.world.getComponent(turnBtn, TurnActionBattleComponent)!
 
     startTurnBtnSlot.clicked((f) => {
       console.log('Конец хода')

@@ -1,7 +1,7 @@
 export enum SYSTEM_PRIORITY {
-  LOW,
-  INTERMEDIATE,
-  SUPPORT,
-  HIGH,
-  DANGER
+  LOW = 0,
+  INTERMEDIATE = 1,
+  SUPPORT = 2,
+  HIGH = 3,
+  DANGER = 4
 }

@@ -3,7 +3,7 @@ import { World } from '../../../engine/core'
 import { System } from '../../../engine/ecs/systems'
 import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
-import { BattleComponent, BattlePhase } from '../components/battle-component'
+import { BATTLE_PHASE, BattleComponent } from '../components/battle-component'
 
 export class BattleEndSystem implements System {
   priority = SYSTEM_PRIORITY.LOW
@@ -15,7 +15,7 @@ export class BattleEndSystem implements System {
     const battleEntity = world.getOrCreateSingleton(BattleComponent, new BattleComponent())
     const battle = world.getComponent(battleEntity, BattleComponent)
 
-    if (battle?.phase === BattlePhase.END) {
+    if (battle?.phase === BATTLE_PHASE.END) {
       console.log('Game END')
     }
   }

@@ -1,22 +1,25 @@
 import { Application, Container, Graphics, Sprite } from 'pixi.js'
 import { World } from '../../../engine/core'
-import { ClickableComponent, SelectableComponent } from '../../../engine/ecs/components'
 import { Entity } from '../../../engine/ecs/entities'
 import { System } from '../../../engine/ecs/systems'
 import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import { UiSlot } from '../../../engine/ui'
 import { drawSquareFields } from '../../../engine/utils'
-import { enemyConfigs, EnemyType, playerConfig } from '../../configs'
+import { abilitiesConfigs, enemyConfigs, EnemyType, playerConfig } from '../../configs'
 import { BattleConfigType, PlayerSpellConfigType } from '../../managers'
 import {
+  AbilitiesComponent,
+  AbilityComponent,
+  BATTLE_PHASE,
   BattleComponent,
-  BattlePhase,
+  CombatStateComponent,
   DamageComponent,
   EnemyComponent,
   HealthComponent,
   PlayerTagComponent,
-  SpellComponent
+  SelectedAbilityComponent,
+  SelectedTargetComponent
 } from '../components'
 
 export class BattleInitSystem implements System {
@@ -25,7 +28,7 @@ export class BattleInitSystem implements System {
   view: Container
   texture: any
   container: Container = new Container()
-  spells: Container = new Container()
+  abilities: Container = new Container()
 
   battleConfig: BattleConfigType
   playerSpellConfig: PlayerSpellConfigType
@@ -44,7 +47,10 @@ export class BattleInitSystem implements System {
     const battleEntity = world.getOrCreateSingleton(BattleComponent, new BattleComponent())
     const battle = world.getComponent(battleEntity, BattleComponent)
 
-    if (battle?.phase === BattlePhase.INIT) {
+    const combatEntity = world.getOrCreateSingleton(CombatStateComponent, new CombatStateComponent())
+    const combat = world.getComponent(combatEntity, CombatStateComponent)!
+
+    if (battle?.phase === BATTLE_PHASE.INIT) {
       console.log('Game INIT')
 
       drawSquareFields({
@@ -65,7 +71,7 @@ export class BattleInitSystem implements System {
 
       this.createPlayer(world, app)
 
-      this.createSpells(world, app)
+      this.createAbilities(world, app)
 
       for (const enemy of this.battleConfig.enemies) {
         const enemySlot = this.container.children[enemy.position]
@@ -82,16 +88,13 @@ export class BattleInitSystem implements System {
         }
       }
 
-      battle.phase = BattlePhase.GAME_START
-
-      console.log(222, world.with(SpellComponent, SelectableComponent))
-      console.log(222, world.with(EnemyComponent, SelectableComponent))
+      battle.phase = BATTLE_PHASE.GAME_START
     }
   }
 
-  createSpells(world: World, app: Application) {
+  createAbilities(world: World, app: Application) {
     drawSquareFields({
-      container: this.spells,
+      container: this.abilities,
       xAmount: 5,
       yAmount: 1,
       gap: 2,
@@ -102,19 +105,21 @@ export class BattleInitSystem implements System {
         )
     })
 
-    this.spells.position.set(app.canvas.width / 2 - this.spells.width / 2, 100)
+    this.abilities.position.set(app.canvas.width / 2 - this.abilities.width / 2, 100)
 
-    this.view.addChild(this.spells)
+    this.view.addChild(this.abilities)
 
     for (const spell of this.playerSpellConfig.spells) {
-      const slot = this.spells.children[spell.position]
+      const slot = this.abilities.children[spell.position]
 
       if (slot) {
         const entity = world.createEntity(Entity)
 
-        world.addComponent(entity, new ClickableComponent())
-        world.addComponent(entity, new SelectableComponent())
-        world.addComponent(entity, new SpellComponent())
+        world.addComponent(entity, new SelectedAbilityComponent())
+
+        const config = abilitiesConfigs[spell.id]
+
+        world.addComponent(entity, new AbilityComponent(config.id))
 
         entity.addChild(new Sprite(this.texture.default[spell.texture]))
 
@@ -142,6 +147,7 @@ export class BattleInitSystem implements System {
     world.addComponent(player, new HealthComponent(playerConfig.health))
     world.addComponent(player, new DamageComponent(playerConfig.damage))
     world.addComponent(player, new PlayerTagComponent())
+    world.addComponent(player, new AbilitiesComponent(['fireball', 'heal']))
 
     this.view.addChild(player)
   }
@@ -155,8 +161,7 @@ export class BattleInitSystem implements System {
     world.addComponent(enemyEntity, new DamageComponent(config.damage))
 
     world.addComponent(enemyEntity, new EnemyComponent())
-    world.addComponent(enemyEntity, new ClickableComponent())
-    world.addComponent(enemyEntity, new SelectableComponent())
+    world.addComponent(enemyEntity, new SelectedTargetComponent())
 
     return enemyEntity
   }

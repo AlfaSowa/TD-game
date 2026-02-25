@@ -6,6 +6,7 @@ type SystemConstructor<S extends System> = new (...args: any[]) => S
 
 export class SystemRunner {
   private systems: System[] = []
+  private ctx!: EngineContext
 
   comporator = new Map<SYSTEM_PRIORITY, number>()
 
@@ -18,34 +19,32 @@ export class SystemRunner {
   }
 
   add<S extends System>(system: S): void {
+    system.init?.(this.ctx)
     this.systems.push(system)
 
     this.systems.sort((a, b) => {
-      return this.comporator.get(a.priority)! - this.comporator.get(b.priority)!
+      return a.priority - b.priority
     })
   }
 
   init(ctx: EngineContext) {
-    for (const sistem of this.systems) {
-      sistem.init?.(ctx)
-    }
+    this.ctx = ctx
   }
 
   get<S extends System>(system: SystemConstructor<S>) {
     return this.systems.find((s) => s.constructor.name === system.name)
   }
 
-  remove<S extends System>(system: SystemConstructor<S>, ctx: EngineContext) {
+  remove<S extends System>(system: SystemConstructor<S>) {
     const s = this.get(system)
-    console.log(s)
 
-    s?.onRemove?.(ctx)
+    s?.onRemove?.(this.ctx)
     this.systems = this.systems.filter((s) => !(s instanceof system))
   }
 
-  update(ctx: EngineContext, dt: number) {
+  update(dt: number) {
     for (const sistem of this.systems) {
-      sistem.update?.(ctx, dt)
+      sistem.update?.(this.ctx, dt)
     }
   }
 }
