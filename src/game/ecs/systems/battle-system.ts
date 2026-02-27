@@ -4,6 +4,7 @@ import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import {
   ActionIntentComponent,
+  ActiveAbilityTagComponent,
   BATTLE_PHASE,
   BattleComponent,
   COMBAT_STATE,
@@ -44,14 +45,14 @@ export class BattleSystem implements System {
       if (battle.phase === BATTLE_PHASE.GAME_START) {
         if (combat.phase === COMBAT_STATE.INIT) {
           console.log('INIT')
-          combat.phase = COMBAT_STATE.IDLE
+          combat.phase = COMBAT_STATE.PREPARING
 
           systems.add(new SelectTargetSystem())
           systems.add(new SelectSpellSystem())
         }
 
-        if (combat.phase === COMBAT_STATE.IDLE) {
-          console.log('IDLE')
+        if (combat.phase === COMBAT_STATE.PREPARING) {
+          console.log('PREPARING')
           this.timer += dt
 
           if (this.timer >= this.roundTimer) {
@@ -70,6 +71,10 @@ export class BattleSystem implements System {
 
             systems.remove(SelectTargetSystem)
             systems.remove(SelectSpellSystem)
+
+            if (actionIntent.ability) {
+              world.addComponent(actionIntent.ability, new ActiveAbilityTagComponent())
+            }
 
             console.log('actionIntent', actionIntent)
 

@@ -2,7 +2,7 @@ import { Component } from '../../../engine/ecs/components'
 
 export enum COMBAT_STATE {
   INIT,
-  IDLE,
+  PREPARING,
   SELECTED,
   RESOLVING,
   END_TURN

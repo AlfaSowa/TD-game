@@ -60,6 +60,7 @@ export class SelectSpellSystem implements System {
 
     if (selectable && actionIntent && ability) {
       actionIntent.abilityId = ability.abilityId
+      actionIntent.ability = e
 
       selectable.selected = true
       e.tint = 0x00ff00

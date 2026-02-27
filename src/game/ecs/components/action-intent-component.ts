@@ -5,5 +5,6 @@ import { AbilitiesIds } from '../../configs'
 export class ActionIntentComponent implements Component {
   caster?: Entity
   abilityId?: AbilitiesIds
+  ability?: Entity
   target?: Entity
 }

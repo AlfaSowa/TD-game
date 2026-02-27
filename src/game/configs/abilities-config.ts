@@ -1,6 +1,8 @@
 export type AbilitiesIds = 'fireball' | 'heal'
+
 type TargetsType = 'enemy' | 'self'
-type EffectType = 'damage' | 'heal' | 'critChance'
+
+type EffectType = 'damage' | 'heal' | 'critChance' | 'interval'
 
 type Effect = {
   type: EffectType
