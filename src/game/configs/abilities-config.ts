@@ -2,11 +2,15 @@ export type AbilitiesIds = 'fireball' | 'heal'
 
 type TargetsType = 'enemy' | 'self'
 
-type EffectType = 'damage' | 'heal' | 'critChance' | 'interval'
+export type EffectType = 'none' | 'fire'
 
-type Effect = {
+export type StatusType = 'damage' | 'heal' | 'status'
+
+export type Effect = {
+  status: StatusType
   type: EffectType
-  amount?: number
+  amount: number
+  duration: number
 }
 
 export type AbilitiesConfigType = {
@@ -15,7 +19,7 @@ export type AbilitiesConfigType = {
     name: string
     cost: number
     cooldown: number
-    targetType: TargetsType
+    target: TargetsType
     effects: Effect[]
   }
 }
@@ -24,29 +28,35 @@ export const abilitiesConfigs: AbilitiesConfigType = {
   fireball: {
     id: 'fireball',
     name: 'Fireball',
-    targetType: 'enemy',
+    target: 'enemy',
     cost: 0,
     cooldown: 0,
     effects: [
       {
-        type: 'damage',
-        amount: 20
+        status: 'damage',
+        duration: 0,
+        type: 'fire',
+        amount: 100
       },
       {
-        type: 'critChance',
-        amount: 0
+        status: 'status',
+        duration: 3,
+        type: 'fire',
+        amount: 50
       }
     ]
   },
   heal: {
     id: 'heal',
     name: 'Heal',
-    targetType: 'self',
+    target: 'self',
     cost: 0,
     cooldown: 0,
     effects: [
       {
-        type: 'heal',
+        status: 'heal',
+        duration: 0,
+        type: 'none',
         amount: 100
       }
     ]

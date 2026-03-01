@@ -4,7 +4,6 @@ import { SYSTEM_PRIORITY } from '../../../engine/ecs/systems/types'
 import { EngineContext } from '../../../engine/engine-ctx'
 import {
   ActionIntentComponent,
-  ActiveAbilityTagComponent,
   BATTLE_PHASE,
   BattleComponent,
   COMBAT_STATE,
@@ -13,6 +12,7 @@ import {
   PlayerTagComponent,
   TurnActionBattleComponent
 } from '../components'
+import { AbilityDamageSystem, AbilityHealSystem, AbilityStatusSystem } from './abilities'
 import { AbilitiesResolveSystem } from './abilities-resolve-system'
 import { SelectSpellSystem } from './select-spell-system'
 import { SelectTargetSystem } from './select-target-system'
@@ -20,7 +20,7 @@ import { SelectTargetSystem } from './select-target-system'
 export class BattleSystem implements System {
   priority = SYSTEM_PRIORITY.INTERMEDIATE
 
-  roundTimer: number = 200
+  roundTimer: number = 100
   timer: number = 0
 
   update(ctx: EngineContext, dt: number): void {
@@ -49,6 +49,11 @@ export class BattleSystem implements System {
 
           systems.add(new SelectTargetSystem())
           systems.add(new SelectSpellSystem())
+          systems.add(new AbilitiesResolveSystem())
+
+          systems.add(new AbilityHealSystem())
+          systems.add(new AbilityStatusSystem())
+          systems.add(new AbilityDamageSystem())
         }
 
         if (combat.phase === COMBAT_STATE.PREPARING) {
@@ -65,38 +70,34 @@ export class BattleSystem implements System {
           console.log('SELECTED')
 
           if (actionBtn.btnPressed && actionIntent) {
-            combat.phase = COMBAT_STATE.RESOLVING
+            combat.phase = COMBAT_STATE.EFFECTS_INIT
 
             actionIntent.caster = player
 
             systems.remove(SelectTargetSystem)
             systems.remove(SelectSpellSystem)
 
-            if (actionIntent.ability) {
-              world.addComponent(actionIntent.ability, new ActiveAbilityTagComponent())
-            }
-
-            console.log('actionIntent', actionIntent)
-
             actionBtn.btnPressed = false
           }
         }
 
+        if (combat.phase === COMBAT_STATE.EFFECTS_INIT) {
+          console.log('EFFECTS_INIT')
+        }
+
         if (combat.phase === COMBAT_STATE.RESOLVING) {
           console.log('RESOLVING')
-          systems.add(new AbilitiesResolveSystem())
 
-          this.timer += dt
-
-          if (this.timer >= this.roundTimer) {
-            this.timer = 0
-            combat.phase = COMBAT_STATE.END_TURN
-          }
+          combat.phase = COMBAT_STATE.END_TURN
         }
 
         if (combat.phase === COMBAT_STATE.END_TURN) {
           console.log('END_TURN')
           systems.remove(AbilitiesResolveSystem)
+
+          systems.remove(AbilityHealSystem)
+          systems.remove(AbilityStatusSystem)
+          systems.remove(AbilityDamageSystem)
 
           console.log('world', world)
 

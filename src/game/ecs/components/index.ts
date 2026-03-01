@@ -1,7 +1,6 @@
-export * from './abilities-component'
-export * from './ability-component'
+export * from './abilities'
+
 export * from './action-intent-component'
-export * from './active-ability-tag-component'
 export * from './battle-component'
 export * from './combat-state-component'
 export * from './damage-component'

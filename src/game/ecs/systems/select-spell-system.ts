@@ -51,6 +51,7 @@ export class SelectSpellSystem implements System {
 
     for (const entity of world.with(SelectedAbilityComponent)) {
       const selectable = world.getComponent(entity, SelectedAbilityComponent)!
+
       selectable.selected = false
       entity.tint = 0xffffff
     }
