@@ -1,3 +1,4 @@
+import { json } from '@assetpack/core/json'
 import { pixiPipes } from '@assetpack/core/pixi'
 
 export default {
@@ -7,6 +8,7 @@ export default {
     ...pixiPipes({
       compression: { jpg: true, png: true, webp: false },
       cacheBust: false
-    })
+    }),
+    json()
   ]
 }

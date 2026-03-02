@@ -22,6 +22,8 @@ import {
   SelectedTargetComponent
 } from '../components'
 
+import * as PIXI from 'pixi.js'
+
 export class BattleInitSystem implements System {
   priority = SYSTEM_PRIORITY.LOW
 
@@ -79,7 +81,27 @@ export class BattleInitSystem implements System {
         if (enemySlot) {
           const enemyEntity = this.createEnemy(world, enemy.type)
 
-          enemyEntity.addChild(new Sprite(this.texture.default[enemy.texture]))
+          const enemyTexture = this.texture.default[enemy.texture]
+
+          const frameWidth = enemyTexture.width / enemy.frames
+          const frameHeight = enemyTexture.height
+          const frames = []
+
+          // создаём текстуры по кадрам
+          for (let i = 0; i < enemy.frames; i++) {
+            const rectangle = new PIXI.Rectangle(i * frameWidth, 0, frameWidth, frameHeight)
+
+            frames.push(new PIXI.Texture({ source: enemyTexture, frame: rectangle }))
+          }
+
+          // создаём анимированный спрайт
+          const animatedSprite = new PIXI.AnimatedSprite(frames)
+
+          animatedSprite.animationSpeed = 0.3 // скорость
+          animatedSprite.loop = true
+          animatedSprite.play()
+
+          enemyEntity.addChild(animatedSprite)
 
           enemyEntity.width = enemySlot.width
           enemyEntity.height = enemySlot.height

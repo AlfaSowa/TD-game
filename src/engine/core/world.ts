@@ -35,6 +35,8 @@ export class World {
     this.entities.delete(entity.uid)
 
     for (const component of this.components.values()) {
+      console.log(65656)
+
       component.delete(entity)
     }
   }
@@ -87,6 +89,20 @@ export class World {
         return this.getComponent(entity, componentClass)
       })
     })
+  }
+
+  public withInstance(componentClass: ComponentConstructor<Component>) {
+    const result: Entity[] = []
+
+    for (const component of this.components.values()) {
+      const value = component.values().next().value
+
+      if (value && componentClass.prototype.isPrototypeOf(value.constructor.prototype)) {
+        result.push(...component.keys())
+      }
+    }
+
+    return result
   }
 
   on(eventName: string, callback: (arg: WorldEventData) => void) {

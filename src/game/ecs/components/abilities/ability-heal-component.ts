@@ -1,10 +1,11 @@
-import { Component } from '../../../../engine/ecs/components'
 import { Effect } from '../../../configs'
+import { EffectTagComponent } from './effect-tag-component'
 
-export class AbilityHealComponent implements Component {
+export class AbilityHealComponent extends EffectTagComponent {
   value: number = 0
 
   constructor(effect: Effect) {
+    super()
     this.value = effect.amount
   }
 }

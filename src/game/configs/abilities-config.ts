@@ -1,8 +1,8 @@
-export type AbilitiesIds = 'fireball' | 'heal'
+export type AbilitiesIds = 'fireball' | 'heal' | 'freez' | 'burn'
 
 type TargetsType = 'enemy' | 'self'
 
-export type EffectType = 'none' | 'fire'
+export type EffectType = 'none' | 'fire' | 'cold'
 
 export type StatusType = 'damage' | 'heal' | 'status'
 
@@ -43,6 +43,36 @@ export const abilitiesConfigs: AbilitiesConfigType = {
         duration: 3,
         type: 'fire',
         amount: 50
+      }
+    ]
+  },
+  freez: {
+    id: 'freez',
+    name: 'Freez',
+    target: 'enemy',
+    cost: 0,
+    cooldown: 0,
+    effects: [
+      {
+        status: 'status',
+        duration: 3,
+        type: 'cold',
+        amount: 50
+      }
+    ]
+  },
+  burn: {
+    id: 'burn',
+    name: 'Burn',
+    target: 'enemy',
+    cost: 0,
+    cooldown: 0,
+    effects: [
+      {
+        status: 'status',
+        duration: 2,
+        type: 'fire',
+        amount: 100
       }
     ]
   },

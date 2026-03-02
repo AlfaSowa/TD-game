@@ -17,6 +17,8 @@ export class AbilityHealSystem implements System {
       health.currentHealth =
         health.currentHealth + heal.value >= health.maxHealth ? health.maxHealth : health.currentHealth + heal.value
 
+      console.log('AbilityHealSystem health', health)
+
       world.removeComponent(entity, AbilityHealComponent)
     }
   }

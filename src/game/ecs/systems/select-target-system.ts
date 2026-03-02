@@ -52,7 +52,8 @@ export class SelectTargetSystem implements System {
     for (const entity of world.with(SelectedTargetComponent)) {
       const selectable = world.getComponent(entity, SelectedTargetComponent)!
       selectable.selected = false
-      entity.tint = 0xffffff
+
+      entity.tint = entity.tint === 0x00ff00 ? 0xffffff : entity.tint
     }
 
     const selectable = world.getComponent(e, SelectedTargetComponent)!

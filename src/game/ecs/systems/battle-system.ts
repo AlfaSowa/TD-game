@@ -10,12 +10,10 @@ import {
   CombatStateComponent,
   HealthComponent,
   PlayerTagComponent,
+  SelectedAbilityComponent,
+  SelectedTargetComponent,
   TurnActionBattleComponent
 } from '../components'
-import { AbilityDamageSystem, AbilityHealSystem, AbilityStatusSystem } from './abilities'
-import { AbilitiesResolveSystem } from './abilities-resolve-system'
-import { SelectSpellSystem } from './select-spell-system'
-import { SelectTargetSystem } from './select-target-system'
 
 export class BattleSystem implements System {
   priority = SYSTEM_PRIORITY.INTERMEDIATE
@@ -46,23 +44,17 @@ export class BattleSystem implements System {
         if (combat.phase === COMBAT_STATE.INIT) {
           console.log('INIT')
           combat.phase = COMBAT_STATE.PREPARING
-
-          systems.add(new SelectTargetSystem())
-          systems.add(new SelectSpellSystem())
-          systems.add(new AbilitiesResolveSystem())
-
-          systems.add(new AbilityHealSystem())
-          systems.add(new AbilityStatusSystem())
-          systems.add(new AbilityDamageSystem())
         }
 
         if (combat.phase === COMBAT_STATE.PREPARING) {
           console.log('PREPARING')
-          this.timer += dt
 
-          if (this.timer >= this.roundTimer) {
-            this.timer = 0
-            combat.phase = COMBAT_STATE.SELECTED
+          for (const entity of world.with(SelectedTargetComponent)) {
+            entity.eventMode = 'static'
+          }
+
+          for (const entity of world.with(SelectedAbilityComponent)) {
+            entity.eventMode = 'static'
           }
         }
 
@@ -70,12 +62,25 @@ export class BattleSystem implements System {
           console.log('SELECTED')
 
           if (actionBtn.btnPressed && actionIntent) {
+            for (const entity of world.with(SelectedTargetComponent)) {
+              const selected = world.getComponent(entity, SelectedTargetComponent)!
+
+              selected.bound = false
+              selected.selected = false
+              entity.eventMode = 'passive'
+            }
+
+            for (const entity of world.with(SelectedAbilityComponent)) {
+              const selected = world.getComponent(entity, SelectedAbilityComponent)!
+
+              selected.bound = false
+              selected.selected = false
+              entity.eventMode = 'passive'
+            }
+
             combat.phase = COMBAT_STATE.EFFECTS_INIT
 
             actionIntent.caster = player
-
-            systems.remove(SelectTargetSystem)
-            systems.remove(SelectSpellSystem)
 
             actionBtn.btnPressed = false
           }
@@ -87,19 +92,13 @@ export class BattleSystem implements System {
 
         if (combat.phase === COMBAT_STATE.RESOLVING) {
           console.log('RESOLVING')
-
-          combat.phase = COMBAT_STATE.END_TURN
         }
 
         if (combat.phase === COMBAT_STATE.END_TURN) {
           console.log('END_TURN')
-          systems.remove(AbilitiesResolveSystem)
-
-          systems.remove(AbilityHealSystem)
-          systems.remove(AbilityStatusSystem)
-          systems.remove(AbilityDamageSystem)
 
           console.log('world', world)
+          console.log('systems', systems)
 
           combat.phase = COMBAT_STATE.INIT
         }

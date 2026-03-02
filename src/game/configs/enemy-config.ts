@@ -1,4 +1,4 @@
-export type EnemyType = 'warrior' | 'mage'
+export type EnemyType = 'warrior' | 'archer'
 
 export type EnemyConfigType = {
   [key in EnemyType]: {
@@ -12,7 +12,7 @@ export const enemyConfigs: EnemyConfigType = {
     health: 150,
     damage: 10
   },
-  mage: {
+  archer: {
     health: 80,
     damage: 20
   }

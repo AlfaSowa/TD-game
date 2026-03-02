@@ -16,6 +16,8 @@ export class AbilityDamageSystem implements System {
 
       health.currentHealth -= damage.value
 
+      console.log('AbilityDamageSystem health', health)
+
       if (health.currentHealth < 0) {
         world.addComponent(entity, new DeathTagComponent())
       }

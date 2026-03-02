@@ -117,6 +117,19 @@
         },
         {
           "alias": [
+            "images/Archer_Idle.png",
+            "Archer_Idle.png"
+          ],
+          "src": [
+            "images/Archer_Idle@0.5x.png",
+            "images/Archer_Idle.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
             "images/camp.png",
             "camp.png"
           ],
@@ -253,6 +266,19 @@
           "src": [
             "images/Tree2@0.5x.png",
             "images/Tree2.png"
+          ],
+          "data": {
+            "tags": {}
+          }
+        },
+        {
+          "alias": [
+            "images/Warrior_Idle.png",
+            "Warrior_Idle.png"
+          ],
+          "src": [
+            "images/Warrior_Idle@0.5x.png",
+            "images/Warrior_Idle.png"
           ],
           "data": {
             "tags": {}
